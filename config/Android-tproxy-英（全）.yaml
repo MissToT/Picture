@@ -107,8 +107,8 @@ proxy-groups:
   - {name: 'Games', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png'}
   - {name: 'Japan', <<: [*Select, *FilterJP], proxies: ['AutoJP', 'Proxy', '🌐 Direct', '⛔️ Reject'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Japan.png'}
   - {name: 'Taiwan', <<: [*Select, *FilterTW], proxies: ['AutoTW', 'Proxy', '🌐 Direct', '⛔️ Reject'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Taiwan.png'}
-  - {name: 'WebRTC', <<: [*Select, *FilterSelect], proxies: ['Proxy', 'Auto', '🌐 Direct', '⛔️ Reject', 'REJECT-DROP', 'PASS'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Domestic.png'}
-  - {name: 'Adblock', <<: [*Select, *FilterSelect], proxies: ['Proxy', 'Auto', '🌐 Direct', '⛔️ Reject', 'REJECT-DROP', 'PASS'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Hijacking.png'}
+  - {name: 'WebRTC', type: select, proxies: ['⛔️ Reject', 'PASS'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Domestic.png'}
+  - {name: 'Adblock', type: select, proxies: ['⛔️ Reject', 'PASS'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Hijacking.png'}
   - {name: 'Direct', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Direct.png'}
   - {name: 'Final', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png'}
   - {name: 'GLOBAL', <<: [*Select, *FilterSelect], proxies: ['Proxy', 'EHentai', 'Telegram', 'Twitter', 'Emby', 'YouTube', 'TikTok', 'GoogleFCM', 'AI', 'Games', 'Japan', 'Taiwan', 'WebRTC', 'Adblock', 'Direct', 'Final'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png'}

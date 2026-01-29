@@ -100,7 +100,7 @@ proxy-groups:
   - {name: 'Games', <<: *Select, icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png'}
   - {name: '国外代理', <<: *Select, icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Europe_Map.png'}
   - {name: '国内代理', <<: *Select, icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/China_Map.png'}
-  - {name: '广告拦截', <<: *Select, proxies: ['手动选择', '自动选择', '🌐 本地直连', '⛔️ 拒绝连接', 'REJECT-DROP', 'PASS'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Hijacking.png'}
+  - {name: '广告拦截', type: select, proxies: ['⛔️ 拒绝连接', 'PASS'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Hijacking.png'}
   - {name: '漏网之鱼', <<: *Select, icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png'}
   - {name: 'GLOBAL', <<: *Select, proxies: ['手动选择', '自动选择', '谷歌推送', 'Telegram', 'Twitter', 'YouTube', 'TikTok', 'AI', 'Games', '国外代理', '国内代理', '广告拦截', '漏网之鱼'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png'}
 
