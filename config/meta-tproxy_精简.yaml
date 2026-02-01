@@ -60,7 +60,6 @@ sniffer:
 dns:
   enable: true
   ipv6: true
-  prefer-h3: true
   listen: 0.0.0.0:1053
   cache-algorithm: arc
   enhanced-mode: fake-ip
