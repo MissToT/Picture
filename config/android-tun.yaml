@@ -22,8 +22,8 @@ Providers: &Providers {type: http, interval: 86400, proxy: DIRECT, health-check:
 
 # 节点订阅
 proxy-providers:
-  SNTP: {<<: *Providers, url: 'http://localhost:3000/download/SNTP', path: ./providers/SNTP.yaml, override: {additional-prefix: 'STP·'}}
-  SakuraCat: {<<: *Providers, url: 'http://localhost:3000/download/SakuraCat', path: ./providers/SakuraCat.yaml, override: {additional-prefix: 'SKC·'}}
+  SNTP: {<<: *Providers, url: 'http://localhost:3000/download/SNTP', path: ./providers/SNTP.yaml, override: {additional-prefix: 'STP・'}}
+  SakuraCat: {<<: *Providers, url: 'http://localhost:3000/download/SakuraCat', path: ./providers/SakuraCat.yaml, override: {additional-prefix: 'SKC・'}}
 
 # 基础配置
 mixed-port: 7890
@@ -109,23 +109,23 @@ proxy-groups:
   - {name: '漏网之鱼', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png'}
   - {name: 'GLOBAL', <<: [*Select, *FilterSelect], proxies: ['手动选择', '谷歌推送', 'Telegram', 'Twitter', 'Emby', 'EHentai', 'YouTube', 'TikTok', 'AI', 'Games', '日本代理', '台湾代理', '国外代理', '国内代理', 'WebRTC', '广告拦截', '漏网之鱼'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png'}
 
-  - {name: '自动选择', <<: *Fallback, proxies: ['♻️ 优选·自动', '♻️ 备用·自动'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png'}
-  - {name: '香港自动', <<: *Fallback, proxies: ['🇭🇰 优选·香港', '🇭🇰 备用·香港'], icon: 'https://gh-proxy.com/github.com/MissToT/Picture/raw/main/icon/HK.svg'}
-  - {name: '台湾自动', <<: *Fallback, proxies: ['🇹🇼 优选·台湾', '🇹🇼 备用·台湾'], icon: 'https://gh-proxy.com/github.com/MissToT/Picture/raw/main/icon/TW.svg'}
-  - {name: '日本自动', <<: *Fallback, proxies: ['🇯🇵 优选·日本', '🇯🇵 备用·日本'], icon: 'https://gh-proxy.com/github.com/MissToT/Picture/raw/main/icon/JP.svg'}
-  - {name: '美国自动', <<: *Fallback, proxies: ['🇺🇸 优选·美国', '🇺🇸 备用·美国'], icon: 'https://gh-proxy.com/github.com/MissToT/Picture/raw/main/icon/US.svg'}
+  - {name: '自动选择', <<: *Fallback, proxies: ['♻️ ALL・优选', '♻️ ALL・备选'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png'}
+  - {name: '香港自动', <<: *Fallback, proxies: ['🇭🇰 HK・优选', '🇭🇰 HK・备选'], icon: 'https://gh-proxy.com/github.com/MissToT/Picture/raw/main/icon/HK.svg'}
+  - {name: '台湾自动', <<: *Fallback, proxies: ['🇹🇼 TW・优选', '🇹🇼 TW・备选'], icon: 'https://gh-proxy.com/github.com/MissToT/Picture/raw/main/icon/TW.svg'}
+  - {name: '日本自动', <<: *Fallback, proxies: ['🇯🇵 JP・优选', '🇯🇵 JP・备选'], icon: 'https://gh-proxy.com/github.com/MissToT/Picture/raw/main/icon/JP.svg'}
+  - {name: '美国自动', <<: *Fallback, proxies: ['🇺🇸 US・优选', '🇺🇸 US・备选'], icon: 'https://gh-proxy.com/github.com/MissToT/Picture/raw/main/icon/US.svg'}
 
-  - {name: '♻️ 优选·自动', <<: [*UrlTest, *FilterSelect], use: ['SNTP']}
-  - {name: '🇭🇰 优选·香港', <<: [*UrlTest, *FilterHK], use: ['SNTP']}
-  - {name: '🇹🇼 优选·台湾', <<: [*UrlTest, *FilterTW], use: ['SNTP']}
-  - {name: '🇯🇵 优选·日本', <<: [*UrlTest, *FilterJP], use: ['SNTP']}
-  - {name: '🇺🇸 优选·美国', <<: [*UrlTest, *FilterUS], use: ['SNTP']}
+  - {name: '♻️ ALL・优选', <<: [*UrlTest, *FilterSelect], use: ['SNTP']}
+  - {name: '🇭🇰 HK・优选', <<: [*UrlTest, *FilterHK], use: ['SNTP']}
+  - {name: '🇹🇼 TW・优选', <<: [*UrlTest, *FilterTW], use: ['SNTP']}
+  - {name: '🇯🇵 JP・优选', <<: [*UrlTest, *FilterJP], use: ['SNTP']}
+  - {name: '🇺🇸 US・优选', <<: [*UrlTest, *FilterUS], use: ['SNTP']}
 
-  - {name: '♻️ 备用·自动', <<: [*UrlTest, *FilterSelect], use: ['SakuraCat']}
-  - {name: '🇭🇰 备用·香港', <<: [*UrlTest, *FilterHK], use: ['SakuraCat']}
-  - {name: '🇹🇼 备用·台湾', <<: [*UrlTest, *FilterTW], use: ['SakuraCat']}
-  - {name: '🇯🇵 备用·日本', <<: [*UrlTest, *FilterJP], use: ['SakuraCat']}
-  - {name: '🇺🇸 备用·美国', <<: [*UrlTest, *FilterUS], use: ['SakuraCat']}
+  - {name: '♻️ ALL・备选', <<: [*UrlTest, *FilterSelect], use: ['SakuraCat']}
+  - {name: '🇭🇰 HK・备选', <<: [*UrlTest, *FilterHK], use: ['SakuraCat']}
+  - {name: '🇹🇼 TW・备选', <<: [*UrlTest, *FilterTW], use: ['SakuraCat']}
+  - {name: '🇯🇵 JP・备选', <<: [*UrlTest, *FilterJP], use: ['SakuraCat']}
+  - {name: '🇺🇸 US・备选', <<: [*UrlTest, *FilterUS], use: ['SakuraCat']}
 
 
 # 规则集
