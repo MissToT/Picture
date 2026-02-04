@@ -36,7 +36,7 @@ allow-lan: true
 bind-address: '*'
 unified-delay: true
 tcp-concurrent: true
-find-process-mode: strict
+find-process-mode: always
 
 # 管理面板配置
 external-ui-url: 'https://v6.gh-proxy.com/github.com/Zephyruso/zashboard/releases/download/v1.101.1/dist.zip'
