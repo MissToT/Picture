@@ -30,7 +30,7 @@ mixed-port: 7890
 redir-port: 9797
 tproxy-port: 9898
 mode: rule
-log-level: silent
+log-level: error
 ipv6: true
 allow-lan: true
 bind-address: '*'
