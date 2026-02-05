@@ -124,7 +124,7 @@ rule-providers:
   AI_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/ai.mrs'}
   TikTok_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/tiktok.mrs'}
   YouTube_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/youtube.mrs'}
-  Adblock_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/mihomo.mrs'}
+  Adblock_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/217heidai/adblockfilters/raw/main/rules/adblockmihomo.mrs'}
   Fakeip-Filter: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/fake-ip-filter.mrs'}
 
 # 路由规则
