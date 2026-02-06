@@ -3,7 +3,7 @@
 FilterSelect: &FilterSelect {filter: '^(?=.*(?i)(香港|🇭🇰|HK|HKG|台湾|🇹🇼|TW|TWN|日本|🇯🇵|JP|JPN|美国|🇺🇸|US|USA))(?!.*(排除1|排除2)).*$'}
 FilterOthers: &FilterOthers {filter: '^(?!.*(DIRECT|Traffic|TRAFFIC|Expire|EXPIRE|流量|到期|时间|重置))'}
 # 锚点 - 选择组
-Select: &Select {type: select, include-all-providers: true, proxies: ['手动选择', '自动选择', '🌐 本地直连', '⛔️ 拒绝连接']}
+Select: &Select {type: select, include-all-providers: true, proxies: ['自动选择', '手动选择', '🌐 本地直连', '⛔️ 拒绝连接']}
 # 锚点 - 自动组
 UrlTest: &UrlTest {type: url-test, tolerance: 50, hidden: true, include-all-providers: true}
 # 锚点 - 规则集

@@ -7,7 +7,7 @@ FilterTW: &FilterTW {filter: '^(?=.*(?i)(台湾|🇹🇼|TW|TWN))(?!.*(2.00x|排
 FilterJP: &FilterJP {filter: '^(?=.*(?i)(日本|🇯🇵|JP|JPN))(?!.*(2.00x|排除2)).*$'}
 FilterUS: &FilterUS {filter: '^(?=.*(?i)(美国|🇺🇸|US|USA))(?!.*(2.00x|排除2)).*$'}
 # 锚点 - 选择组
-Select: &Select {type: select, include-all-providers: true, proxies: ['手动选择', '自动选择', '香港自动', '台湾自动', '日本自动', '美国自动', '🌐 本地直连', '⛔️ 拒绝连接']}
+Select: &Select {type: select, include-all-providers: true, proxies: ['自动选择', '手动选择', '香港自动', '台湾自动', '日本自动', '美国自动', '🌐 本地直连', '⛔️ 拒绝连接']}
 # 锚点 - 自动组
 UrlTest: &UrlTest {type: url-test, tolerance: 50, hidden: true}
 # 锚点 - 转移组
@@ -24,6 +24,7 @@ Providers: &Providers {type: http, interval: 86400, proxy: DIRECT, health-check:
 proxy-providers:
   SNTP: {<<: *Providers, url: 'http://localhost:3000/download/SNTP', path: ./providers/SNTP.yaml, override: {additional-prefix: 'STP・'}}
   SakuraCat: {<<: *Providers, url: 'http://localhost:3000/download/SakuraCat', path: ./providers/SakuraCat.yaml, override: {additional-prefix: 'SKC・'}}
+  Cloudflare: {<<: *Providers, url: 'http://localhost:3000/download/Cloudflare', path: ./providers/Cloudflare.yaml, override: {additional-prefix: 'CFW・'}}
 
 # 基础配置
 mixed-port: 7890
