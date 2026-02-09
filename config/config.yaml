@@ -5,7 +5,7 @@ FilterOthers: &FilterOthers {filter: '^(?!.*(DIRECT|Traffic|TRAFFIC|Expire|EXPIR
 # 锚点 - 选择组
 Select: &Select {type: select, include-all-providers: true, proxies: ['自动选择', '手动选择', '🌐 本地直连', '⛔️ 拒绝连接']}
 # 锚点 - 自动组
-UrlTest: &UrlTest {type: url-test, hidden: true, interval: 600, tolerance: 50, url: 'https://captive.apple.com/generate_204'}
+UrlTest: &UrlTest {type: url-test, hidden: true, interval: 600, tolerance: 20, url: 'https://captive.apple.com/generate_204'}
 # 锚点 - 规则集
 IPCIDR: &IPCIDR {type: http, interval: 86400, behavior: ipcidr, format: mrs}
 Domain: &Domain {type: http, interval: 86400, behavior: domain, format: mrs}
