@@ -155,7 +155,7 @@ rule-providers:
   TikTok_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/tiktok.mrs'}
   YouTube_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/youtube.mrs'}
   EHentai_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/ehentai.mrs'}
-  Adblock_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/217heidai/adblockfilters/raw/main/rules/adblockmihomo.mrs'}
+  Adblock_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/mihomo.mrs'}
   Fakeip-Filter: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/fake-ip-filter.mrs'}
   WebRTC: {<<: *Classical, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/classical/WebRTC.list'}
 
