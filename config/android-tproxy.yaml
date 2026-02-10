@@ -78,7 +78,7 @@ proxies:
 
 # 策略组
 proxy-groups:
-  - {name: '手动选择', type: select, include-all-providers: true, icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Proxy.png'}
+  - {name: '手动选择', type: select, use: ['SNTP', 'SakuraCat'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Proxy.png'}
   - {name: '谷歌推送', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png'}
   - {name: 'Telegram', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Orz-3/mini/raw/master/Color/Telegram.png'}
   - {name: 'Twitter', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Twitter.png'}
@@ -88,8 +88,8 @@ proxy-groups:
   - {name: 'TikTok', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/TikTok.png'}
   - {name: 'AI', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/ChatGPT.png'}
   - {name: 'Games', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png'}
-  - {name: '日本代理', <<: [*Select, *FilterJP], proxies: ['日本自动', '手动选择', '🌐 本地直连', '⛔️ 拒绝连接'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Japan.png'}
-  - {name: '台湾代理', <<: [*Select, *FilterTW], proxies: ['台湾自动', '手动选择', '🌐 本地直连', '⛔️ 拒绝连接'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Taiwan.png'}
+  - {name: '日本代理', <<: [*Select, *FilterJP], proxies: ['日本自动', '自动选择', '手动选择', '🌐 本地直连', '⛔️ 拒绝连接'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Japan.png'}
+  - {name: '台湾代理', <<: [*Select, *FilterTW], proxies: ['台湾自动', '自动选择', '手动选择', '🌐 本地直连', '⛔️ 拒绝连接'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Taiwan.png'}
   - {name: '国外代理', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/United_Nations.png'}
   - {name: '国内代理', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/China.png'}
   - {name: 'WebRTC', type: select, proxies: ['⛔️ 拒绝连接', 'PASS'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Domestic.png'}
@@ -97,7 +97,7 @@ proxy-groups:
   - {name: '漏网之鱼', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png'}
   - {name: 'GLOBAL', <<: [*Select, *FilterSelect], proxies: ['手动选择', '谷歌推送', 'Telegram', 'Twitter', 'Emby', 'EHentai', 'YouTube', 'TikTok', 'AI', 'Games', '日本代理', '台湾代理', '国外代理', '国内代理', 'WebRTC', '广告拦截', '漏网之鱼'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png'}
 
-  - {name: '自动选择', <<: *Fallback, proxies: ['♻️ ALL・优选', '♻️ ALL・备选'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png'}
+  - {name: '自动选择', <<: *Fallback, proxies: ['♻️ ALL・优选', '♻️ ALL・备选', '❄️ CF・兜底'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png'}
   - {name: '香港自动', <<: *Fallback, proxies: ['🇭🇰 HK・优选', '🇭🇰 HK・备选'], icon: 'https://gh-proxy.com/github.com/MissToT/Picture/raw/main/icon/HK.svg'}
   - {name: '台湾自动', <<: *Fallback, proxies: ['🇹🇼 TW・优选', '🇹🇼 TW・备选'], icon: 'https://gh-proxy.com/github.com/MissToT/Picture/raw/main/icon/TW.svg'}
   - {name: '日本自动', <<: *Fallback, proxies: ['🇯🇵 JP・优选', '🇯🇵 JP・备选'], icon: 'https://gh-proxy.com/github.com/MissToT/Picture/raw/main/icon/JP.svg'}
@@ -115,6 +115,7 @@ proxy-groups:
   - {name: '🇯🇵 JP・备选', <<: [*UrlTest, *FilterJP], use: ['SakuraCat']}
   - {name: '🇺🇸 US・备选', <<: [*UrlTest, *FilterUS], use: ['SakuraCat']}
 
+  - {name: '❄️ CF・兜底', <<: *UrlTest, use: ['Cloudflare']}
 
 # 规则集
 rule-providers:
