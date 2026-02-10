@@ -22,7 +22,7 @@ Providers: &Providers {type: http, interval: 86400, proxy: DIRECT, health-check:
 proxy-providers:
   SNTP: {<<: *Providers, url: 'http://192.168.10.3:3000/download/SNTP', path: ./providers/SNTP.yaml, override: {additional-prefix: 'STP・'}}
   SakuraCat: {<<: *Providers, url: 'http://192.168.10.3:3000/download/SakuraCat', path: ./providers/SakuraCat.yaml, override: {additional-prefix: 'SKC・'}}
-  Cloudflare: {<<: *Providers, url: 'http://192.168.10.3:3000/download/Cloudflare', path: ./providers/Cloudflare.yaml, override: {additional-prefix: 'CFW・'}}
+  Cloudflare: {<<: *Providers, url: 'http://192.168.10.3:3000/download/collection/Cloudflare', path: ./providers/Cloudflare.yaml, override: {additional-prefix: 'CF・'}}
 
 # 基础配置
 mixed-port: 7890
