@@ -29,7 +29,7 @@ mixed-port: 7890
 redir-port: 9797
 tproxy-port: 9898
 mode: rule
-log-level: error
+log-level: silent
 ipv6: false
 allow-lan: true
 bind-address: '*'
@@ -46,7 +46,7 @@ secret: ''
 # 缓存配置
 profile:
   store-selected: true
-  store-fake-ip: true
+  store-fake-ip: false
 
 # 域名嗅探配置
 sniffer:
