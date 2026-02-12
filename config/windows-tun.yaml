@@ -25,9 +25,9 @@ proxy-providers:
   Cloudflare: {<<: *Providers, url: 'http://192.168.10.3:3000/download/collection/Cloudflare', path: ./providers/Cloudflare.yaml, override: {additional-prefix: 'CF・'}}
 
 # 基础配置
-mixed-port: 7890
-redir-port: 9797
-tproxy-port: 9898
+port: 7890
+socks-port: 7891
+mixed-port: 7892
 mode: rule
 log-level: silent
 ipv6: false
@@ -56,18 +56,6 @@ sniffer:
   override-destination: false
   sniff: {HTTP: {ports: [80, 8080-8880], override-destination: true}, TLS: {ports: [443, 8443]}, QUIC: {ports: [443, 8443]}}
   skip-domain: ['Mijia Cloud']
-
-# Hosts配置
-hosts:
-  mtalk.google.com: 142.250.107.188
-  alt1-mtalk.google.com: 172.217.78.188
-  alt2-mtalk.google.com: 192.178.164.188
-  alt3-mtalk.google.com: 172.253.135.188
-  alt4-mtalk.google.com: 172.217.74.188
-  alt5-mtalk.google.com: 172.217.74.188
-  alt6-mtalk.google.com: 74.125.27.188
-  alt7-mtalk.google.com: 192.178.209.188
-  alt8-mtalk.google.com: 192.178.152.188
 
 # DNS配置
 dns:
