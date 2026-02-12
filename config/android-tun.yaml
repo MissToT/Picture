@@ -162,7 +162,7 @@ rule-providers:
 rules:
   - RULE-SET,WebRTC,WebRTC
   - RULE-SET,Adblock_Domain,广告拦截
-  - RULE-SET,Private_Domain,DIRECT
+  - RULE-SET,Private_Domain,🌐 本地直连
   - RULE-SET,GoogleFCM_Domain,谷歌推送
   - RULE-SET,Telegram_Domain,Telegram
   - RULE-SET,Twitter_Domain,Twitter
@@ -178,7 +178,7 @@ rules:
   - RULE-SET,Google_Domain,国外代理
   - RULE-SET,Proxy_Domain,国外代理
   - RULE-SET,CN_Domain,国内代理
-  - RULE-SET,Private_IP,DIRECT,no-resolve
+  - RULE-SET,Private_IP,🌐 本地直连,no-resolve
   - RULE-SET,Telegram_IP,Telegram,no-resolve
   - RULE-SET,Twitter_IP,Twitter,no-resolve
   - RULE-SET,Games_IP,Games,no-resolve
