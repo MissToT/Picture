@@ -44,7 +44,7 @@ secret: ''
 # 缓存配置
 profile:
   store-selected: true
-  store-fake-ip: false
+  store-fake-ip: true
 
 # 域名嗅探配置
 sniffer:

@@ -46,7 +46,7 @@ secret: ''
 # 缓存配置
 profile:
   store-selected: true
-  store-fake-ip: false
+  store-fake-ip: true
 
 # 域名嗅探配置
 sniffer:
@@ -69,6 +69,18 @@ dns:
   fake-ip-filter: ['RULE-SET,Fakeip-Filter,real-ip', 'MATCH,fake-ip']
   default-nameserver: [223.5.5.5, 119.29.29.29]
   nameserver: ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query']
+
+# TUN模式配置
+tun:
+  enable: false
+  mtu: 9000
+  stack: gvisor
+  device: Meta
+  dns-hijack: ['any:53', 'tcp://any:53']
+  auto-route: true
+  strict-route: true
+  auto-redirect: false
+  auto-detect-interface: true
 
 # 出站节点
 proxies:
