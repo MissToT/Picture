@@ -95,3 +95,7 @@ payload:
   - 'static.cloudflareinsights.com'
   - 'sydney.bing.com'
   - 'www.bing.com'
+  # Grok
+  - +.grok.com
+  - +.x.ai
+  - +.grok.x.com
