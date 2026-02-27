@@ -183,14 +183,14 @@
         "type": "remote",
         "format": "binary",
         "path": "./rules/Emby_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/ai.srs"
+        "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Emby.srs"
        },
       {
         "tag": "AI_Domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/AI_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Emby.srs"
+        "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/ai.srs"
        },
       {
         "tag": "Games_Domain",
