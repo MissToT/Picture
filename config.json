@@ -39,15 +39,13 @@
     "servers": [
       { "tag": "dns_resolver", "type": "udp", "server": "223.5.5.5" },
       { "tag": "dns_ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns_resolver" },
-      { "tag": "dns_tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns_resolver" },
       { "tag": "dns_cloudflare", "type": "https", "server": "cloudflare-dns.com", "domain_resolver": "dns_resolver" },
       { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.1/16", "inet6_range": "fdfe:dcba:9876::1/64" }
     ],
     "rules": [
-      { "clash_mode": "Direct", "query_type": [ "A", "AAAA" ], "server": "dns_ali" },
-      { "clash_mode": "Global", "query_type": [ "A", "AAAA" ], "server": "dns_cloudflare" },
-      { "rule_set": ["Adblock_Domain", "Adblock+_Domain"], "server": "dns_ali", "action": "reject" },
-      { "rule_set": [ "Fake-ip-Filter", "Private_Domain", "GoogleFCM_Domain", "CN_Domain" ], "server": "dns_ali" },
+      { "clash_mode": "Direct", "server": "dns_ali" },
+      { "clash_mode": "Global", "server": "dns_cloudflare" },
+      { "rule_set": "Fake-ip-Filter", "server": "dns_ali" },
       { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" }
     ],
     "final": "dns_ali",
