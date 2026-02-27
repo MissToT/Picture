@@ -37,7 +37,7 @@
    },
   "dns": {
     "servers": [
-      { "tag": "dns_resolver", "type": "https", "server": "223.5.5.5" },
+      { "tag": "dns_resolver", "type": "udp", "server": "119.29.29.29" },
       { "tag": "dns_cloudflare", "type": "https", "server": "cloudflare-dns.com", "domain_resolver": "dns_resolver" },
       { "tag": "dns_tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns_resolver" },
       { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.1/16", "inet6_range": "fdfe:dcba:9876::1/64" }
@@ -45,11 +45,11 @@
     "rules": [
       { "clash_mode": "Direct", "query_type": [ "A", "AAAA" ], "server": "dns_tencent" },
       { "clash_mode": "Global", "query_type": [ "A", "AAAA" ], "server": "dns_cloudflare" },
-      { "rule_set": ["Adblock_Domain", "Adblock+_Domain"], "server": "dns_tencent", "action": "reject" }, 
+      { "rule_set": ["Adblock_Domain", "Adblock+_Domain"], "server": "dns_tencent", "action": "reject" },
       { "rule_set": [ "Fake-ip-Filter", "Private_Domain", "GoogleFCM_Domain", "CN_Domain" ], "server": "dns_tencent" },
       { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" }
     ],
-    "final": "dns_tencent",
+    "final": "dns_cloudflare",
     "strategy": "prefer_ipv4",
     "independent_cache": true,
     "reverse_mapping": true
@@ -135,7 +135,7 @@
         "type": "remote",
         "format": "binary",
         "path": "./rules/Adblock_Domain.srs",
-        "url": "https://v6.gh-proxy.com/https://raw.githubusercontent.com/privacy-protection-tools/anti-ad.github.io/master/docs/anti-ad-sing-box.srs"
+        "url": "https://v6.gh-proxy.com/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/anti-ad-sing-box.srs"
        },
       {
         "tag": "Adblock+_Domain",
@@ -149,7 +149,7 @@
         "type": "remote",
         "format": "binary",
         "path": "./rules/Proxy_Domain.srs",
-        "url": "https://v6.gh-proxy.com/https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/proxy.srs"
+        "url": "https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/proxy.srs"
        },
       {
         "tag": "Proxy+_Domain",
@@ -240,14 +240,14 @@
         "type": "remote",
         "format": "binary",
         "path": "./rules/Telegram_Domain.srs",
-        "url": "https://v6.gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/telegram.srs"
+        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/telegram.srs"
        },
       {
         "tag": "Telegram_ip",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Telegram_ip.srs",
-        "url": "https://v6.gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/telegram.srs"
+        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/telegram.srs"
        },
       {
         "tag": "CN_Domain",
@@ -275,7 +275,7 @@
         "type": "remote",
         "format": "binary",
         "path": "./rules/Fake-ip-Filter.srs",
-        "url": "https://v6.gh-proxy.com/https://raw.githubusercontent.com/phoukn/x6p-note/refs/heads/main/sing-box/no-fakeip_singbox.srs"
+        "url": "https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/fake-ip-filter.srs"
       }
     ],
     "final": "🍥 漏网之鱼",
