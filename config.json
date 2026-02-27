@@ -37,19 +37,20 @@
    },
   "dns": {
     "servers": [
-      { "tag": "dns_resolver", "type": "udp", "server": "119.29.29.29" },
-      { "tag": "dns_cloudflare", "type": "https", "server": "cloudflare-dns.com", "domain_resolver": "dns_resolver" },
+      { "tag": "dns_resolver", "type": "udp", "server": "223.5.5.5" },
+      { "tag": "dns_ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns_resolver" },
       { "tag": "dns_tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns_resolver" },
+      { "tag": "dns_cloudflare", "type": "https", "server": "cloudflare-dns.com", "domain_resolver": "dns_resolver" },
       { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.1/16", "inet6_range": "fdfe:dcba:9876::1/64" }
     ],
     "rules": [
-      { "clash_mode": "Direct", "query_type": [ "A", "AAAA" ], "server": "dns_tencent" },
+      { "clash_mode": "Direct", "query_type": [ "A", "AAAA" ], "server": "dns_ali" },
       { "clash_mode": "Global", "query_type": [ "A", "AAAA" ], "server": "dns_cloudflare" },
-      { "rule_set": ["Adblock_Domain", "Adblock+_Domain"], "server": "dns_tencent", "action": "reject" },
-      { "rule_set": [ "Fake-ip-Filter", "Private_Domain", "GoogleFCM_Domain", "CN_Domain" ], "server": "dns_tencent" },
+      { "rule_set": ["Adblock_Domain", "Adblock+_Domain"], "server": "dns_ali", "action": "reject" },
+      { "rule_set": [ "Fake-ip-Filter", "Private_Domain", "GoogleFCM_Domain", "CN_Domain" ], "server": "dns_ali" },
       { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" }
     ],
-    "final": "dns_cloudflare",
+    "final": "dns_ali",
     "strategy": "prefer_ipv4",
     "independent_cache": true,
     "reverse_mapping": true
@@ -101,7 +102,7 @@
     { "tag": "⛔️ 拒绝连接", "type": "block" }
   ],
   "route": {
-    "default_domain_resolver": { "server": "dns_tencent" },
+    "default_domain_resolver": { "server": "dns_ali" },
     "rules": [
       { "action": "sniff" },
       { "protocol": "dns", "action": "hijack-dns" },
