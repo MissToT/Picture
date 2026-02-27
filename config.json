@@ -13,7 +13,7 @@
         "url": "https://captive.apple.com/generate_204",
         "interval": "10m"
       }
-    },
+     },
     {
       "tag": "SakuraCat",
       "type": "remote",
@@ -34,51 +34,26 @@
     "level": "error",
     "timestamp": true,
     "output": "/data/adb/box/run/sing-box.log"
-  },
+   },
   "dns": {
     "servers": [
-      {
-        "tag": "dns_resolver",
-        "type": "https",
-        "server": "223.5.5.5"
-      },
-      {
-        "tag": "dns_cloudflare",
-        "type": "https",
-        "server": "cloudflare-dns.com",
-        "domain_resolver": "dns_resolver"
-      },
-      {
-        "tag": "dns_ali",
-        "type": "https",
-        "server": "dns.alidns.com",
-        "domain_resolver": "dns_resolver"
-      },
-      {
-        "tag": "dns_tencent",
-        "type": "https",
-        "server": "doh.pub",
-        "domain_resolver": "dns_resolver"
-      },
-      {
-        "tag": "dns_fakeip",
-        "type": "fakeip",
-        "inet4_range": "198.18.0.1/16",
-        "inet6_range": "fdfe:dcba:9876::1/64"
-      }
+      { "tag": "dns_resolver", "type": "https", "server": "223.5.5.5" },
+      { "tag": "dns_cloudflare", "type": "https", "server": "cloudflare-dns.com", "domain_resolver": "dns_resolver" },
+      { "tag": "dns_tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns_resolver" },
+      { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.1/16", "inet6_range": "fdfe:dcba:9876::1/64" }
     ],
     "rules": [
-      {"clash_mode": "Direct", "query_type": ["A", "AAAA"], "server": "dns_tencent"},
-      {"clash_mode": "Global", "query_type": ["A", "AAAA"], "server": "dns_cloudflare"},
-      {"rule_set": "Adblock_Domain", "action": "predefined"},
-      {"rule_set": ["Fake-ip-Filter", "Private_Domain", "GoogleFCM_Domain", "CN_Domain", "CN+_Domain"], "server": "dns_tencent"},
-      {"query_type": ["A", "AAAA"], "server": "dns_fakeip"}
+      { "clash_mode": "Direct", "query_type": [ "A", "AAAA" ], "server": "dns_tencent" },
+      { "clash_mode": "Global", "query_type": [ "A", "AAAA" ], "server": "dns_cloudflare" },
+      { "rule_set": ["Adblock_Domain", "Adblock+_Domain"], "server": "dns_tencent", "action": "reject" }, 
+      { "rule_set": [ "Fake-ip-Filter", "Private_Domain", "GoogleFCM_Domain", "CN_Domain" ], "server": "dns_tencent" },
+      { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" }
     ],
-    "final": "dns_cloudflare",
+    "final": "dns_tencent",
     "strategy": "prefer_ipv4",
     "independent_cache": true,
     "reverse_mapping": true
-  },
+   },
   "inbounds": [
     {
       "tag": "tun-in",
@@ -87,16 +62,16 @@
       "stack": "gvisor",
       "auto_route": true,
       "strict_route": true,
-      "auto_reDirect": false,
+      "auto_redirect": false,
       "interface_name": "sing-box",
-      "address": ["198.18.0.1/16"]
-    },
+      "address": "198.18.0.1/16"
+     },
     {
       "tag": "mixed-in",
       "type": "mixed",
       "listen": "::",
       "listen_port": 7890
-    },
+     },
     {
       "tag": "tproxy-in",
       "type": "tproxy",
@@ -105,54 +80,54 @@
     }
   ],
   "outbounds": [
-    {"tag": "🔰 手动选择", "type": "selector", "use_all_providers": true},
-    {"tag": "♻️ 自动选择", "type": "urltest", "use_all_providers": true, "interval": "10m", "tolerance": 20, "url": "https://captive.apple.com/generate_204"},
-    {"tag": "📢 谷歌推送", "type": "selector", "use_all_providers": true, "outbounds": ["🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接"]},
-    {"tag": "📱 Telegram", "type": "selector", "use_all_providers": true, "outbounds": ["🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接"]},
-    {"tag": "📙 EHentai", "type": "selector", "use_all_providers": true, "outbounds": ["🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接"]},
-    {"tag": "🎬 Emby", "type": "selector", "use_all_providers": true, "outbounds": ["🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接"]},
-    {"tag": "🎶 TikTok", "type": "selector", "use_all_providers": true, "outbounds": ["🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接"]},
-    {"tag": "📺 YouTube", "type": "selector", "use_all_providers": true, "outbounds": ["🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接"]},
-    {"tag": "🤖 AI", "type": "selector", "use_all_providers": true, "outbounds": ["🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接"]},
-    {"tag": "🎮 Games", "type": "selector", "use_all_providers": true, "outbounds": ["🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接"]},
-    {"tag": "🇯🇵 日本代理", "type": "selector", "use_all_providers": true, "outbounds": ["🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接"]},
-    {"tag": "🇹🇼 台湾代理", "type": "selector", "use_all_providers": true, "outbounds": ["🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接"]},
-    {"tag": "🌏 全球代理", "type": "selector", "use_all_providers": true, "outbounds": ["🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接"]},
-    {"tag": "🇨🇳 国内代理", "type": "selector", "use_all_providers": true, "outbounds": ["🌐 本地直连", "🔰 手动选择", "♻️ 自动选择", "⛔️ 拒绝连接"]},
-    {"tag": "🚫 广告拦截", "type": "selector", "use_all_providers": true, "outbounds": ["⛔️ 拒绝连接", "🔰 手动选择", "♻️ 自动选择", "🌐 本地直连"]},
-    {"tag": "🍥 漏网之鱼", "type": "selector", "use_all_providers": true, "outbounds": ["🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接"]},
-    {"tag": "GLOBAL", "type": "selector", "use_all_providers": true, "outbounds": ["🔰 手动选择", "♻️ 自动选择", "📢 谷歌推送", "📱 Telegram", "📙 EHentai", "🎬 Emby", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🇯🇵 日本代理", "🇹🇼 台湾代理", "🇨🇳 国内代理", "🌏 全球代理", "🚫 广告拦截", "🍥 漏网之鱼"]},
-    {"tag": "🌐 本地直连", "type": "direct"},
-    {"tag": "⛔️ 拒绝连接", "type": "block"}
+    { "tag": "🔰 手动选择", "type": "selector", "use_all_providers": true },
+    { "tag": "♻️ 自动选择", "type": "urltest", "use_all_providers": true, "interval": "10m", "tolerance": 20, "url": "https://captive.apple.com/generate_204" },
+    { "tag": "📢 谷歌推送", "type": "selector", "use_all_providers": true, "outbounds": [ "🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "📱 Telegram", "type": "selector", "use_all_providers": true, "outbounds": [ "🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "📙 EHentai", "type": "selector", "use_all_providers": true, "outbounds": [ "🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🎬 Emby", "type": "selector", "use_all_providers": true, "outbounds": [ "🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🎶 TikTok", "type": "selector", "use_all_providers": true, "outbounds": [ "🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "📺 YouTube", "type": "selector", "use_all_providers": true, "outbounds": [ "🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🤖 AI", "type": "selector", "use_all_providers": true, "outbounds": [ "🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🎮 Games", "type": "selector", "use_all_providers": true, "outbounds": [ "🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🇯🇵 日本代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🇹🇼 台湾代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🌏 全球代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🇨🇳 国内代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🌐 本地直连", "🔰 手动选择", "♻️ 自动选择", "⛔️ 拒绝连接" ] },
+    { "tag": "🚫 广告拦截", "type": "selector", "use_all_providers": true, "outbounds": [ "⛔️ 拒绝连接", "🔰 手动选择", "♻️ 自动选择", "🌐 本地直连" ] },
+    { "tag": "🍥 漏网之鱼", "type": "selector", "use_all_providers": true, "outbounds": [ "🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "outbounds": [ "🔰 手动选择", "♻️ 自动选择", "📢 谷歌推送", "📱 Telegram", "📙 EHentai", "🎬 Emby", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🇯🇵 日本代理", "🇹🇼 台湾代理", "🇨🇳 国内代理", "🌏 全球代理", "🚫 广告拦截", "🍥 漏网之鱼" ] },
+    { "tag": "🌐 本地直连", "type": "direct" },
+    { "tag": "⛔️ 拒绝连接", "type": "block" }
   ],
   "route": {
-    "default_domain_resolver": {"server": "dns_ali"},
+    "default_domain_resolver": { "server": "dns_tencent" },
     "rules": [
-      {"action": "sniff"},
-      {"protocol": "dns", "action": "hijack-dns"},
-      {"clash_mode": "Direct", "outbound": "🌐 本地直连"},
-      {"clash_mode": "Global", "outbound": "GLOBAL"},
-      {"rule_set": "Adblock+_Domain", "outbound": "🚫 广告拦截"},
-      {"rule_set": "Adblock_Domain", "outbound": "🚫 广告拦截"},
-      {"rule_set": "Private_Domain", "outbound": "🌐 本地直连"},
-      {"rule_set": "GoogleFCM_Domain", "outbound": "📢 谷歌推送"},
-      {"rule_set": "Telegram_Domain", "outbound": "📱 Telegram"},
-      {"rule_set": "TikTok_Domain", "outbound": "🎶 TikTok"},
-      {"rule_set": "AI_Domain", "outbound": "🤖 AI"},
-      {"rule_set": "YouTube_Domain", "outbound": "📺 YouTube"},
-      {"rule_set": "Emby_Domain", "outbound": "🎬 Emby"},
-      {"rule_set": "EHentai_Domain", "outbound": "📙 EHentai"},
-      {"rule_set": "Games_Domain", "outbound": "🎮 Games"},
-      {"rule_set": "JP_Domain", "outbound": "🇯🇵 日本代理"},
-      {"rule_set": "TW_Domain", "outbound": "🇹🇼 台湾代理"},
-      {"rule_set": "Proxy+_Domain", "outbound": "🌏 全球代理"},
-      {"rule_set": "CN+_Domain", "outbound": "🇨🇳 国内代理"},
-      {"rule_set": "Proxy_Domain", "outbound": "🌏 全球代理"},
-      {"rule_set": "CN_Domain", "outbound": "🇨🇳 国内代理"},
-      {"action": "resolve", "match_only": true},
-      {"rule_set": "Private_ip", "outbound": "🌐 本地直连"},
-      {"rule_set": "Telegram_ip", "outbound": "📱 Telegram"},
-      {"rule_set": "CN_ip", "outbound": "🇨🇳 国内代理"}
+      { "action": "sniff" },
+      { "protocol": "dns", "action": "hijack-dns" },
+      { "clash_mode": "Direct", "outbound": "🌐 本地直连" },
+      { "clash_mode": "Global", "outbound": "GLOBAL" },
+      { "rule_set": "Adblock+_Domain", "outbound": "🚫 广告拦截" },
+      { "rule_set": "Adblock_Domain", "outbound": "🚫 广告拦截" },
+      { "rule_set": "Private_Domain", "outbound": "🌐 本地直连" },
+      { "rule_set": "GoogleFCM_Domain", "outbound": "📢 谷歌推送" },
+      { "rule_set": "Telegram_Domain", "outbound": "📱 Telegram" },
+      { "rule_set": "TikTok_Domain", "outbound": "🎶 TikTok" },
+      { "rule_set": "AI_Domain", "outbound": "🤖 AI" },
+      { "rule_set": "YouTube_Domain", "outbound": "📺 YouTube" },
+      { "rule_set": "Emby_Domain", "outbound": "🎬 Emby" },
+      { "rule_set": "EHentai_Domain", "outbound": "📙 EHentai" },
+      { "rule_set": "Games_Domain", "outbound": "🎮 Games" },
+      { "rule_set": "JP_Domain", "outbound": "🇯🇵 日本代理" },
+      { "rule_set": "TW_Domain", "outbound": "🇹🇼 台湾代理" },
+      { "rule_set": "Proxy+_Domain", "outbound": "🌏 全球代理" },
+      { "rule_set": "CN+_Domain", "outbound": "🇨🇳 国内代理" },
+      { "rule_set": "Proxy_Domain", "outbound": "🌏 全球代理" },
+      { "rule_set": "CN_Domain", "outbound": "🇨🇳 国内代理" },
+      { "action": "resolve", "match_only": true },
+      { "rule_set": "Private_ip", "outbound": "🌐 本地直连" },
+      { "rule_set": "Telegram_ip", "outbound": "📱 Telegram" },
+      { "rule_set": "CN_ip", "outbound": "🇨🇳 国内代理" }
     ],
     "rule_set": [
       {
@@ -161,140 +136,140 @@
         "format": "binary",
         "path": "./rules/Adblock_Domain.srs",
         "url": "https://v6.gh-proxy.com/https://raw.githubusercontent.com/privacy-protection-tools/anti-ad.github.io/master/docs/anti-ad-sing-box.srs"
-      },
+       },
       {
         "tag": "Adblock+_Domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Adblock+_Domain.srs",
         "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Adblock.srs"
-      },
+       },
       {
         "tag": "Proxy_Domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Proxy_Domain.srs",
         "url": "https://v6.gh-proxy.com/https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/proxy.srs"
-      },
+       },
       {
         "tag": "Proxy+_Domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Proxy+_Domain.srs",
         "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Proxy.srs"
-      },
+       },
       {
         "tag": "Private_Domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Private_Domain.srs",
         "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/private.srs"
-      },
+       },
       {
         "tag": "Private_ip",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Private_ip.srs",
         "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/private.srs"
-      },
+       },
       {
         "tag": "GoogleFCM_Domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/GoogleFCM_Domain.srs",
         "url": "https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/googlefcm.srs"
-      },
+       },
       {
         "tag": "Emby_Domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Emby_Domain.srs",
         "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/ai.srs"
-      },
+       },
       {
         "tag": "AI_Domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/AI_Domain.srs",
         "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Emby.srs"
-      },
+       },
       {
         "tag": "Games_Domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Games_Domain.srs",
         "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Game.srs"
-      },
+       },
       {
         "tag": "EHentai_Domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/EHentai_Domain.srs",
         "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/ehentai.srs"
-      },
+       },
       {
         "tag": "JP_Domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/JP_Domain.srs",
         "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Japan.srs"
-      },
+       },
       {
         "tag": "TW_Domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/TW_Domain.srs",
         "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Taiwan.srs"
-      },
+       },
       {
         "tag": "TikTok_Domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/TikTok_Domain.srs",
         "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/tiktok.srs"
-      },
+       },
       {
         "tag": "YouTube_Domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/YouTube_Domain.srs",
         "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/youtube.srs"
-      },
+       },
       {
         "tag": "Telegram_Domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Telegram_Domain.srs",
         "url": "https://v6.gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/telegram.srs"
-      },
+       },
       {
         "tag": "Telegram_ip",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Telegram_ip.srs",
         "url": "https://v6.gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/telegram.srs"
-      },
+       },
       {
         "tag": "CN_Domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/CN_Domain.srs",
         "url": "https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/cn.srs"
-      },
+       },
       {
         "tag": "CN+_Domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/CN+_Domain.srs",
         "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/China.srs"
-      },
+       },
       {
         "tag": "CN_ip",
         "type": "remote",
         "format": "binary",
         "path": "./rules/CN_ip.srs",
         "url": "https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/cncidr.srs"
-      },
+       },
       {
         "tag": "Fake-ip-Filter",
         "type": "remote",
@@ -306,12 +281,12 @@
     "final": "🍥 漏网之鱼",
     "find_process": true,
     "auto_detect_interface": true
-  },
+   },
   "experimental": {
     "cache_file": {
       "enabled": true,
       "store_fakeip": true
-    },
+     },
     "clash_api": {
       "external_controller": "0.0.0.0:9090",
       "external_ui": "WebUI",
