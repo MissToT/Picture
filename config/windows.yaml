@@ -1,11 +1,11 @@
 ############################################## - ⚓️ 锚点区开始 - ##############################################
 # 锚点 - 筛选组
-FilterSelect: &FilterSelect {filter: '^(?=.*(?i)(香港|🇭🇰|HK|HKG|台湾|🇹🇼|TW|TWN|日本|🇯🇵|JP|JPN|美国|🇺🇸|US|USA))(?!.*(2.00x|排除2)).*$'}
+FilterSelect: &FilterSelect {filter: '^(?=.*(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW|日本|🇯🇵|JP|美国|🇺🇸|US|新加坡|🇸🇬|SG))(?!.*(2.00x|排除2)).*$'}
 FilterOthers: &FilterOthers {filter: '^(?!.*(DIRECT|Traffic|TRAFFIC|Expire|EXPIRE|流量|到期|时间|重置))'}
-FilterHK: &FilterHK {filter: '^(?=.*(?i)(香港|🇭🇰|HK|HKG))(?!.*(2.00x|排除2)).*$'}
-FilterTW: &FilterTW {filter: '^(?=.*(?i)(台湾|🇹🇼|TW|TWN))(?!.*(2.00x|排除2)).*$'}
-FilterJP: &FilterJP {filter: '^(?=.*(?i)(日本|🇯🇵|JP|JPN))(?!.*(2.00x|排除2)).*$'}
-FilterUS: &FilterUS {filter: '^(?=.*(?i)(美国|🇺🇸|US|USA))(?!.*(2.00x|排除2)).*$'}
+FilterHK: &FilterHK {filter: '^(?=.*(?i)(香港|🇭🇰|HK))(?!.*(2.00x|排除2)).*$'}
+FilterTW: &FilterTW {filter: '^(?=.*(?i)(台湾|🇹🇼|TW))(?!.*(2.00x|排除2)).*$'}
+FilterJP: &FilterJP {filter: '^(?=.*(?i)(日本|🇯🇵|JP))(?!.*(2.00x|排除2)).*$'}
+FilterUS: &FilterUS {filter: '^(?=.*(?i)(美国|🇺🇸|US))(?!.*(2.00x|排除2)).*$'}
 # 锚点 - 策略组
 Select: &Select {type: select, include-all-providers: true, proxies: ['手动选择', '自动选择', '香港自动', '台湾自动', '日本自动', '美国自动', '🌐 本地直连', '⛔️ 拒绝连接']}
 UrlTest: &UrlTest {type: url-test, hidden: true, interval: 600, tolerance: 20, url: 'https://captive.apple.com/generate_204'}
