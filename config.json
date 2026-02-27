@@ -92,7 +92,7 @@
     { "tag": "🎮 Games", "type": "selector", "use_all_providers": true, "outbounds": [ "🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🇯🇵 日本代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🇹🇼 台湾代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🌏 全球代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🇺🇳 国外代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🇨🇳 国内代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🌐 本地直连", "🔰 手动选择", "♻️ 自动选择", "⛔️ 拒绝连接" ] },
     { "tag": "🚫 广告拦截", "type": "selector", "use_all_providers": true, "outbounds": [ "⛔️ 拒绝连接", "🔰 手动选择", "♻️ 自动选择", "🌐 本地直连" ] },
     { "tag": "🍥 漏网之鱼", "type": "selector", "use_all_providers": true, "outbounds": [ "🔰 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
