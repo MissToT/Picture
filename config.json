@@ -5,8 +5,8 @@
       "type": "remote",
       "update_interval": "24h",
       "download_detour": "🌐 本地直连",
+      "path": "./providers/SNTP.json",
       "url": "http://localhost:3000/download/SNTP",
-      "path": "./providers/SNTP.yaml",
       "exclude": "DIRECT|Traffic|TRAFFIC|Expire|EXPIRE|流量|到期|时间|重置",
       "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
      },
@@ -15,8 +15,8 @@
       "type": "remote",
       "update_interval": "24h",
       "download_detour": "🌐 本地直连",
+      "path": "./providers/SakuraCat.json",
       "url": "http://localhost:3000/download/SakuraCat",
-      "path": "./providers/SakuraCat.yaml",
       "exclude": "DIRECT|Traffic|TRAFFIC|Expire|EXPIRE|流量|到期|时间|重置",
       "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
     }
