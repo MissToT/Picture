@@ -25,7 +25,8 @@
     "urltest_unified_delay": true,
     "cache_file": {
       "enabled": true,
-      "store_fakeip": true
+      "store_fakeip": true,
+      "path": "cache.db"
      },
     "clash_api": {
       "external_controller": "0.0.0.0:9090",
@@ -36,19 +37,22 @@
   },
   "log": {
     "level": "fatal",
-    "timestamp": true
+    "timestamp": true,
+    "output": "sing-box.log"
    },
   "dns": {
     "servers": [
-      { "tag": "dns_resolver", "type": "udp", "server": "223.5.5.5" },
+      { "tag": "dns_resolver", "type": "udp", "server": "119.29.29.29" },
       { "tag": "dns_ali", "type": "https", "server": "dns.alidns.com", "detour": "🇨🇳 国内代理", "domain_resolver": "dns_resolver" },
+      { "tag": "dns_tencent", "type": "https", "server": "doh.pub", "detour": "🇨🇳 国内代理", "domain_resolver": "dns_resolver" },
+      { "tag": "dns_google", "type": "https", "server": "dns.google", "detour": "🇺🇳 国外代理", "domain_resolver": "dns_resolver" },
       { "tag": "dns_cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "🇺🇳 国外代理", "domain_resolver": "dns_resolver" },
       { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.1/16", "inet6_range": "fc00::/18" }
     ],
     "rules": [
       { "rule_set": "Fake-ip-Filter", "server": "dns_ali" },
       { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" },
-      { "clash_mode": "Direct", "server": "dns_ali" },
+      { "clash_mode": "Direct", "server": "dns_tencent" },
       { "clash_mode": "Global", "server": "dns_cloudflare" }
     ],
     "final": "dns_cloudflare",
@@ -103,7 +107,7 @@
     { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "💌 谷歌推送", "📱 Telegram", "🔞 EHentai", "🎬 Emby", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🇯🇵 日本代理", "🇹🇼 台湾代理", "🇨🇳 国内代理", "🇺🇳 国外代理", "🚫 广告拦截", "🍥 漏网之鱼" ] }
   ],
   "route": {
-    "default_domain_resolver": { "server": "dns_ali" },
+    "default_domain_resolver": { "server": "dns_tencent" },
     "rules": [
       { "action": "sniff" },
       { "type": "logical", "mode": "or", "rules": [ { "protocol": "dns" }, { "port": 53 } ], "action": "hijack-dns" },
@@ -118,17 +122,27 @@
       { "rule_set": "YouTube_Domain", "outbound": "📺 YouTube" },
       { "rule_set": "Emby_Domain", "outbound": "🎬 Emby" },
       { "rule_set": "EHentai_Domain", "outbound": "🔞 EHentai" },
+      { "rule_set": "Mihoyo-cn_Domain", "outbound": "🇨🇳 国内代理" },
       { "rule_set": "Games_Domain", "outbound": "🎮 Games" },
+      { "rule_set": "Games-download_Domain", "outbound": "🎮 Games" },
       { "rule_set": "JP_Domain", "outbound": "🇯🇵 日本代理" },
       { "rule_set": "TW_Domain", "outbound": "🇹🇼 台湾代理" },
       { "rule_set": "Proxy+_Domain", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "CN+_Domain", "outbound": "🇨🇳 国内代理" },
+      { "rule_set": "Cloudflare-cn_Domain", "outbound": "🇨🇳 国内代理" },
+      { "rule_set": "Cloudflare_Domain", "outbound": "🇺🇳 国外代理" },
+      { "rule_set": "Google_Domain", "outbound": "🇺🇳 国外代理" },
+      { "rule_set": "Microsoft-cn_Domain", "outbound": "🇨🇳 国内代理" },
+      { "rule_set": "Microsoft_Domain", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "Proxy_Domain", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "CN_Domain", "outbound": "🇨🇳 国内代理" },
       { "action": "resolve", "match_only": true },
       { "ip_is_private": true, "outbound": "🌐 本地直连" },
       { "rule_set": "Private_ip", "outbound": "🌐 本地直连" },
       { "rule_set": "Telegram_ip", "outbound": "📱 Telegram" },
+      { "rule_set": "AI_ip", "outbound": "🤖 AI" },
+      { "rule_set": "Cloudflare_ip", "outbound": "🇺🇳 国外代理" },
+      { "rule_set": "Google_ip", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "CN_ip", "outbound": "🇨🇳 国内代理" }
     ],
     "final": "🍥 漏网之鱼",
@@ -184,12 +198,76 @@
         "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/private.srs"
        },
       {
+        "tag": "Cloudflare_Domain",
+        "type": "remote",
+        "format": "binary",
+        "update_interval": "24h",
+        "path": "./rules/Cloudflare_Domain.srs",
+        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/cloudflare.srs"
+       },
+      {
+        "tag": "Cloudflare-cn_Domain",
+        "type": "remote",
+        "format": "binary",
+        "update_interval": "24h",
+        "path": "./rules/Cloudflare-cn_Domain.srs",
+        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/cloudflare-cn.srs"
+       },
+      {
+        "tag": "Cloudflare_ip",
+        "type": "remote",
+        "format": "binary",
+        "update_interval": "24h",
+        "path": "./rules/Cloudflare_ip.srs",
+        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/cloudflare.srs"
+       },
+      {
+        "tag": "Google_Domain",
+        "type": "remote",
+        "format": "binary",
+        "update_interval": "24h",
+        "path": "./rules/Google_Domain.srs",
+        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/google.srs"
+       },
+      {
+        "tag": "Google_ip",
+        "type": "remote",
+        "format": "binary",
+        "update_interval": "24h",
+        "path": "./rules/Google_ip.srs",
+        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/google.srs"
+       },
+      {
         "tag": "GoogleFCM_Domain",
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/GoogleFCM_Domain.srs",
         "url": "https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/googlefcm.srs"
+       },
+      {
+        "tag": "Microsoft_Domain",
+        "type": "remote",
+        "format": "binary",
+        "update_interval": "24h",
+        "path": "./rules/Microsoft_Domain.srs",
+        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/microsoft.srs"
+       },
+      {
+        "tag": "Microsoft-cn_Domain",
+        "type": "remote",
+        "format": "binary",
+        "update_interval": "24h",
+        "path": "./rules/Microsoft-cn_Domain.srs",
+        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/microsoft@cn.srs"
+       },
+      {
+        "tag": "Mihoyo-cn_Domain",
+        "type": "remote",
+        "format": "binary",
+        "update_interval": "24h",
+        "path": "./rules/Mihoyo-cn_Domain.srs",
+        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/mihoyo-cn.srs"
        },
       {
         "tag": "Emby_Domain",
@@ -205,7 +283,15 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/AI_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/ai.srs"
+        "url": "https://v6.gh-proxy.com/github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-category-ai-!cn.srs"
+       },
+      {
+        "tag": "AI_ip",
+        "type": "remote",
+        "format": "binary",
+        "update_interval": "24h",
+        "path": "./rules/AI_ip.srs",
+        "url": "https://v6.gh-proxy.com/github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geoip/geoip-ai.srs"
        },
       {
         "tag": "Games_Domain",
@@ -213,7 +299,15 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Games_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Game.srs"
+        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-games-!cn.srs"
+       },
+      {
+        "tag": "Games-download_Domain",
+        "type": "remote",
+        "format": "binary",
+        "update_interval": "24h",
+        "path": "./rules/Games-download_Domain.srs",
+        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-game-platforms-download.srs"
        },
       {
         "tag": "EHentai_Domain",
