@@ -46,7 +46,6 @@
       { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.1/16", "inet6_range": "fc00::/18" }
     ],
     "rules": [
-      { "rule_set": [ "Adblock_Domain", "Adblock+_Domain" ], "action": "predefined", "rcode": "NOERROR" },
       { "rule_set": "Fake-ip-Filter", "server": "dns_ali" },
       { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" },
       { "clash_mode": "Direct", "server": "dns_ali" },
