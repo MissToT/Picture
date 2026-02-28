@@ -132,8 +132,9 @@ rule-providers:
   Private_IP: {<<: *IPCIDR, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/private.mrs'}
   Telegram_IP: {<<: *IPCIDR, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/telegram.mrs'}
   Twitter_IP: {<<: *IPCIDR, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/twitter.mrs'}
+  AI_IP: {<<: *IPCIDR, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/ai.mrs'}
+  Cloudflare_IP: {<<: *IPCIDR, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/cloudflare.mrs'}
   Google_IP: {<<: *IPCIDR, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/google.mrs'}
-  Games_IP: {<<: *IPCIDR, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/ipcidr/Game.mrs'}
   China_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/cn.mrs'}
   China+_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Domain/China.mrs'}
   Proxy_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/proxy.mrs'}
@@ -141,10 +142,16 @@ rule-providers:
   Private_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/private.mrs'}
   Telegram_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/telegram.mrs'}
   Twitter_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/twitter.mrs'}
+  Cloudflare_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cloudflare.mrs'}
+  Cloudflare-cn_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cloudflare-cn.mrs'}
   Google_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/google.mrs'}
   GoogleFCM_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/googlefcm.mrs'}
-  Games_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Domain/Game.mrs'}
-  AI_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Domain/ai.mrs'}
+  Microsoft_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft.mrs'}
+  Microsoft-cn_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft@cn.mrs'}
+  Games_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-games-!cn.mrs'}
+  Games-download_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-game-platforms-download.mrs'}
+  Mihoyo-cn_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/mihoyo-cn.mrs'}
+  AI_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-ai-!cn.mrs'}
   Emby_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Domain/Emby.mrs'}
   Japan_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Domain/Japan.mrs'}
   Taiwan_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Domain/Taiwan.mrs'}
@@ -170,19 +177,26 @@ rules:
   - RULE-SET,YouTube_Domain,YouTube
   - RULE-SET,Emby_Domain,Emby
   - RULE-SET,EHentai_Domain,EHentai
+  - RULE-SET,Mihoyo-cn_Domain,国内代理
   - RULE-SET,Games_Domain,Games
+  - RULE-SET,Games-download_Domain,Games
   - RULE-SET,Japan_Domain,日本代理
   - RULE-SET,Taiwan_Domain,台湾代理
   - RULE-SET,Proxy+_Domain,国外代理
   - RULE-SET,China+_Domain,国内代理
+  - RULE-SET,Cloudflare-cn_Domain,国内代理
+  - RULE-SET,Cloudflare_Domain,国外代理
   - RULE-SET,Google_Domain,国外代理
+  - RULE-SET,Microsoft-cn_Domain,国内代理
+  - RULE-SET,Microsoft_Domain,国外代理
   - RULE-SET,Proxy_Domain,国外代理
   - RULE-SET,China_Domain,国内代理
   - RULE-SET,Private_IP,🌐 本地直连,no-resolve
   - RULE-SET,Telegram_IP,Telegram,no-resolve
   - RULE-SET,Twitter_IP,Twitter,no-resolve
-  - RULE-SET,Games_IP,Games,no-resolve
+  - RULE-SET,AI_IP,AI,no-resolve
   - RULE-SET,China+_IP,国内代理,no-resolve
+  - RULE-SET,Cloudflare_IP,国外代理,no-resolve
   - RULE-SET,Google_IP,国外代理,no-resolve
   - RULE-SET,Proxy_IP,国外代理,no-resolve
   - RULE-SET,China_IP,国内代理,no-resolve
