@@ -63,11 +63,11 @@
       "type": "tun",
       "mtu": 9000,
       "stack": "gvisor",
+      "interface_name": "Box",
+      "address": "172.18.0.1/30",
       "auto_route": true,
       "strict_route": true,
-      "auto_redirect": false,
-      "address": "198.18.0.1/16",
-      "interface_name": "sing-box"
+      "auto_redirect": false
      },
     {
       "tag": "mixed-in",
