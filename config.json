@@ -25,7 +25,6 @@
     "urltest_unified_delay": true,
     "cache_file": {
       "enabled": true,
-      "store_rdrc": true,
       "store_fakeip": true
      },
     "clash_api": {
@@ -47,6 +46,7 @@
       { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.1/16", "inet6_range": "fc00::/18" }
     ],
     "rules": [
+      { "rule_set": [ "Adblock_Domain", "Adblock+_Domain" ], "action": "predefined", "rcode": "NOERROR" },
       { "rule_set": "Fake-ip-Filter", "server": "dns_ali" },
       { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" },
       { "clash_mode": "Direct", "server": "dns_ali" },
@@ -83,9 +83,11 @@
     }
   ],
   "outbounds": [
+    { "tag": "🌐 本地直连", "type": "direct" },
+    { "tag": "⛔️ 拒绝连接", "type": "block" },
     { "tag": "🚀 手动选择", "type": "selector", "use_all_providers": true },
     { "tag": "♻️ 自动选择", "type": "urltest", "use_all_providers": true, "interval": "10m", "tolerance": 20, "url": "https://captive.apple.com/generate_204" },
-    { "tag": "📬 谷歌推送", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "💌 谷歌推送", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "📱 Telegram", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🔞 EHentai", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🎬 Emby", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
@@ -99,9 +101,7 @@
     { "tag": "🇨🇳 国内代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🌐 本地直连", "🚀 手动选择", "♻️ 自动选择", "⛔️ 拒绝连接" ] },
     { "tag": "🚫 广告拦截", "type": "selector", "use_all_providers": true, "outbounds": [ "⛔️ 拒绝连接", "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连" ] },
     { "tag": "🍥 漏网之鱼", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "📬 谷歌推送", "📱 Telegram", "🔞 EHentai", "🎬 Emby", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🇯🇵 日本代理", "🇹🇼 台湾代理", "🇨🇳 国内代理", "🇺🇳 国外代理", "🚫 广告拦截", "🍥 漏网之鱼" ] },
-    { "tag": "🌐 本地直连", "type": "direct" },
-    { "tag": "⛔️ 拒绝连接", "type": "block" }
+    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "💌 谷歌推送", "📱 Telegram", "🔞 EHentai", "🎬 Emby", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🇯🇵 日本代理", "🇹🇼 台湾代理", "🇨🇳 国内代理", "🇺🇳 国外代理", "🚫 广告拦截", "🍥 漏网之鱼" ] }
   ],
   "route": {
     "default_domain_resolver": { "server": "dns_ali" },
@@ -110,10 +110,9 @@
       { "type": "logical", "mode": "or", "rules": [ { "protocol": "dns" }, { "port": 53 } ], "action": "hijack-dns" },
       { "clash_mode": "Direct", "outbound": "🌐 本地直连" },
       { "clash_mode": "Global", "outbound": "GLOBAL" },
-      { "rule_set": "Adblock+_Domain", "outbound": "🚫 广告拦截" },
-      { "rule_set": "Adblock_Domain", "outbound": "🚫 广告拦截" },
+      { "rule_set": [ "Adblock_Domain", "Adblock+_Domain" ], "outbound": "🚫 广告拦截" },
       { "rule_set": "Private_Domain", "outbound": "🌐 本地直连" },
-      { "rule_set": "GoogleFCM_Domain", "outbound": "📬 谷歌推送" },
+      { "rule_set": "GoogleFCM_Domain", "outbound": "💌 谷歌推送" },
       { "rule_set": "Telegram_Domain", "outbound": "📱 Telegram" },
       { "rule_set": "TikTok_Domain", "outbound": "🎶 TikTok" },
       { "rule_set": "AI_Domain", "outbound": "🤖 AI" },
