@@ -50,10 +50,10 @@
       { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.1/16", "inet6_range": "fc00::/18" }
     ],
     "rules": [
-      { "rule_set": "Fake-ip-Filter", "server": "dns_ali" },
-      { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" },
+      { "rule_set": "Fake-ip-Filter", "domain_suffix": "v2.argotunnel.com", "server": "dns_ali" },
       { "clash_mode": "Direct", "server": "dns_tencent" },
-      { "clash_mode": "Global", "server": "dns_cloudflare" }
+      { "clash_mode": "Global", "server": "dns_cloudflare" },
+      { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" }
     ],
     "final": "dns_cloudflare",
     "strategy": "prefer_ipv4",
@@ -115,6 +115,7 @@
       { "clash_mode": "Global", "outbound": "GLOBAL" },
       { "rule_set": [ "Adblock_Domain", "Adblock+_Domain" ], "outbound": "🚫 广告拦截" },
       { "rule_set": "Private_Domain", "outbound": "🌐 本地直连" },
+      { "ip_is_private": true, "outbound": "🌐 本地直连" },
       { "rule_set": "GoogleFCM_Domain", "outbound": "💌 谷歌推送" },
       { "rule_set": "Telegram_Domain", "outbound": "📱 Telegram" },
       { "rule_set": "TikTok_Domain", "outbound": "🎶 TikTok" },
@@ -134,16 +135,15 @@
       { "rule_set": "Google_Domain", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "Microsoft-cn_Domain", "outbound": "🇨🇳 国内代理" },
       { "rule_set": "Microsoft_Domain", "outbound": "🇺🇳 国外代理" },
-      { "rule_set": "Proxy_Domain", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "CN_Domain", "outbound": "🇨🇳 国内代理" },
       { "action": "resolve", "match_only": true },
-      { "ip_is_private": true, "outbound": "🌐 本地直连" },
       { "rule_set": "Private_ip", "outbound": "🌐 本地直连" },
       { "rule_set": "Telegram_ip", "outbound": "📱 Telegram" },
       { "rule_set": "AI_ip", "outbound": "🤖 AI" },
       { "rule_set": "Cloudflare_ip", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "Google_ip", "outbound": "🇺🇳 国外代理" },
-      { "rule_set": "CN_ip", "outbound": "🇨🇳 国内代理" }
+      { "rule_set": "CN_ip", "outbound": "🇨🇳 国内代理" },
+      { "rule_set": "Proxy", "outbound": "🇺🇳 国外代理" }
     ],
     "final": "🍥 漏网之鱼",
     "find_process": true,
@@ -166,11 +166,11 @@
         "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Adblock.srs"
        },
       {
-        "tag": "Proxy_Domain",
+        "tag": "Proxy",
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
-        "path": "./rules/Proxy_Domain.srs",
+        "path": "./rules/Proxy.srs",
         "url": "https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/proxy.srs"
        },
       {
@@ -243,7 +243,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/GoogleFCM_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/googlefcm.srs"
+        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/googlefcm.srs"
        },
       {
         "tag": "Microsoft_Domain",
