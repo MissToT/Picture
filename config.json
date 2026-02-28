@@ -42,16 +42,14 @@
    },
   "dns": {
     "servers": [
-      { "tag": "dns_resolver", "type": "udp", "server": "119.29.29.29" },
+      { "tag": "dns_resolver", "type": "udp", "server": "223.5.5.5" },
       { "tag": "dns_ali", "type": "https", "server": "dns.alidns.com", "detour": "🇨🇳 国内代理", "domain_resolver": "dns_resolver" },
-      { "tag": "dns_tencent", "type": "https", "server": "doh.pub", "detour": "🇨🇳 国内代理", "domain_resolver": "dns_resolver" },
-      { "tag": "dns_google", "type": "https", "server": "dns.google", "detour": "🇺🇳 国外代理", "domain_resolver": "dns_resolver" },
       { "tag": "dns_cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "🇺🇳 国外代理", "domain_resolver": "dns_resolver" },
       { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.1/16", "inet6_range": "fc00::/18" }
     ],
     "rules": [
-      { "rule_set": "Fake-ip-Filter", "domain_suffix": "v2.argotunnel.com", "server": "dns_ali" },
-      { "clash_mode": "Direct", "server": "dns_tencent" },
+      { "rule_set": [ "Fake-ip-Filter", "Private_Domain" ], "domain_keyword": "mtalk.google", "server": "dns_ali" },
+      { "clash_mode": "Direct", "server": "dns_ali" },
       { "clash_mode": "Global", "server": "dns_cloudflare" },
       { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" }
     ],
@@ -107,7 +105,7 @@
     { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "💌 谷歌推送", "📱 Telegram", "🔞 EHentai", "🎬 Emby", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🇯🇵 日本代理", "🇹🇼 台湾代理", "🇨🇳 国内代理", "🇺🇳 国外代理", "🚫 广告拦截", "🍥 漏网之鱼" ] }
   ],
   "route": {
-    "default_domain_resolver": { "server": "dns_tencent" },
+    "default_domain_resolver": { "server": "dns_ali" },
     "rules": [
       { "action": "sniff" },
       { "type": "logical", "mode": "or", "rules": [ { "protocol": "dns" }, { "port": 53 } ], "action": "hijack-dns" },
@@ -115,8 +113,7 @@
       { "clash_mode": "Global", "outbound": "GLOBAL" },
       { "rule_set": [ "Adblock_Domain", "Adblock+_Domain" ], "outbound": "🚫 广告拦截" },
       { "rule_set": "Private_Domain", "outbound": "🌐 本地直连" },
-      { "ip_is_private": true, "outbound": "🌐 本地直连" },
-      { "rule_set": "GoogleFCM_Domain", "outbound": "💌 谷歌推送" },
+      { "type": "logical", "mode": "or", "rules": [ { "domain_keyword": "mtalk.google" }, { "port": 5228 } ], "outbound": "💌 谷歌推送" },
       { "rule_set": "Telegram_Domain", "outbound": "📱 Telegram" },
       { "rule_set": "TikTok_Domain", "outbound": "🎶 TikTok" },
       { "rule_set": "AI_Domain", "outbound": "🤖 AI" },
@@ -137,6 +134,7 @@
       { "rule_set": "Microsoft_Domain", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "CN_Domain", "outbound": "🇨🇳 国内代理" },
       { "action": "resolve", "match_only": true },
+      { "ip_is_private": true, "outbound": "🌐 本地直连" },
       { "rule_set": "Private_ip", "outbound": "🌐 本地直连" },
       { "rule_set": "Telegram_ip", "outbound": "📱 Telegram" },
       { "rule_set": "AI_ip", "outbound": "🤖 AI" },
@@ -236,14 +234,6 @@
         "update_interval": "24h",
         "path": "./rules/Google_ip.srs",
         "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/google.srs"
-       },
-      {
-        "tag": "GoogleFCM_Domain",
-        "type": "remote",
-        "format": "binary",
-        "update_interval": "24h",
-        "path": "./rules/GoogleFCM_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/googlefcm.srs"
        },
       {
         "tag": "Microsoft_Domain",
