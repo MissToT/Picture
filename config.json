@@ -7,7 +7,7 @@
       "download_detour": "🌐 本地直连",
       "path": "./providers/SNTP.json",
       "url": "http://localhost:3000/download/SNTP",
-      "exclude": "DIRECT|Traffic|TRAFFIC|Expire|EXPIRE|流量|到期|时间|重置",
+      "exclude": "(?i)(DIRECT|Traffic|Expire|流量|到期|时间|重置)",
       "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
      },
     {
@@ -17,7 +17,7 @@
       "download_detour": "🌐 本地直连",
       "path": "./providers/SakuraCat.json",
       "url": "http://localhost:3000/download/SakuraCat",
-      "exclude": "DIRECT|Traffic|TRAFFIC|Expire|EXPIRE|流量|到期|时间|重置",
+      "exclude": "(?i)(DIRECT|Traffic|Expire|流量|到期|时间|重置)",
       "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
     }
   ],
@@ -25,6 +25,7 @@
     "urltest_unified_delay": true,
     "cache_file": {
       "enabled": true,
+      "store_rdrc": true,
       "store_fakeip": true,
       "path": "cache.db"
      },
@@ -32,10 +33,14 @@
       "external_controller": "0.0.0.0:9090",
       "external_ui": "WebUI",
       "external_ui_download_url": "https://v6.gh-proxy.com/github.com/Zephyruso/zashboard/releases/download/v1.101.1/dist.zip",
-      "secret": ""
+      "secret": "",
+      "default_mode": "rule",
+      "access_control_allow_origin": ["*"],
+      "access_control_allow_private_network": true
     }
   },
   "log": {
+    "disabled": false,
     "level": "fatal",
     "timestamp": true,
     "output": "sing-box.log"
@@ -43,15 +48,15 @@
   "dns": {
     "servers": [
       { "tag": "dns_resolver", "type": "udp", "server": "223.5.5.5" },
-      { "tag": "dns_ali", "type": "https", "server": "dns.alidns.com", "detour": "🇨🇳 国内代理", "domain_resolver": "dns_resolver" },
+      { "tag": "dns_ali", "type": "quic", "server": "dns.alidns.com", "domain_resolver": "dns_resolver" },
       { "tag": "dns_cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "🇺🇳 国外代理", "domain_resolver": "dns_resolver" },
       { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.1/16", "inet6_range": "fc00::/18" }
     ],
     "rules": [
-      { "rule_set": [ "Fake-ip-Filter", "Private_Domain" ], "domain_keyword": "mtalk.google", "server": "dns_ali" },
+      { "rule_set": [ "Fake-ip-Filter", "Private_Domain" ], "server": "dns_ali" },
+      { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" },
       { "clash_mode": "Direct", "server": "dns_ali" },
-      { "clash_mode": "Global", "server": "dns_cloudflare" },
-      { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" }
+      { "clash_mode": "Global", "server": "dns_cloudflare" }
     ],
     "final": "dns_cloudflare",
     "strategy": "prefer_ipv4",
@@ -59,17 +64,6 @@
     "reverse_mapping": true
    },
   "inbounds": [
-    {
-      "tag": "tun-in",
-      "type": "tun",
-      "mtu": 9000,
-      "stack": "gvisor",
-      "interface_name": "Box",
-      "address": "172.18.0.1/30",
-      "auto_route": true,
-      "strict_route": true,
-      "auto_redirect": false
-     },
     {
       "tag": "mixed-in",
       "type": "mixed",
@@ -81,13 +75,24 @@
       "type": "tproxy",
       "listen": "::",
       "listen_port": 9898
-    }
+    },
+    {
+      "tag": "tun-in",
+      "type": "tun",
+      "mtu": 9000,
+      "stack": "gvisor",
+      "interface_name": "Box",
+      "address": "172.18.0.1/30",
+      "auto_route": true,
+      "strict_route": true,
+      "auto_redirect": false
+     }
   ],
   "outbounds": [
     { "tag": "🌐 本地直连", "type": "direct" },
     { "tag": "⛔️ 拒绝连接", "type": "block" },
     { "tag": "🚀 手动选择", "type": "selector", "use_all_providers": true },
-    { "tag": "♻️ 自动选择", "type": "urltest", "use_all_providers": true, "interval": "10m", "tolerance": 20, "url": "https://captive.apple.com/generate_204" },
+    { "tag": "♻️ 自动选择", "type": "urltest", "use_all_providers": true, "interval": "10m", "tolerance": 20, "url": "https://captive.apple.com/generate_204", "include": "(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW|日本|🇯🇵|JP|美国|🇺🇸|US|新加坡|🇸🇬|SG)", "exclude": "(?i)(2\\.00x|排除2)" },
     { "tag": "💌 谷歌推送", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "📱 Telegram", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🔞 EHentai", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
@@ -96,8 +101,8 @@
     { "tag": "📺 YouTube", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🤖 AI", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🎮 Games", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🇯🇵 日本代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🇹🇼 台湾代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🇯🇵 日本代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(日本|🇯🇵|JP|japan)" },
+    { "tag": "🇹🇼 台湾代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(台湾|🇹🇼|TW|taiwan)" },
     { "tag": "🇺🇳 国外代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🇨🇳 国内代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🌐 本地直连", "🚀 手动选择", "♻️ 自动选择", "⛔️ 拒绝连接" ] },
     { "tag": "🚫 广告拦截", "type": "selector", "use_all_providers": true, "outbounds": [ "⛔️ 拒绝连接", "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连" ] },
@@ -109,14 +114,16 @@
     "rules": [
       { "action": "sniff" },
       { "type": "logical", "mode": "or", "rules": [ { "protocol": "dns" }, { "port": 53 } ], "action": "hijack-dns" },
+      { "rule_set": "Private_Domain", "outbound": "🌐 本地直连" },
+      { "ip_is_private": true, "outbound": "🌐 本地直连" },
       { "clash_mode": "Direct", "outbound": "🌐 本地直连" },
       { "clash_mode": "Global", "outbound": "GLOBAL" },
       { "rule_set": [ "Adblock_Domain", "Adblock+_Domain" ], "outbound": "🚫 广告拦截" },
-      { "rule_set": "Private_Domain", "outbound": "🌐 本地直连" },
-      { "type": "logical", "mode": "or", "rules": [ { "domain_keyword": "mtalk.google" }, { "port": 5228 } ], "outbound": "💌 谷歌推送" },
+      { "rule_set": "GoogleFCM_Domain", "outbound": "💌 谷歌推送" },
       { "rule_set": "Telegram_Domain", "outbound": "📱 Telegram" },
       { "rule_set": "TikTok_Domain", "outbound": "🎶 TikTok" },
       { "rule_set": "AI_Domain", "outbound": "🤖 AI" },
+      { "rule_set": "Games_Domain", "outbound": "🤖 AI" },
       { "rule_set": "YouTube_Domain", "outbound": "📺 YouTube" },
       { "rule_set": "Emby_Domain", "outbound": "🎬 Emby" },
       { "rule_set": "EHentai_Domain", "outbound": "🔞 EHentai" },
@@ -134,7 +141,6 @@
       { "rule_set": "Microsoft_Domain", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "CN_Domain", "outbound": "🇨🇳 国内代理" },
       { "action": "resolve", "match_only": true },
-      { "ip_is_private": true, "outbound": "🌐 本地直连" },
       { "rule_set": "Private_ip", "outbound": "🌐 本地直连" },
       { "rule_set": "Telegram_ip", "outbound": "📱 Telegram" },
       { "rule_set": "AI_ip", "outbound": "🤖 AI" },
@@ -226,6 +232,22 @@
         "update_interval": "24h",
         "path": "./rules/Google_Domain.srs",
         "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/google.srs"
+       },
+      {
+        "tag": "GoogleFCM_Domain",
+        "type": "remote",
+        "format": "binary",
+        "update_interval": "24h",
+        "path": "./rules/GoogleFCM_Domain.srs",
+        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/googlefcm@!cn.srs"
+       },
+      {
+        "tag": "Gemini_Domain",
+        "type": "remote",
+        "format": "binary",
+        "update_interval": "24h",
+        "path": "./rules/Gemini_Domain.srs",
+        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/google-gemini.srs"
        },
       {
         "tag": "Google_ip",
