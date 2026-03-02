@@ -53,7 +53,7 @@
       { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.1/16", "inet6_range": "fc00::/18" }
     ],
     "rules": [
-      { "rule_set": [ "Fake-ip-Filter", "Private_Domain", "GoogleFCM_Domain" ], "port": 7844, "server": "dns_ali" },
+      { "rule_set": [ "Fake-ip-Filter", "Private_Domain" ], "port": 7844, "server": "dns_ali" },
       { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" },
       { "clash_mode": "Direct", "server": "dns_ali" },
       { "clash_mode": "Global", "server": "dns_cloudflare" }
