@@ -127,7 +127,7 @@ proxy-groups:
 # 规则集
 rule-providers:
   China_IP:                 {<<: *IPCIDR, url: 'https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/ipcidr/cn.mrs'}
-  China+_IP:                {<<: *IPCIDR, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/ipcidr/China.mrs'}
+  China+_IP:                {<<: *IPCIDR, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Rules/ipcidr/China.mrs'}
   Proxy_IP:                 {<<: *IPCIDR, url: 'https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/ipcidr/proxy.mrs'}
   Private_IP:               {<<: *IPCIDR, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/private.mrs'}
   Telegram_IP:              {<<: *IPCIDR, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/telegram.mrs'}
@@ -136,9 +136,9 @@ rule-providers:
   Cloudflare_IP:            {<<: *IPCIDR, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/cloudflare.mrs'}
   Google_IP:                {<<: *IPCIDR, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/google.mrs'}
   China_Domain:             {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/cn.mrs'}
-  China+_Domain:            {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Domain/China.mrs'}
+  China+_Domain:            {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Rules/domain/China.mrs'}
   Proxy_Domain:             {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/proxy.mrs'}
-  Proxy+_Domain:            {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Domain/Proxy.mrs'}
+  Proxy+_Domain:            {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Rules/domain/Proxy.mrs'}
   Private_Domain:           {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/private.mrs'}
   Telegram_Domain:          {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/telegram.mrs'}
   Twitter_Domain:           {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/twitter.mrs'}
@@ -152,16 +152,16 @@ rule-providers:
   Games-download_Domain:    {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-game-platforms-download.mrs'}
   Mihoyo-cn_Domain:         {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/mihoyo-cn.mrs'}
   AI_Domain:                {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-ai-!cn.mrs'}
-  Emby_Domain:              {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Domain/Emby.mrs'}
-  Japan_Domain:             {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Domain/Japan.mrs'}
-  Taiwan_Domain:            {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Domain/Taiwan.mrs'}
+  Emby_Domain:              {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Rules/domain/Emby.mrs'}
+  Japan_Domain:             {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Rules/domain/Japan.mrs'}
+  Taiwan_Domain:            {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Rules/domain/Taiwan.mrs'}
   TikTok_Domain:            {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/tiktok.mrs'}
   YouTube_Domain:           {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/youtube.mrs'}
   EHentai_Domain:           {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/ehentai.mrs'}
   Adblock_Domain:           {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/mihomo.mrs'}
-  Adblock+_Domain:          {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Domain/Adblock.mrs'}
+  Adblock+_Domain:          {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Rules/domain/Adblock.mrs'}
   Fakeip-Filter:            {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/fake-ip-filter.mrs'}
-  WebRTC:                   {<<: *Classical, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/classical/WebRTC.list'}
+  WebRTC:                   {<<: *Classical, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Rules/classical/WebRTC.list'}
 
 # 路由规则
 rules:
