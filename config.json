@@ -145,6 +145,7 @@
       { "rule_set": "AI_Domain", "outbound": "🤖 AI" },
       { "rule_set": "Games_Domain", "outbound": "🤖 AI" },
       { "rule_set": "YouTube_Domain", "outbound": "📺 YouTube" },
+      { "rule_set": "Emby-cn_Domain", "outbound": "🐲 国内代理" },
       { "rule_set": "Emby_Domain", "outbound": "🎬 Emby" },
       { "rule_set": "EHentai_Domain", "outbound": "🔞 EHentai" },
       { "rule_set": "Mihoyo-cn_Domain", "outbound": "🐲 国内代理" },
@@ -308,6 +309,14 @@
         "update_interval": "24h",
         "path": "./rules/Emby_Domain.srs",
         "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Emby.srs"
+       },
+      {
+        "tag": "Emby-cn_Domain",
+        "type": "remote",
+        "format": "binary",
+        "update_interval": "24h",
+        "path": "./rules/Emby-cn_Domain.srs",
+        "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Emby-CN.srs"
        },
       {
         "tag": "AI_Domain",
