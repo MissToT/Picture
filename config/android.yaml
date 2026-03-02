@@ -84,6 +84,7 @@ tun:
 proxies:
   - {name: '🌐 本地直连', type: direct, udp: true}
   - {name: '⛔️ 拒绝连接', type: reject}
+  - {name: '🔰 DNS-Hijack', type: dns}
 
 # 策略组
 proxy-groups:
@@ -166,6 +167,7 @@ rule-providers:
 
 # 路由规则
 rules:
+  - DST-PORT,53,🔰 DNS-Hijack
   - RULE-SET,WebRTC,WebRTC
   - RULE-SET,Adblock+_Domain,广告拦截
   - RULE-SET,Adblock_Domain,广告拦截
