@@ -143,16 +143,17 @@ rule-providers:
   Telegram_Domain:          {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/telegram.mrs'}
   Twitter_Domain:           {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/twitter.mrs'}
   Cloudflare_Domain:        {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cloudflare.mrs'}
-  Cloudflare-cn_Domain:     {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cloudflare-cn.mrs'}
+  Cloudflare-CN_Domain:     {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cloudflare-cn.mrs'}
   Google_Domain:            {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/google.mrs'}
   GoogleFCM_Domain:         {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/googlefcm.mrs'}
   Microsoft_Domain:         {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft.mrs'}
-  Microsoft-cn_Domain:      {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft@cn.mrs'}
+  Microsoft-CN_Domain:      {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft@cn.mrs'}
   Games_Domain:             {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-games-!cn.mrs'}
   Games-download_Domain:    {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-game-platforms-download.mrs'}
-  Mihoyo-cn_Domain:         {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/mihoyo-cn.mrs'}
+  Mihoyo-CN_Domain:         {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/mihoyo-cn.mrs'}
   AI_Domain:                {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-ai-!cn.mrs'}
   Emby_Domain:              {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Rules/domain/Emby.mrs'}
+  Emby-CN_Domain:           {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Rules/domain/Emby-CN.mrs'}
   Japan_Domain:             {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Rules/domain/Japan.mrs'}
   Taiwan_Domain:            {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Rules/domain/Taiwan.mrs'}
   TikTok_Domain:            {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/tiktok.mrs'}
@@ -175,19 +176,20 @@ rules:
   - RULE-SET,TikTok_Domain,TikTok
   - RULE-SET,AI_Domain,AI
   - RULE-SET,YouTube_Domain,YouTube
+  - RULE-SET,Emby-CN_Domain,国内代理
   - RULE-SET,Emby_Domain,Emby
   - RULE-SET,EHentai_Domain,EHentai
-  - RULE-SET,Mihoyo-cn_Domain,国内代理
+  - RULE-SET,Mihoyo-CN_Domain,国内代理
   - RULE-SET,Games_Domain,Games
   - RULE-SET,Games-download_Domain,Games
   - RULE-SET,Japan_Domain,日本代理
   - RULE-SET,Taiwan_Domain,台湾代理
   - RULE-SET,Proxy+_Domain,国外代理
   - RULE-SET,China+_Domain,国内代理
-  - RULE-SET,Cloudflare-cn_Domain,国内代理
+  - RULE-SET,Cloudflare-CN_Domain,国内代理
   - RULE-SET,Cloudflare_Domain,国外代理
   - RULE-SET,Google_Domain,国外代理
-  - RULE-SET,Microsoft-cn_Domain,国内代理
+  - RULE-SET,Microsoft-CN_Domain,国内代理
   - RULE-SET,Microsoft_Domain,国外代理
   - RULE-SET,Proxy_Domain,国外代理
   - RULE-SET,China_Domain,国内代理
