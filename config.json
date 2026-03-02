@@ -131,7 +131,7 @@
     { "tag": "🇺🇸 US・备选", "type": "urltest", "providers": ["SakuraCat"], "interval": "2m", "tolerance": 20, "url": "https://captive.apple.com/generate_204", "include": "(?i)(美国|🇺🇸|US)", "exclude": "(?i)(2\\.00x|排除2)" }
   ],
   "route": {
-    "default_domain_resolver": { "server": "dns_ali" },
+    "default_domain_resolver": "dns_ali",
     "rules": [
       { "action": "sniff" },
       { "type": "logical", "mode": "or", "rules": [ { "protocol": "dns" }, { "port": 53 } ], "action": "hijack-dns" },
