@@ -145,7 +145,7 @@
       { "rule_set": "Twitter_Domain", "outbound": "🐦 Twitter" },
       { "rule_set": "TikTok_Domain", "outbound": "🎶 TikTok" },
       { "rule_set": "AI_Domain", "outbound": "🤖 AI" },
-      { "rule_set": "Games_Domain", "outbound": "🤖 AI" },
+      { "rule_set": "Gemini_Domain", "outbound": "🤖 AI" },
       { "rule_set": "YouTube_Domain", "outbound": "📺 YouTube" },
       { "rule_set": "Emby-cn_Domain", "outbound": "🐲 国内代理" },
       { "rule_set": "Emby_Domain", "outbound": "🎬 Emby" },
