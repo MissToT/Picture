@@ -1,0 +1,211 @@
+############################################## - ⚓️ 锚点区开始 - ##############################################
+# 锚点 - 筛选组
+FilterSelect: &FilterSelect {filter: '^(?=.*(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW|日本|🇯🇵|JP|美国|🇺🇸|US|新加坡|狮城|🇸🇬|SG))(?!.*(2.00x|排除2)).*$'}
+FilterOthers: &FilterOthers {filter: '^(?!.*(DIRECT|Traffic|TRAFFIC|Expire|EXPIRE|流量|到期|时间|重置))'}
+FilterHK: &FilterHK {filter: '^(?=.*(?i)(香港|🇭🇰|HK))(?!.*(2.00x|排除2)).*$'}
+FilterTW: &FilterTW {filter: '^(?=.*(?i)(台湾|🇹🇼|TW))(?!.*(2.00x|排除2)).*$'}
+FilterJP: &FilterJP {filter: '^(?=.*(?i)(日本|🇯🇵|JP))(?!.*(2.00x|排除2)).*$'}
+FilterSG: &FilterSG {filter: '^(?=.*(?i)(新加坡|狮城|🇸🇬|SG))(?!.*(2.00x|排除2)).*$'}
+FilterUS: &FilterUS {filter: '^(?=.*(?i)(美国|🇺🇸|US))(?!.*(2.00x|排除2)).*$'}
+# 锚点 - 策略组
+Select: &Select {type: select, include-all-providers: true, proxies: ['手动选择', '自动选择', '香港自动', '台湾自动', '日本自动', '狮城自动', '美国自动', '🌐 本地直连', '⛔️ 拒绝连接']}
+UrlTest: &UrlTest {type: url-test, hidden: true, interval: 600, tolerance: 20, url: 'https://captive.apple.com/generate_204'}
+Fallback: &Fallback {type: fallback, hidden: true, interval: 600, url: 'https://captive.apple.com/generate_204'}
+# 锚点 - 规则集
+IPCIDR: &IPCIDR {type: http, interval: 86400, behavior: ipcidr, format: mrs}
+Domain: &Domain {type: http, interval: 86400, behavior: domain, format: mrs}
+Classical: &Classical {type: http, interval: 86400, behavior: classical, format: text}
+# 锚点 - 远程订阅组
+Providers: &Providers {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: 'https://captive.apple.com/generate_204', interval: 600}, <<: *FilterOthers}
+############################################## - ⚓️ 锚点区结束 - ##############################################
+
+# 节点订阅
+proxy-providers:
+  SNTP: {<<: *Providers, url: 'http://localhost:3000/download/SNTP', path: ./providers/SNTP.yaml, override: {additional-prefix: 'STP・'}}
+  SakuraCat: {<<: *Providers, url: 'http://localhost:3000/download/SakuraCat', path: ./providers/SakuraCat.yaml, override: {additional-prefix: 'SKC・'}}
+
+# 基础配置
+mixed-port: 7890
+redir-port: 9797
+tproxy-port: 9898
+mode: rule
+log-level: silent
+ipv6: true
+allow-lan: true
+bind-address: '*'
+unified-delay: true
+tcp-concurrent: true
+find-process-mode: always
+
+# 管理面板配置
+external-ui-url: 'https://v6.gh-proxy.com/github.com/Zephyruso/zashboard/releases/download/v1.101.1/dist.zip'
+external-ui: ./WebUI
+external-controller: 0.0.0.0:9090
+secret: ''
+
+# 缓存配置
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+# 域名嗅探配置
+sniffer:
+  enable: true
+  parse-pure-ip: true
+  force-dns-mapping: true
+  override-destination: false
+  sniff: {HTTP: {ports: [80, 8080-8880], override-destination: true}, TLS: {ports: [443, 8443]}, QUIC: {ports: [443, 8443]}}
+  skip-domain: ['Mijia Cloud']
+
+# DNS配置
+dns:
+  enable: true
+  ipv6: true
+  listen: 0.0.0.0:1053
+  cache-algorithm: arc
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter: ['RULE-SET:Fakeip-Filter']
+  default-nameserver: [223.5.5.5, 119.29.29.29]
+  nameserver: ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query']
+
+# TUN模式配置
+tun:
+  enable: false
+  mtu: 9000
+  stack: gvisor
+  device: Meta
+  dns-hijack: ['any:53', 'tcp://any:53']
+  auto-route: true
+  strict-route: true
+  auto-redirect: false
+  auto-detect-interface: true
+
+# 出站节点
+proxies:
+  - {name: '🌐 本地直连', type: direct, udp: true}
+  - {name: '⛔️ 拒绝连接', type: reject}
+  - {name: '🔰 DNS-Hijack', type: dns}
+
+# 策略组
+proxy-groups:
+  - {name: '手动选择', type: select, include-all-providers: true, icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Proxy.png'}
+  - {name: '谷歌推送', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png'}
+  - {name: 'Telegram', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Orz-3/mini/raw/master/Color/Telegram.png'}
+  - {name: 'Twitter', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Twitter.png'}
+  - {name: 'Emby', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Orz-3/mini/raw/master/Color/Emby.png'}
+  - {name: 'EHentai', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/MissToT/Picture/raw/main/icon/Exhentai.svg'}
+  - {name: 'YouTube', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Orz-3/mini/raw/master/Color/YouTube.png'}
+  - {name: 'TikTok', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/TikTok.png'}
+  - {name: 'AI', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/ChatGPT.png'}
+  - {name: 'Games', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png'}
+  - {name: '日本代理', <<: [*Select, *FilterJP], proxies: ['日本自动', '手动选择', '🌐 本地直连', '⛔️ 拒绝连接'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Japan.png'}
+  - {name: '台湾代理', <<: [*Select, *FilterTW], proxies: ['台湾自动', '手动选择', '🌐 本地直连', '⛔️ 拒绝连接'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Taiwan.png'}
+  - {name: '国外代理', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/United_Nations.png'}
+  - {name: '国内代理', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/China.png'}
+  - {name: 'WebRTC', type: select, proxies: ['⛔️ 拒绝连接', 'PASS'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Domestic.png'}
+  - {name: '广告拦截', type: select, proxies: ['⛔️ 拒绝连接', 'PASS'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Hijacking.png'}
+  - {name: '漏网之鱼', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png'}
+  - {name: 'GLOBAL', <<: [*Select, *FilterSelect], proxies: ['手动选择', '谷歌推送', 'Telegram', 'Twitter', 'Emby', 'EHentai', 'YouTube', 'TikTok', 'AI', 'Games', '日本代理', '台湾代理', '国外代理', '国内代理', 'WebRTC', '广告拦截', '漏网之鱼'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png'}
+
+  - {name: '自动选择', <<: *Fallback, proxies: ['♻️ ALL・优选', '♻️ ALL・备选'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png'}
+  - {name: '香港自动', <<: *Fallback, proxies: ['🇭🇰 HK・优选', '🇭🇰 HK・备选'], icon: 'https://gh-proxy.com/github.com/MissToT/Picture/raw/main/icon/HK.svg'}
+  - {name: '台湾自动', <<: *Fallback, proxies: ['🇹🇼 TW・优选', '🇹🇼 TW・备选'], icon: 'https://gh-proxy.com/github.com/MissToT/Picture/raw/main/icon/TW.svg'}
+  - {name: '日本自动', <<: *Fallback, proxies: ['🇯🇵 JP・优选', '🇯🇵 JP・备选'], icon: 'https://gh-proxy.com/github.com/MissToT/Picture/raw/main/icon/JP.svg'}
+  - {name: '狮城自动', <<: *Fallback, proxies: ['🇸🇬 SG・优选', '🇸🇬 SG・备选'], icon: 'https://gh-proxy.com/github.com/MissToT/Picture/raw/main/icon/SG.svg'}
+  - {name: '美国自动', <<: *Fallback, proxies: ['🇺🇸 US・优选', '🇺🇸 US・备选'], icon: 'https://gh-proxy.com/github.com/MissToT/Picture/raw/main/icon/US.svg'}
+
+  - {name: '♻️ ALL・优选', <<: [*UrlTest, *FilterSelect], use: ['SNTP']}
+  - {name: '🇭🇰 HK・优选', <<: [*UrlTest, *FilterHK], use: ['SNTP']}
+  - {name: '🇹🇼 TW・优选', <<: [*UrlTest, *FilterTW], use: ['SNTP']}
+  - {name: '🇯🇵 JP・优选', <<: [*UrlTest, *FilterJP], use: ['SNTP']}
+  - {name: '🇸🇬 SG・优选', <<: [*UrlTest, *FilterSG], use: ['SNTP']}
+  - {name: '🇺🇸 US・优选', <<: [*UrlTest, *FilterUS], use: ['SNTP']}
+
+  - {name: '♻️ ALL・备选', <<: [*UrlTest, *FilterSelect], use: ['SakuraCat']}
+  - {name: '🇭🇰 HK・备选', <<: [*UrlTest, *FilterHK], use: ['SakuraCat']}
+  - {name: '🇹🇼 TW・备选', <<: [*UrlTest, *FilterTW], use: ['SakuraCat']}
+  - {name: '🇯🇵 JP・备选', <<: [*UrlTest, *FilterJP], use: ['SakuraCat']}
+  - {name: '🇸🇬 SG・备选', <<: [*UrlTest, *FilterSG], use: ['SakuraCat']}
+  - {name: '🇺🇸 US・备选', <<: [*UrlTest, *FilterUS], use: ['SakuraCat']}
+
+# 规则集
+rule-providers:
+  China_IP: {<<: *IPCIDR, url: 'https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/ipcidr/cn.mrs'}
+  China+_IP: {<<: *IPCIDR, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Rules/ipcidr/China.mrs'}
+  Proxy_IP: {<<: *IPCIDR, url: 'https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/ipcidr/proxy.mrs'}
+  Private_IP: {<<: *IPCIDR, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/private.mrs'}
+  Telegram_IP: {<<: *IPCIDR, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/telegram.mrs'}
+  Twitter_IP: {<<: *IPCIDR, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/twitter.mrs'}
+  AI_IP: {<<: *IPCIDR, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/ai.mrs'}
+  Cloudflare_IP: {<<: *IPCIDR, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/cloudflare.mrs'}
+  Google_IP: {<<: *IPCIDR, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/google.mrs'}
+  China_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/cn.mrs'}
+  China+_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Rules/domain/China.mrs'}
+  Proxy_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/proxy.mrs'}
+  Proxy+_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Rules/domain/Proxy.mrs'}
+  Private_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/private.mrs'}
+  Telegram_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/telegram.mrs'}
+  Twitter_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/twitter.mrs'}
+  Cloudflare_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cloudflare.mrs'}
+  Cloudflare-CN_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cloudflare-cn.mrs'}
+  Google_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/google.mrs'}
+  GoogleFCM_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/googlefcm.mrs'}
+  Microsoft_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft.mrs'}
+  Microsoft-CN_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft@cn.mrs'}
+  Games_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-games-!cn.mrs'}
+  Games-download_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-game-platforms-download.mrs'}
+  Mihoyo-CN_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/mihoyo-cn.mrs'}
+  AI_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-ai-!cn.mrs'}
+  Emby_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Rules/domain/Emby.mrs'}
+  Emby-CN_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Rules/domain/Emby-CN.mrs'}
+  Japan_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Rules/domain/Japan.mrs'}
+  Taiwan_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Rules/domain/Taiwan.mrs'}
+  TikTok_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/tiktok.mrs'}
+  YouTube_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/youtube.mrs'}
+  EHentai_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/ehentai.mrs'}
+  Adblock_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/mihomo.mrs'}
+  Adblock+_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Rules/domain/Adblock.mrs'}
+  Fakeip-Filter: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/fake-ip-filter.mrs'}
+  WebRTC: {<<: *Classical, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Rules/classical/WebRTC.list'}
+
+# 路由规则
+rules:
+  - DST-PORT,53,🔰 DNS-Hijack
+  - RULE-SET,WebRTC,WebRTC
+  - RULE-SET,Adblock+_Domain,广告拦截
+  - RULE-SET,Adblock_Domain,广告拦截
+  - RULE-SET,Private_Domain,🌐 本地直连
+  - RULE-SET,GoogleFCM_Domain,谷歌推送
+  - RULE-SET,Telegram_Domain,Telegram
+  - RULE-SET,Twitter_Domain,Twitter
+  - RULE-SET,TikTok_Domain,TikTok
+  - RULE-SET,AI_Domain,AI
+  - RULE-SET,YouTube_Domain,YouTube
+  - RULE-SET,Emby-CN_Domain,国内代理
+  - RULE-SET,Emby_Domain,Emby
+  - RULE-SET,EHentai_Domain,EHentai
+  - RULE-SET,Mihoyo-CN_Domain,国内代理
+  - RULE-SET,Games_Domain,Games
+  - RULE-SET,Games-download_Domain,Games
+  - RULE-SET,Japan_Domain,日本代理
+  - RULE-SET,Taiwan_Domain,台湾代理
+  - RULE-SET,Proxy+_Domain,国外代理
+  - RULE-SET,China+_Domain,国内代理
+  - RULE-SET,Cloudflare-CN_Domain,国内代理
+  - RULE-SET,Cloudflare_Domain,国外代理
+  - RULE-SET,Google_Domain,国外代理
+  - RULE-SET,Microsoft-CN_Domain,国内代理
+  - RULE-SET,Microsoft_Domain,国外代理
+  - RULE-SET,Proxy_Domain,国外代理
+  - RULE-SET,China_Domain,国内代理
+  - RULE-SET,Private_IP,🌐 本地直连,no-resolve
+  - RULE-SET,Telegram_IP,Telegram,no-resolve
+  - RULE-SET,Twitter_IP,Twitter,no-resolve
+  - RULE-SET,AI_IP,AI,no-resolve
+  - RULE-SET,China+_IP,国内代理,no-resolve
+  - RULE-SET,Cloudflare_IP,国外代理,no-resolve
+  - RULE-SET,Google_IP,国外代理,no-resolve
+  - RULE-SET,Proxy_IP,国外代理,no-resolve
+  - RULE-SET,China_IP,国内代理,no-resolve
+  - MATCH,漏网之鱼
