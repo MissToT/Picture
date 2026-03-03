@@ -53,10 +53,10 @@
       { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.1/16", "inet6_range": "fc00::/18" }
     ],
     "rules": [
-      { "rule_set": "Fake-ip-Filter", "server": "dns_ali" },
-      { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" },
       { "clash_mode": "Direct", "server": "dns_ali" },
-      { "clash_mode": "Global", "server": "dns_cloudflare" }
+      { "clash_mode": "Global", "server": "dns_cloudflare" },
+      { "rule_set": "Fake-ip-Filter", "server": "dns_ali" },
+      { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" }
     ],
     "final": "dns_cloudflare",
     "strategy": "prefer_ipv4",
@@ -137,11 +137,10 @@
     "rules": [
       { "action": "sniff" },
       { "type": "logical", "mode": "or", "rules": [ { "protocol": "dns" }, { "port": 53 } ], "action": "hijack-dns" },
-      { "rule_set": "Private_Domain", "outbound": "🌐 本地直连" },
-      { "ip_is_private": true, "outbound": "🌐 本地直连" },
       { "clash_mode": "Direct", "outbound": "🌐 本地直连" },
       { "clash_mode": "Global", "outbound": "GLOBAL" },
       { "rule_set": [ "Adblock_Domain", "Adblock+_Domain" ], "outbound": "🚫 广告拦截" },
+      { "rule_set": "Private_Domain", "outbound": "🌐 本地直连" },
       { "rule_set": "GoogleFCM_Domain", "outbound": "🇬 谷歌推送" },
       { "rule_set": "Telegram_Domain", "outbound": "📱 Telegram" },
       { "rule_set": "Twitter_Domain", "outbound": "🐦 Twitter" },
