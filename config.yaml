@@ -150,7 +150,7 @@ rule-providers:
   Cloudflare_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cloudflare.mrs'}
   Cloudflare-CN_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cloudflare-cn.mrs'}
   Google_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/google.mrs'}
-  GoogleFCM_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/googlefcm.mrs'}
+  GoogleFCM_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/Meta/Rules/domain/googlefcm.mrs'}
   Microsoft_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft.mrs'}
   Microsoft-CN_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft@cn.mrs'}
   Games_Domain: {<<: *Domain, url: 'https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-games-!cn.mrs'}
