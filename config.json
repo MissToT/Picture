@@ -32,7 +32,7 @@
     "clash_api": {
       "external_controller": "0.0.0.0:9090",
       "external_ui": "WebUI",
-      "external_ui_download_url": "https://v6.gh-proxy.com/github.com/Zephyruso/zashboard/releases/download/v1.101.1/dist.zip",
+      "external_ui_download_url": "https://v6.gh-proxy.org/github.com/Zephyruso/zashboard/releases/download/v1.101.1/dist.zip",
       "secret": "",
       "default_mode": "rule",
       "access_control_allow_origin": ["*"],
@@ -183,7 +183,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Adblock_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/anti-ad-sing-box.srs"
+        "url": "https://v6.gh-proxy.org/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/anti-ad-sing-box.srs"
        },
       {
         "tag": "Adblock+_Domain",
@@ -191,7 +191,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Adblock+_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Adblock.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Adblock.srs"
        },
       {
         "tag": "Proxy",
@@ -199,7 +199,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Proxy.srs",
-        "url": "https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/proxy.srs"
+        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/proxy.srs"
        },
       {
         "tag": "Proxy+_Domain",
@@ -207,7 +207,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Proxy+_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Proxy.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Proxy.srs"
        },
       {
         "tag": "Private_Domain",
@@ -215,7 +215,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Private_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/private.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/private.srs"
        },
       {
         "tag": "Private_ip",
@@ -223,7 +223,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Private_ip.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/private.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/private.srs"
        },
       {
         "tag": "Cloudflare_Domain",
@@ -231,7 +231,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Cloudflare_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/cloudflare.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/cloudflare.srs"
        },
       {
         "tag": "Cloudflare-cn_Domain",
@@ -239,7 +239,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Cloudflare-cn_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/cloudflare-cn.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/cloudflare-cn.srs"
        },
       {
         "tag": "Cloudflare_ip",
@@ -247,7 +247,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Cloudflare_ip.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/cloudflare.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/cloudflare.srs"
        },
       {
         "tag": "Google_Domain",
@@ -255,7 +255,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Google_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/google.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/google.srs"
        },
       {
         "tag": "GoogleFCM_Domain",
@@ -263,7 +263,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/GoogleFCM_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/googlefcm.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/googlefcm.srs"
        },
       {
         "tag": "Gemini_Domain",
@@ -271,7 +271,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Gemini_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/google-gemini.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/google-gemini.srs"
        },
       {
         "tag": "Google_ip",
@@ -279,7 +279,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Google_ip.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/google.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/google.srs"
        },
       {
         "tag": "Microsoft_Domain",
@@ -287,7 +287,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Microsoft_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/microsoft.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/microsoft.srs"
        },
       {
         "tag": "Microsoft-cn_Domain",
@@ -295,7 +295,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Microsoft-cn_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/microsoft@cn.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/microsoft@cn.srs"
        },
       {
         "tag": "Mihoyo-cn_Domain",
@@ -303,7 +303,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Mihoyo-cn_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/mihoyo-cn.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/mihoyo-cn.srs"
        },
       {
         "tag": "Emby_Domain",
@@ -311,7 +311,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Emby_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Emby.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Emby.srs"
        },
       {
         "tag": "Emby-cn_Domain",
@@ -319,7 +319,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Emby-cn_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Emby-CN.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Emby-CN.srs"
        },
       {
         "tag": "AI_Domain",
@@ -327,7 +327,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/AI_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-category-ai-!cn.srs"
+        "url": "https://v6.gh-proxy.org/github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-category-ai-!cn.srs"
        },
       {
         "tag": "AI_ip",
@@ -335,7 +335,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/AI_ip.srs",
-        "url": "https://v6.gh-proxy.com/github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geoip/geoip-ai.srs"
+        "url": "https://v6.gh-proxy.org/github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geoip/geoip-ai.srs"
        },
       {
         "tag": "Games_Domain",
@@ -343,7 +343,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Games_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-games-!cn.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-games-!cn.srs"
        },
       {
         "tag": "Games-download_Domain",
@@ -351,7 +351,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Games-download_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-game-platforms-download.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-game-platforms-download.srs"
        },
       {
         "tag": "EHentai_Domain",
@@ -359,7 +359,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/EHentai_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/ehentai.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/ehentai.srs"
        },
       {
         "tag": "JP_Domain",
@@ -367,7 +367,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/JP_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Japan.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Japan.srs"
        },
       {
         "tag": "TW_Domain",
@@ -375,7 +375,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/TW_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Taiwan.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Taiwan.srs"
        },
       {
         "tag": "TikTok_Domain",
@@ -383,7 +383,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/TikTok_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/tiktok.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/tiktok.srs"
        },
       {
         "tag": "YouTube_Domain",
@@ -391,7 +391,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/YouTube_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/youtube.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/youtube.srs"
        },
       {
         "tag": "Telegram_Domain",
@@ -399,7 +399,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Telegram_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/telegram.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/telegram.srs"
        },
       {
         "tag": "Telegram_ip",
@@ -407,7 +407,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Telegram_ip.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/telegram.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/telegram.srs"
        },
       {
         "tag": "Twitter_Domain",
@@ -415,7 +415,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Twitter_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/twitter.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/twitter.srs"
        },
       {
         "tag": "Twitter_ip",
@@ -423,7 +423,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Twitter_ip.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/twitter.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/twitter.srs"
        },
       {
         "tag": "CN_Domain",
@@ -431,7 +431,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/CN_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/cn.srs"
+        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/cn.srs"
        },
       {
         "tag": "CN+_Domain",
@@ -439,7 +439,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/CN+_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/China.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/China.srs"
        },
       {
         "tag": "CN_ip",
@@ -447,7 +447,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/CN_ip.srs",
-        "url": "https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/cncidr.srs"
+        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/cncidr.srs"
        },
       {
         "tag": "Fake-ip-Filter",
@@ -455,7 +455,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Fake-ip-Filter.srs",
-        "url": "https://v6.gh-proxy.com/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/fake-ip-filter.srs"
+        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/fake-ip-filter.srs"
       }
     ]
    }
