@@ -263,7 +263,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/GoogleFCM_Domain.srs",
-        "url": "https://v6.gh-proxy.com/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/googlefcm@!cn.srs"
+        "url": "https://v6.gh-proxy.com/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/googlefcm.srs"
        },
       {
         "tag": "Gemini_Domain",
