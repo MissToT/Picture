@@ -48,17 +48,21 @@
   "dns": {
     "servers": [
       { "tag": "dns_resolver", "type": "udp", "server": "223.5.5.5" },
-      { "tag": "dns_ali", "type": "quic", "server": "dns.alidns.com", "domain_resolver": "dns_resolver" },
+      { "tag": "dns_ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns_resolver" },
+      { "tag": "dns_tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns_resolver" },
+      { "tag": "dns_google", "type": "https", "server": "dns.google", "detour": "🌏 国外代理", "domain_resolver": "dns_resolver" },
       { "tag": "dns_cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "🌏 国外代理", "domain_resolver": "dns_resolver" },
-      { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.1/16", "inet6_range": "fc00::/18" }
+      { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.1/16", "inet6_range": "fc00::/18" },
+      { "tag": "dns_direct", "type": "group", "servers": [ "dns_ali", "dns_tencent" ] },
+      { "tag": "dns_global", "type": "group", "servers": [ "dns_google", "dns_cloudflare" ] }
     ],
     "rules": [
-      { "clash_mode": "Direct", "server": "dns_ali" },
-      { "clash_mode": "Global", "server": "dns_cloudflare" },
-      { "rule_set": "Fake-ip-Filter", "server": "dns_ali" },
+      { "clash_mode": "Direct", "server": "dns_direct" },
+      { "clash_mode": "Global", "server": "dns_global" },
+      { "rule_set": "Fake-ip-Filter", "server": "dns_direct" },
       { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" }
     ],
-    "final": "dns_cloudflare",
+    "final": "dns_global",
     "strategy": "prefer_ipv4",
     "independent_cache": true,
     "reverse_mapping": true
@@ -81,7 +85,7 @@
       "type": "tun",
       "mtu": 9000,
       "stack": "gvisor",
-      "interface_name": "Ruruka",
+      "interface_name": "Ruruka-Box",
       "address": "172.18.0.1/30",
       "auto_route": true,
       "strict_route": true,
@@ -131,9 +135,7 @@
     { "tag": "🇺🇸 US・备选", "type": "urltest", "providers": ["SakuraCat"], "interval": "5m", "tolerance": 20, "url": "https://captive.apple.com/generate_204", "include": "(?i)(美国|🇺🇸|US)", "exclude": "(?i)(2\\.00x|排除2)" }
   ],
   "route": {
-    "default_domain_resolver": "dns_ali",
-    "find_process": true,
-    "auto_detect_interface": true,
+    "default_domain_resolver": "dns_direct",
     "rules": [
       { "action": "sniff" },
       { "type": "logical", "mode": "or", "rules": [ { "protocol": "dns" }, { "port": 53 } ], "action": "hijack-dns" },
@@ -175,6 +177,8 @@
       { "rule_set": "CN_ip", "outbound": "🐲 国内代理" }
     ],
     "final": "🍥 漏网之鱼",
+    "find_process": true,
+    "auto_detect_interface": true,
     "rule_set": [
       {
         "tag": "Adblock_Domain",
