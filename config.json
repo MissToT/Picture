@@ -47,22 +47,22 @@
   },
   "dns": {
     "servers": [
-      { "tag": "dns_resolver", "type": "udp", "server": "223.5.5.5" },
-      { "tag": "dns_ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns_resolver" },
-      { "tag": "dns_tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns_resolver" },
-      { "tag": "dns_google", "type": "https", "server": "dns.google", "detour": "🌏 国外代理", "domain_resolver": "dns_resolver" },
-      { "tag": "dns_cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "🌏 国外代理", "domain_resolver": "dns_resolver" },
-      { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.1/16", "inet6_range": "fc00::/18" },
-      { "tag": "dns_direct", "type": "group", "servers": [ "dns_ali", "dns_tencent" ] },
-      { "tag": "dns_global", "type": "group", "servers": [ "dns_google", "dns_cloudflare" ] }
+      { "tag": "dns-resolver", "type": "udp", "server": "223.5.5.5" },
+      { "tag": "dns-ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns-resolver" },
+      { "tag": "dns-tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns-resolver" },
+      { "tag": "dns-google", "type": "https", "server": "dns.google", "detour": "🌏 国外代理", "domain_resolver": "dns-resolver" },
+      { "tag": "dns-cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "🌏 国外代理", "domain_resolver": "dns-resolver" },
+      { "tag": "dns-fakeip", "type": "fakeip", "inet4_range": "198.18.0.1/16", "inet6_range": "fc00::/18" },
+      { "tag": "dns-direct", "type": "group", "servers": [ "dns-ali", "dns-tencent" ] },
+      { "tag": "dns-global", "type": "group", "servers": [ "dns-google", "dns-cloudflare" ] }
     ],
     "rules": [
-      { "clash_mode": "Direct", "server": "dns_direct" },
-      { "clash_mode": "Global", "server": "dns_global" },
-      { "rule_set": "Fake-ip-Filter", "server": "dns_direct" },
-      { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" }
+      { "clash_mode": "Direct", "server": "dns-direct" },
+      { "clash_mode": "Global", "server": "dns-global" },
+      { "rule_set": "Fake-ip-Filter", "server": "dns-direct" },
+      { "query_type": [ "A", "AAAA" ], "server": "dns-fakeip" }
     ],
-    "final": "dns_global",
+    "final": "dns-global",
     "strategy": "prefer_ipv4",
     "independent_cache": true,
     "reverse_mapping": true
@@ -135,7 +135,7 @@
     { "tag": "🇺🇸 US・备选", "type": "urltest", "providers": ["SakuraCat"], "interval": "5m", "tolerance": 20, "url": "https://captive.apple.com/generate_204", "include": "(?i)(美国|🇺🇸|US)", "exclude": "(?i)(2\\.00x|排除2)" }
   ],
   "route": {
-    "default_domain_resolver": "dns_direct",
+    "default_domain_resolver": "dns-direct",
     "rules": [
       { "action": "sniff" },
       { "type": "logical", "mode": "or", "rules": [ { "protocol": "dns" }, { "port": 53 } ], "action": "hijack-dns" },
