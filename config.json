@@ -173,7 +173,6 @@
       { "rule_set": "AI_ip", "outbound": "🤖 AI" },
       { "rule_set": "Cloudflare_ip", "outbound": "🌏 国外代理" },
       { "rule_set": "Google_ip", "outbound": "🌏 国外代理" },
-      { "rule_set": "Proxy", "outbound": "🌏 国外代理" },
       { "rule_set": "CN_ip", "outbound": "🐲 国内代理" }
     ],
     "final": "🍥 漏网之鱼",
@@ -195,14 +194,6 @@
         "update_interval": "24h",
         "path": "./rules/Adblock+_Domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Adblock.srs"
-      },
-      {
-        "tag": "Proxy",
-        "type": "remote",
-        "format": "binary",
-        "update_interval": "24h",
-        "path": "./rules/Proxy.srs",
-        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/proxy.srs"
       },
       {
         "tag": "Proxy+_Domain",
