@@ -141,7 +141,6 @@
       { "type": "logical", "mode": "or", "rules": [ { "protocol": "dns" }, { "port": 53 } ], "action": "hijack-dns" },
       { "clash_mode": "Direct", "outbound": "🌐 本地直连" },
       { "clash_mode": "Global", "outbound": "GLOBAL" },
-      { "protocol": "stun", "action": "reject", "method": "drop" },
       { "rule_set": [ "Adblock_Domain", "Adblock+_Domain" ], "outbound": "🚫 广告拦截" },
       { "rule_set": "Private_Domain", "outbound": "🌐 本地直连" },
       { "rule_set": "GoogleFCM_Domain", "outbound": "🇬 谷歌推送" },
