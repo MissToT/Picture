@@ -93,8 +93,8 @@
      }
   ],
   "outbounds": [
-    { "tag": "🌐 本地直连", "type": "direct" },
     { "tag": "⛔️ 拒绝连接", "type": "block" },
+    { "tag": "🌐 本地直连", "type": "direct" },
     { "tag": "🚀 手动选择", "type": "selector", "use_all_providers": true },
     { "tag": "🇬 谷歌推送", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "🇺🇳 自动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "📱 Telegram", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "🇺🇳 自动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
