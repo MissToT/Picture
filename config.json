@@ -166,7 +166,7 @@
       { "rule_set": "Microsoft-cn_Domain", "outbound": "🐲 国内代理" },
       { "rule_set": "Microsoft_Domain", "outbound": "🌏 国外代理" },
       { "rule_set": "CN_Domain", "outbound": "🐲 国内代理" },
-      { "action": "resolve", "match_only": true },
+      { "action": "resolve" },
       { "rule_set": "Private_ip", "outbound": "🌐 本地直连" },
       { "rule_set": "Telegram_ip", "outbound": "📱 Telegram" },
       { "rule_set": "Twitter_ip", "outbound": "🐦 Twitter" },
