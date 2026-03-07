@@ -33,7 +33,7 @@
       "external_ui": "WebUI",
       "external_ui_download_url": "https://v6.gh-proxy.org/github.com/Zephyruso/zashboard/releases/download/v1.101.1/dist.zip",
       "secret": "",
-      "default_mode": "rule",
+      "default_mode": "规则",
       "access_control_allow_origin": ["*"],
       "access_control_allow_private_network": true
     }
@@ -56,8 +56,9 @@
       { "tag": "dns-global", "type": "group", "servers": [ "dns-google", "dns-cloudflare" ] }
     ],
     "rules": [
-      { "clash_mode": "Direct", "server": "dns-direct" },
-      { "clash_mode": "Global", "server": "dns-global" },
+      { "clash_mode": "直连", "server": "dns-direct" },
+      { "clash_mode": "全局", "server": "dns-global" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "type": "logical", "mode": "or", "rules": [ {"protocol": "stun"}, { "rule_set": [ "Adblock_domain", "Adblock+_domain" ] } ] } ], "action": "route-options", "disable_cache": true },
       { "rule_set": "Fake-ip-Filter", "server": "dns-direct" },
       { "query_type": [ "A", "AAAA" ], "server": "dns-fakeip" }
     ],
@@ -108,18 +109,17 @@
     { "tag": "🇹🇼 台湾代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(台湾|🇹🇼|TW|taiwan)" },
     { "tag": "🇺🇳 国外代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🇨🇳 国内代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🌐 本地直连", "🚀 手动选择", "♻️ 自动选择", "⛔️ 拒绝连接" ] },
-    { "tag": "🚫 广告拦截", "type": "selector", "use_all_providers": true, "outbounds": [ "⛔️ 拒绝连接", "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连" ] },
     { "tag": "🍥 漏网之鱼", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🇬 谷歌推送", "📱 Telegram", "🎬 Emby", "🔞 EHentai", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🇯🇵 日本代理", "🇹🇼 台湾代理", "🇨🇳 国内代理", "🇺🇳 国外代理", "🚫 广告拦截", "🍥 漏网之鱼", "🌐 本地直连", "⛔️ 拒绝连接" ] }
+    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🇬 谷歌推送", "📱 Telegram", "🎬 Emby", "🔞 EHentai", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🇯🇵 日本代理", "🇹🇼 台湾代理", "🇨🇳 国内代理", "🇺🇳 国外代理", "🍥 漏网之鱼", "🌐 本地直连", "⛔️ 拒绝连接" ] }
   ],
   "route": {
     "default_domain_resolver": "dns-direct",
     "rules": [
       { "action": "sniff" },
       { "type": "logical", "mode": "or", "rules": [ { "protocol": "dns" }, { "port": 53 } ], "action": "hijack-dns" },
-      { "clash_mode": "Direct", "outbound": "🌐 本地直连" },
-      { "clash_mode": "Global", "outbound": "GLOBAL" },
-      { "rule_set": [ "Adblock_domain", "Adblock+_domain" ], "outbound": "🚫 广告拦截" },
+      { "clash_mode": "直连", "outbound": "🌐 本地直连" },
+      { "clash_mode": "全局", "outbound": "GLOBAL" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "type": "logical", "mode": "or", "rules": [ {"protocol": "stun"}, { "rule_set": [ "Adblock_domain", "Adblock+_domain" ] } ] } ], "action": "reject", "method": "drop" },
       { "rule_set": "Private_domain", "outbound": "🌐 本地直连" },
       { "rule_set": "GoogleFCM_domain", "outbound": "🇬 谷歌推送" },
       { "rule_set": "Telegram_domain", "outbound": "📱 Telegram" },
