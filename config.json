@@ -58,7 +58,7 @@
     "rules": [
       { "clash_mode": "直连", "server": "dns-direct" },
       { "clash_mode": "全局", "server": "dns-global" },
-      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "type": "logical", "mode": "or", "rules": [ {"protocol": "stun"}, { "rule_set": [ "Adblock_domain", "Adblock+_domain" ] } ] } ], "action": "route-options", "disable_cache": true },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "Adblock_domain", "Adblock+_domain" ] } ], "action": "route-options", "disable_cache": true },
       { "rule_set": "Fake-ip-Filter", "server": "dns-direct" },
       { "query_type": [ "A", "AAAA" ], "server": "dns-fakeip" }
     ],
@@ -119,7 +119,7 @@
       { "type": "logical", "mode": "or", "rules": [ { "protocol": "dns" }, { "port": 53 } ], "action": "hijack-dns" },
       { "clash_mode": "直连", "outbound": "🌐 本地直连" },
       { "clash_mode": "全局", "outbound": "GLOBAL" },
-      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "type": "logical", "mode": "or", "rules": [ {"protocol": "stun"}, { "rule_set": [ "Adblock_domain", "Adblock+_domain" ] } ] } ], "action": "reject", "method": "drop" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "Adblock_domain", "Adblock+_domain" ] } ], "action": "reject", "method": "drop" },
       { "rule_set": "Private_domain", "outbound": "🌐 本地直连" },
       { "rule_set": "GoogleFCM_domain", "outbound": "🇬 谷歌推送" },
       { "rule_set": "Telegram_domain", "outbound": "📱 Telegram" },
