@@ -137,12 +137,19 @@
       { "rule_set": "TW_domain", "outbound": "🇹🇼 台湾代理" },
       { "rule_set": "Proxy+_domain", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "CN+_domain", "outbound": "🇨🇳 国内代理" },
+      { "rule_set": "Cloudflare-cn_domain", "outbound": "🇨🇳 国内代理" },
+      { "rule_set": "Cloudflare_domain" , "outbound" : " 🇺🇳 国外代理 " },
+      { "rule_set": "Google_domain", "outbound": "🇺🇳 国外代理" },
+      { "rule_set": "Microsoft-cn_domain", "outbound": "🇨🇳 国内代理" },
+      { "rule_set": "Microsoft_domain", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "Proxy_domain", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "CN_domain", "outbound": "🇨🇳 国内代理" },
       { "action": "resolve" },
       { "rule_set": "Private_ip", "outbound": "🌐 本地直连" },
       { "rule_set": "Telegram_ip", "outbound": "📱 Telegram" },
       { "rule_set": "AI_ip", "outbound": "🤖 AI" },
+      { "rule_set": "Cloudflare_ip", "outbound": "🇺🇳 国外代理" },
+      { "rule_set": "Google_ip", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "CN_ip", "outbound": "🇨🇳 国内代理" }
     ],
     "final": "🍥 漏网之鱼",
@@ -155,7 +162,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/Adblock_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/anti-ad-sing-box.srs"
+        "url": "https://v6.gh-proxy.org/github.com/217heidai/adblockfilters/raw/main/rules/adblocksingbox.srs"
       },
       {
         "tag": "Adblock+_domain",
@@ -198,6 +205,38 @@
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/private.srs"
       },
       {
+        "tag": "Cloudflare_domain",
+        "type": "remote",
+        "format": "binary",
+        "update_interval": "24h",
+        "path": "./rules/Cloudflare_domain.srs",
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/cloudflare.srs"
+      },
+      {
+        "tag": "Cloudflare-cn_domain",
+        "type": "remote",
+        "format": "binary",
+        "update_interval": "24h",
+        "path": "./rules/Cloudflare-cn_domain.srs",
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/cloudflare-cn.srs"
+      },
+      {
+        "tag": "Cloudflare_ip",
+        "type": "remote",
+        "format": "binary",
+        "update_interval": "24h",
+        "path": "./rules/Cloudflare_ip.srs",
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/cloudflare.srs"
+      },
+      {
+        "tag": "Google_domain",
+        "type": "remote",
+        "format": "binary",
+        "update_interval": "24h",
+        "path": "./rules/Google_domain.srs",
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/google.srs"
+      },
+      {
         "tag": "GoogleFCM_domain",
         "type": "remote",
         "format": "binary",
@@ -212,6 +251,30 @@
         "update_interval": "24h",
         "path": "./rules/Gemini_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/google-gemini.srs"
+      },
+      {
+        "tag": "Google_ip",
+        "type": "remote",
+        "format": "binary",
+        "update_interval": "24h",
+        "path": "./rules/Google_ip.srs",
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/google.srs"
+      },
+      {
+        "tag": "Microsoft_domain",
+        "type": "remote",
+        "format": "binary",
+        "update_interval": "24h",
+        "path": "./rules/Microsoft_domain.srs",
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/microsoft.srs"
+      },
+      {
+        "tag": "Microsoft-cn_domain",
+        "type": "remote",
+        "format": "binary",
+        "update_interval": "24h",
+        "path": "./rules/Microsoft-cn_domain.srs",
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/microsoft@cn.srs"
       },
       {
         "tag": "Mihoyo-cn_domain",
