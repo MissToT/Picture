@@ -47,26 +47,22 @@
   "dns": {
     "servers": [
       { "tag": "dns_resolver", "type": "udp", "server": "223.5.5.5" },
-      { "tag": "doh_ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns_resolver" },
-      { "tag": "doq_ali", "type": "quic", "server": "dns.alidns.com", "domain_resolver": "dns_resolver" },
-      { "tag": "doh_tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns_resolver" },
-      { "tag": "doq_tencent", "type": "quic", "server": "dot.pub", "domain_resolver": "dns_resolver" },
-      { "tag": "doh_google", "type": "https", "server": "dns.google", "detour": "🇺🇳 国外代理", "domain_resolver": "dns_resolver" },
-      { "tag": "doq_google", "type": "quic", "server": "dns.google", "detour": "🇺🇳 国外代理", "domain_resolver": "dns_resolver" },
-      { "tag": "doh_cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "🇺🇳 国外代理", "domain_resolver": "dns_resolver" },
-      { "tag": "doq_cloudflare", "type": "quic", "server": "dns.cloudflare.com", "detour": "🇺🇳 国外代理", "domain_resolver": "dns_resolver" },
+      { "tag": "dns_ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns_resolver" },
+      { "tag": "dns_tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns_resolver" },
+      { "tag": "dns_google", "type": "https", "server": "dns.google", "detour": "🇺🇳 国外代理", "domain_resolver": "dns_resolver" },
+      { "tag": "dns_cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "🇺🇳 国外代理", "domain_resolver": "dns_resolver" },
       { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.1/16", "inet6_range": "fc00::/18" },
-      { "tag": "dns_direct", "type": "group", "servers": [ "doq_ali", "doh_ali", "doq_tencent", "doh_tencent" ] },
-      { "tag": "dns_global", "type": "group", "servers": [ "doq_google", "doh_google", "doq_cloudflare", "doh_cloudflare" ] }
+      { "tag": "dns_direct", "type": "group", "servers": [ "dns_ali", "dns_tencent" ] },
+      { "tag": "dns_proxy", "type": "group", "servers": [ "dns_google", "dns_cloudflare" ] }
     ],
     "rules": [
       { "clash_mode": "直连", "server": "dns_direct" },
-      { "clash_mode": "全局", "server": "dns_global" },
+      { "clash_mode": "全局", "server": "dns_proxy" },
       { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "Adblock_domain", "Adblock+_domain" ] } ], "action": "route-options", "disable_cache": true },
       { "rule_set": "Fake-ip-Filter", "server": "dns_direct" },
       { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" }
     ],
-    "final": "dns_global",
+    "final": "dns_proxy",
     "strategy": "prefer_ipv4",
     "independent_cache": true,
     "reverse_mapping": true
