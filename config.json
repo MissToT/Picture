@@ -138,7 +138,7 @@
       { "rule_set": "Proxy+_domain", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "CN+_domain", "outbound": "🇨🇳 国内代理" },
       { "rule_set": "Cloudflare-cn_domain", "outbound": "🇨🇳 国内代理" },
-      { "rule_set": "Cloudflare_domain" , "outbound" : " 🇺🇳 国外代理 " },
+      { "rule_set": "Cloudflare_domain", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "Google_domain", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "Microsoft-cn_domain", "outbound": "🇨🇳 国内代理" },
       { "rule_set": "Microsoft_domain", "outbound": "🇺🇳 国外代理" },
