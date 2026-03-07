@@ -25,7 +25,6 @@
     "urltest_unified_delay": true,
     "cache_file": {
       "enabled": true,
-      "store_rdrc": true,
       "store_fakeip": true,
       "path": "cache.db"
     },
@@ -132,11 +131,14 @@
       { "rule_set": "Emby_domain", "outbound": "🎬 Emby" },
       { "rule_set": "EHentai_domain", "outbound": "🔞 EHentai" },
       { "rule_set": "Mihoyo-cn_domain", "outbound": "🇨🇳 国内代理" },
-      { "rule_set": [ "Games_domain", "Games-download_domain" ], "outbound": "🎮 Games" },
+      { "rule_set": "Games_domain", "outbound": "🎮 Games" },
+      { "rule_set": "Games-download_domain", "outbound": "🎮 Games" },
       { "rule_set": "JP_domain", "outbound": "🇯🇵 日本代理" },
       { "rule_set": "TW_domain", "outbound": "🇹🇼 台湾代理" },
       { "rule_set": "Proxy+_domain", "outbound": "🇺🇳 国外代理" },
-      { "rule_set": [ "CN_domain", "CN+_domain" ], "outbound": "🇨🇳 国内代理" },
+      { "rule_set": "CN+_domain", "outbound": "🇨🇳 国内代理" },
+      { "rule_set": "Proxy_domain", "outbound": "🇺🇳 国外代理" },
+      { "rule_set": "CN_domain", "outbound": "🇨🇳 国内代理" },
       { "action": "resolve" },
       { "rule_set": "Private_ip", "outbound": "🌐 本地直连" },
       { "rule_set": "Telegram_ip", "outbound": "📱 Telegram" },
@@ -162,6 +164,14 @@
         "update_interval": "24h",
         "path": "./rules/Adblock+_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Adblock.srs"
+      },
+      {
+        "tag": "Proxy_domain",
+        "type": "remote",
+        "format": "binary",
+        "update_interval": "24h",
+        "path": "./rules/Proxy_domain.srs",
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo-lite/geosite/proxy.srs"
       },
       {
         "tag": "Proxy+_domain",
