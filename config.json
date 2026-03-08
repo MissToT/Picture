@@ -58,7 +58,7 @@
     "rules": [
       { "clash_mode": "直连", "server": "dns_direct" },
       { "clash_mode": "全局", "server": "dns_proxy" },
-      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "Adblock_domain", "Adblock+_domain" ] } ], "action": "predefined", "rcode": "NOERROR" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "anti-ad_ads", "My_ads" ] } ], "action": "predefined", "rcode": "NOERROR" },
       { "rule_set": "Fake-ip-Filter", "server": "dns_direct" },
       { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" }
     ],
@@ -119,7 +119,7 @@
       { "type": "logical", "mode": "or", "rules": [ { "protocol": "dns" }, { "port": 53 } ], "action": "hijack-dns" },
       { "clash_mode": "直连", "outbound": "🌐 本地直连" },
       { "clash_mode": "全局", "outbound": "GLOBAL" },
-      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "Adblock_domain", "Adblock+_domain" ] } ], "action": "reject", "method": "drop" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "anti-ad_ads", "My_ads" ] } ], "action": "reject", "method": "drop" },
       { "rule_set": "Private_domain", "outbound": "🌐 本地直连" },
       { "rule_set": "GoogleFCM_domain", "outbound": "💌 谷歌推送" },
       { "rule_set": "Telegram_domain", "outbound": "📱 Telegram" },
@@ -157,19 +157,19 @@
     "auto_detect_interface": true,
     "rule_set": [
       {
-        "tag": "Adblock_domain",
+        "tag": "anti-ad_ads",
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
-        "path": "./rules/Adblock_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/217heidai/adblockfilters/raw/main/rules/adblocksingbox.srs"
+        "path": "./rules/anti-ad_ads.srs",
+        "url": "https://v6.gh-proxy.org/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/anti-ad-sing-box.srs"
       },
       {
-        "tag": "Adblock+_domain",
+        "tag": "My_ads",
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
-        "path": "./rules/Adblock+_domain.srs",
+        "path": "./rules/My_ads.srs",
         "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Adblock.srs"
       },
       {
