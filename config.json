@@ -53,16 +53,17 @@
       { "tag": "dns_cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "🇺🇳 国外代理", "domain_resolver": "dns_resolver" },
       { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.1/16", "inet6_range": "fc00::/18" },
       { "tag": "dns_direct", "type": "group", "servers": [ "dns_ali", "dns_tencent" ] },
-      { "tag": "dns_proxy", "type": "group", "servers": [ "dns_google", "dns_cloudflare" ] }
+      { "tag": "dns_proxy", "type": "group", "servers": [ "dns_google", "dns_cloudflare" ] },
+      { "tag": "dns_all", "type": "group", "servers": [ "dns_ali", "dns_tencent", "dns_google", "dns_cloudflare" ] }
     ],
     "rules": [
-      { "clash_mode": "直连", "server": "dns_direct" },
-      { "clash_mode": "全局", "server": "dns_proxy" },
+      { "clash_mode": "直连", "server": "dns_ali" },
+      { "clash_mode": "全局", "server": "dns_cloudflare" },
       { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "anti-ad_ads", "My_ads" ] } ], "action": "predefined", "rcode": "NOERROR" },
-      { "rule_set": "Fake-ip-Filter", "server": "dns_direct" },
+      { "rule_set": "Fake-ip-Filter", "server": "dns_ali" },
       { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" }
     ],
-    "final": "dns_proxy",
+    "final": "dns_cloudflare",
     "strategy": "prefer_ipv4",
     "independent_cache": true,
     "reverse_mapping": true
@@ -113,7 +114,7 @@
     { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "💌 谷歌推送", "📱 Telegram", "🎬 Emby", "🔞 EHentai", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🇯🇵 日本代理", "🇹🇼 台湾代理", "🇨🇳 国内代理", "🇺🇳 国外代理", "🍥 漏网之鱼", "🌐 本地直连", "⛔️ 拒绝连接" ] }
   ],
   "route": {
-    "default_domain_resolver": "dns_direct",
+    "default_domain_resolver": "dns_ali",
     "rules": [
       { "action": "sniff" },
       { "type": "logical", "mode": "or", "rules": [ { "protocol": "dns" }, { "port": 53 } ], "action": "hijack-dns" },
