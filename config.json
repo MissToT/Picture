@@ -48,21 +48,17 @@
     "servers": [
       { "tag": "dns_resolver", "type": "udp", "server": "223.5.5.5" },
       { "tag": "dns_ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns_resolver" },
-      { "tag": "dns_tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns_resolver" },
-      { "tag": "dns_google", "type": "https", "server": "dns.google", "detour": "🇺🇳 国外代理", "domain_resolver": "dns_resolver" },
       { "tag": "dns_cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "🇺🇳 国外代理", "domain_resolver": "dns_resolver" },
-      { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/18" },
-      { "tag": "dns_direct", "type": "group", "servers": [ "dns_ali", "dns_tencent" ] },
-      { "tag": "dns_proxy", "type": "group", "servers": [ "dns_google", "dns_cloudflare" ] }
+      { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/18" }
     ],
     "rules": [
-      { "clash_mode": "直连", "server": "dns_direct" },
-      { "clash_mode": "全局", "server": "dns_proxy" },
+      { "clash_mode": "直连", "server": "dns_ali" },
+      { "clash_mode": "全局", "server": "dns_cloudflare" },
       { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "anti-ad_ads", "My_ads" ] } ], "action": "predefined", "rcode": "NOERROR" },
-      { "rule_set": "Fake-ip-Filter", "server": "dns_direct" },
+      { "rule_set": "Fake-ip-Filter", "server": "dns_ali" },
       { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" }
     ],
-    "final": "dns_proxy",
+    "final": "dns_cloudflare",
     "strategy": "prefer_ipv4",
     "reverse_mapping": true,
     "independent_cache": true
@@ -96,7 +92,7 @@
     { "tag": "🌐 本地直连", "type": "direct" },
     { "tag": "⛔️ 拒绝连接", "type": "block" },
     { "tag": "🚀 手动选择", "type": "selector", "use_all_providers": true },
-    { "tag": "♻️ 自动选择", "type": "urltest", "use_all_providers": true, "interval": "2m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW|日本|🇯🇵|JP|美国|🇺🇸|US|新加坡|狮城|🇸🇬|SG)", "exclude": "(?i)(2\\.00x|排除2)" },
+    { "tag": "♻️ 自动选择", "type": "urltest", "use_all_providers": true, "interval": "2m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW|日本|🇯🇵|JP|美国|🇺🇸|US|新加坡|狮城|🇸🇬|SG)", "exclude": "(?i)(2.00x|排除2)" },
     { "tag": "💌 谷歌推送", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "📱 Telegram", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🎬 Emby", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
@@ -116,10 +112,10 @@
     "rules": [
       { "action": "sniff" },
       { "type": "logical", "mode": "or", "rules": [ { "protocol": "dns" }, { "port": 53 } ], "action": "hijack-dns" },
+      { "ip_is_private": true, "outbound": "🌐 本地直连" },
       { "clash_mode": "直连", "outbound": "🌐 本地直连" },
       { "clash_mode": "全局", "outbound": "GLOBAL" },
       { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "anti-ad_ads", "My_ads" ] } ], "action": "reject", "method": "drop" },
-      { "rule_set": "Private_domain", "outbound": "🌐 本地直连" },
       { "rule_set": "GoogleFCM_domain", "outbound": "💌 谷歌推送" },
       { "rule_set": "Telegram_domain", "outbound": "📱 Telegram" },
       { "rule_set": "TikTok_domain", "outbound": "🎶 TikTok" },
@@ -143,8 +139,7 @@
       { "rule_set": "Cloudflare_domain", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "Proxy_domain", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "CN_domain", "outbound": "🇨🇳 国内代理" },
-      { "action": "resolve" },
-      { "rule_set": "Private_ip", "outbound": "🌐 本地直连" },
+      { "action": "resolve", "match_only": true },
       { "rule_set": "Telegram_ip", "outbound": "📱 Telegram" },
       { "rule_set": "AI_ip", "outbound": "🤖 AI" },
       { "rule_set": "Google_ip", "outbound": "🇺🇳 国外代理" },
@@ -154,7 +149,7 @@
     "final": "🍥 漏网之鱼",
     "find_process": true,
     "auto_detect_interface": true,
-    "default_domain_resolver": "dns_direct",
+    "default_domain_resolver": "dns_ali",
     "rule_set": [
       {
         "tag": "anti-ad_ads",
@@ -187,22 +182,6 @@
         "update_interval": "24h",
         "path": "./rules/Proxy+_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Proxy.srs"
-      },
-      {
-        "tag": "Private_domain",
-        "type": "remote",
-        "format": "binary",
-        "update_interval": "24h",
-        "path": "./rules/Private_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/private.srs"
-      },
-      {
-        "tag": "Private_ip",
-        "type": "remote",
-        "format": "binary",
-        "update_interval": "24h",
-        "path": "./rules/Private_ip.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/private.srs"
       },
       {
         "tag": "Cloudflare_domain",
