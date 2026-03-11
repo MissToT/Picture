@@ -51,7 +51,7 @@
       { "tag": "dns_tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns_resolver" },
       { "tag": "dns_google", "type": "https", "server": "dns.google", "detour": "🇺🇳 国外代理", "domain_resolver": "dns_resolver" },
       { "tag": "dns_cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "🇺🇳 国外代理", "domain_resolver": "dns_resolver" },
-      { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.1/16", "inet6_range": "fc00::/18" },
+      { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/18" },
       { "tag": "dns_direct", "type": "group", "servers": [ "dns_ali", "dns_tencent" ] },
       { "tag": "dns_proxy", "type": "group", "servers": [ "dns_google", "dns_cloudflare" ] },
       { "tag": "dns_all", "type": "group", "servers": [ "dns_ali", "dns_tencent", "dns_google", "dns_cloudflare" ] }
