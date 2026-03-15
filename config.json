@@ -25,7 +25,7 @@
     "urltest_unified_delay": true,
     "cache_file": {
       "enabled": true,
-      "store_fakeip": true,
+      "store_fakeip": true
     },
     "clash_api": {
       "external_controller": "0.0.0.0:9090",
