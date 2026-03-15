@@ -39,7 +39,7 @@ find-process-mode: always
 
 # 管理面板配置
 external-ui-url: 'https://v6.gh-proxy.org/github.com/Zephyruso/zashboard/releases/download/v1.101.1/dist.zip'
-external-ui: ./WebUI
+external-ui: ./webui
 external-controller: 0.0.0.0:9090
 secret: ''
 
