@@ -88,8 +88,8 @@
     }
   ],
   "outbounds": [
-    { "tag": "🌐 本地直连", "type": "direct" },
     { "tag": "⛔️ 拒绝连接", "type": "block" },
+    { "tag": "🌐 本地直连", "type": "direct", "routing_mark": 255 },
     { "tag": "🚀 手动选择", "type": "selector", "use_all_providers": true },
     { "tag": "♻️ 自动选择", "type": "urltest", "use_all_providers": true, "interval": "2m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW|日本|🇯🇵|JP|美国|🇺🇸|US|新加坡|狮城|🇸🇬|SG)", "exclude": "(?i)(2.00x|排除2)" },
     { "tag": "💌 谷歌推送", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
