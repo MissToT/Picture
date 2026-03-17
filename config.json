@@ -119,7 +119,6 @@
       { "rule_set": "Telegram_domain", "outbound": "📱 Telegram" },
       { "rule_set": "TikTok_domain", "outbound": "🎶 TikTok" },
       { "rule_set": "AI_domain", "outbound": "🤖 AI" },
-      { "rule_set": "Gemini_domain", "outbound": "🤖 AI" },
       { "rule_set": "YouTube_domain", "outbound": "📺 YouTube" },
       { "rule_set": "Emby-cn_domain", "outbound": "🇨🇳 国内代理" },
       { "rule_set": "Emby_domain", "outbound": "🎬 Emby" },
@@ -127,23 +126,23 @@
       { "rule_set": "Mihoyo-cn_domain", "outbound": "🇨🇳 国内代理" },
       { "rule_set": "Games_domain", "outbound": "🎮 Games" },
       { "rule_set": "Games-download_domain", "outbound": "🎮 Games" },
-      { "rule_set": "JP_domain", "outbound": "🇯🇵 日本代理" },
-      { "rule_set": "TW_domain", "outbound": "🇹🇼 台湾代理" },
+      { "rule_set": "Japan_domain", "outbound": "🇯🇵 日本代理" },
+      { "rule_set": "Taiwan_domain", "outbound": "🇹🇼 台湾代理" },
       { "rule_set": "Proxy+_domain", "outbound": "🇺🇳 国外代理" },
-      { "rule_set": "CN+_domain", "outbound": "🇨🇳 国内代理" },
+      { "rule_set": "China+_domain", "outbound": "🇨🇳 国内代理" },
       { "rule_set": "Google_domain", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "Microsoft-cn_domain", "outbound": "🇨🇳 国内代理" },
       { "rule_set": "Microsoft_domain", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "Cloudflare-cn_domain", "outbound": "🇨🇳 国内代理" },
       { "rule_set": "Cloudflare_domain", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "Proxy_domain", "outbound": "🇺🇳 国外代理" },
-      { "rule_set": "CN_domain", "outbound": "🇨🇳 国内代理" },
+      { "rule_set": "China_domain", "outbound": "🇨🇳 国内代理" },
       { "action": "resolve", "match_only": true },
       { "rule_set": "Telegram_ip", "outbound": "📱 Telegram" },
       { "rule_set": "AI_ip", "outbound": "🤖 AI" },
       { "rule_set": "Google_ip", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "Cloudflare_ip", "outbound": "🇺🇳 国外代理" },
-      { "rule_set": "CN_ip", "outbound": "🇨🇳 国内代理" }
+      { "rule_set": "China_ip", "outbound": "🇨🇳 国内代理" }
     ],
     "final": "🍥 漏网之鱼",
     "find_process": true,
@@ -223,14 +222,6 @@
         "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/googlefcm.srs"
       },
       {
-        "tag": "Gemini_domain",
-        "type": "remote",
-        "format": "binary",
-        "update_interval": "24h",
-        "path": "./rules/Gemini_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/google-gemini.srs"
-      },
-      {
         "tag": "Google_ip",
         "type": "remote",
         "format": "binary",
@@ -284,7 +275,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/AI_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geosite/geosite-category-ai-!cn.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-ai-!cn.srs"
       },
       {
         "tag": "AI_ip",
@@ -292,7 +283,7 @@
         "format": "binary",
         "update_interval": "24h",
         "path": "./rules/AI_ip.srs",
-        "url": "https://v6.gh-proxy.org/github.com/lyc8503/sing-box-rules/raw/refs/heads/rule-set-geoip/geoip-ai.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/ai.srs"
       },
       {
         "tag": "Games_domain",
@@ -319,19 +310,19 @@
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/ehentai.srs"
       },
       {
-        "tag": "JP_domain",
+        "tag": "Japan_domain",
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
-        "path": "./rules/JP_domain.srs",
+        "path": "./rules/Japan_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Japan.srs"
       },
       {
-        "tag": "TW_domain",
+        "tag": "Taiwan_domain",
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
-        "path": "./rules/TW_domain.srs",
+        "path": "./rules/Taiwan_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Taiwan.srs"
       },
       {
@@ -367,27 +358,27 @@
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/telegram.srs"
       },
       {
-        "tag": "CN_domain",
+        "tag": "China_domain",
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
-        "path": "./rules/CN_domain.srs",
+        "path": "./rules/China_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/cn.srs"
       },
       {
-        "tag": "CN+_domain",
+        "tag": "China+_domain",
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
-        "path": "./rules/CN+_domain.srs",
+        "path": "./rules/China+_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/China.srs"
       },
       {
-        "tag": "CN_ip",
+        "tag": "China_ip",
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
-        "path": "./rules/CN_ip.srs",
+        "path": "./rules/China_ip.srs",
         "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/cncidr.srs"
       },
       {
