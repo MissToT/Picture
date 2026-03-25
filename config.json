@@ -93,8 +93,9 @@
     { "tag": "⛔️ 拒绝连接", "type": "block" },
     { "tag": "🌐 本地直连", "type": "direct" },
     { "tag": "📦 手动选择", "type": "selector", "use_all_providers": true },
-    { "tag": "💌 谷歌推送", "type": "selector", "use_all_providers": true, "outbounds": [ "🌐 本地直连", "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "⛔️ 拒绝连接" ] },
+    { "tag": "💌 谷歌推送", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "📱 Telegram", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🐦 Twitter", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🎬 Emby", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "📙 ExHentai", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🎶 TikTok", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
@@ -104,9 +105,9 @@
     { "tag": "🌸 日本代理", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇯🇵 日本自动", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(日本|🇯🇵|JP|japan)" },
     { "tag": "🐸 台湾代理", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇹🇼 台湾自动", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(台湾|🇹🇼|TW|taiwan)" },
     { "tag": "👻 国外代理", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🐼 国内代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🌐 本地直连", "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "⛔️ 拒绝连接" ] },
+    { "tag": "🐼 国内代理", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🍥 漏网之鱼", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "outbounds": [ "📦 手动选择", "♻️ 自动选择", "💌 谷歌推送", "📱 Telegram", "🎬 Emby", "📙 ExHentai", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🌸 日本代理", "🐸 台湾代理", "👻 国外代理", "🐼 国内代理", "🍥 漏网之鱼", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "outbounds": [ "📦 手动选择", "💌 谷歌推送", "📱 Telegram", "🐦 Twitter", "🎬 Emby", "📙 ExHentai", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🌸 日本代理", "🐸 台湾代理", "👻 国外代理", "🐼 国内代理", "🍥 漏网之鱼", "🌐 本地直连", "⛔️ 拒绝连接" ] },
 
     { "tag": "♻️ 自动选择", "type": "urltest", "outbounds": [ "🥇 ALL・优选", "🥈 ALL・备选" ], "fallback": { "enabled": true, "max_delay": "300ms" }, "interval": "2m", "url": "https://captive.apple.com/generate_204" },
     { "tag": "🇭🇰 香港自动", "type": "urltest", "outbounds": [ "🥇 HK・优选", "🥈 HK・备选" ], "fallback": { "enabled": true, "max_delay": "300ms" }, "interval": "2m", "url": "https://captive.apple.com/generate_204" },
@@ -139,6 +140,7 @@
       { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "anti-ad_ads", "My_ads" ] } ], "action": "reject", "method": "drop" },
       { "rule_set": "GoogleFCM_domain", "outbound": "💌 谷歌推送" },
       { "rule_set": "Telegram_domain", "outbound": "📱 Telegram" },
+      { "rule_set": "Twitter_domain", "outbound": "🐦 Twitter" },
       { "rule_set": "TikTok_domain", "outbound": "🎶 TikTok" },
       { "rule_set": "AI_domain", "outbound": "🤖 AI" },
       { "rule_set": "YouTube_domain", "outbound": "📺 YouTube" },
@@ -161,6 +163,7 @@
       { "rule_set": "China_domain", "outbound": "🐼 国内代理" },
       { "action": "resolve", "match_only": true },
       { "rule_set": "Telegram_ip", "outbound": "📱 Telegram" },
+      { "rule_set": "Twitter_ip", "outbound": "🐦 Twitter" },
       { "rule_set": "AI_ip", "outbound": "🤖 AI" },
       { "rule_set": "Google_ip", "outbound": "👻 国外代理" },
       { "rule_set": "Cloudflare_ip", "outbound": "👻 国外代理" },
@@ -352,6 +355,20 @@
         "format": "binary",
         "path": "./rules/Telegram_ip.srs",
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/telegram.srs"
+      },
+      {
+        "tag": "Twitter_domain",
+        "type": "remote",
+        "format": "binary",
+        "path": "./rules/Twitter_domain.srs",
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/twitter.srs"
+      },
+      {
+        "tag": "Twitter_ip",
+        "type": "remote",
+        "format": "binary",
+        "path": "./rules/Twitter_ip.srs",
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/twitter.srs"
       },
       {
         "tag": "China_domain",
