@@ -31,6 +31,7 @@
       "external_controller": "0.0.0.0:9090",
       "external_ui": "webui",
       "external_ui_download_url": "https://v6.gh-proxy.org/github.com/Zephyruso/zashboard/releases/download/v1.101.1/dist.zip",
+      "external_ui_download_detour": "🌐 本地直连",
       "secret": "",
       "default_mode": "规则",
       "access_control_allow_origin": "*",
@@ -95,21 +96,41 @@
     { "tag": "⛔️ 拒绝连接", "type": "block" },
     { "tag": "🌐 本地直连", "type": "direct" },
     { "tag": "🚀 手动选择", "type": "selector", "use_all_providers": true },
-    { "tag": "♻️ 自动选择", "type": "urltest", "use_all_providers": true, "interval": "2m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW|日本|🇯🇵|JP|美国|🇺🇸|US|新加坡|狮城|🇸🇬|SG)", "exclude": "(?i)(2.00x|排除2)" },
-    { "tag": "💌 谷歌推送", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "📱 Telegram", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🎬 Emby", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "📙 ExHentai", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🎶 TikTok", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "📺 YouTube", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🤖 AI", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🎮 Games", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🌸 日本代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(日本|🇯🇵|JP|japan)" },
-    { "tag": "🐸 台湾代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(台湾|🇹🇼|TW|taiwan)" },
-    { "tag": "👻 国外代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🐼 国内代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🌐 本地直连", "🚀 手动选择", "♻️ 自动选择", "⛔️ 拒绝连接" ] },
-    { "tag": "🍥 漏网之鱼", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "💌 谷歌推送", "📱 Telegram", "🎬 Emby", "📙 ExHentai", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🌸 日本代理", "🐸 台湾代理", "👻 国外代理", "🐼 国内代理", "🍥 漏网之鱼", "🌐 本地直连", "⛔️ 拒绝连接" ] }
+    { "tag": "💌 谷歌推送", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "📱 Telegram", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🎬 Emby", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "📙 ExHentai", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🎶 TikTok", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "📺 YouTube", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🤖 AI", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🎮 Games", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🌸 日本代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🇯🇵 日本自动", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(日本|🇯🇵|JP|japan)" },
+    { "tag": "🐸 台湾代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🇹🇼 台湾自动", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(台湾|🇹🇼|TW|taiwan)" },
+    { "tag": "👻 国外代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🐼 国内代理", "type": "selector", "use_all_providers": true, "outbounds": [ "🌐 本地直连", "🚀 手动选择", "♻️ 自动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "⛔️ 拒绝连接" ] },
+    { "tag": "🍥 漏网之鱼", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "outbounds": [ "🚀 手动选择", "♻️ 自动选择", "💌 谷歌推送", "📱 Telegram", "🎬 Emby", "📙 ExHentai", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🌸 日本代理", "🐸 台湾代理", "👻 国外代理", "🐼 国内代理", "🍥 漏网之鱼", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+
+    { "tag": "♻️ 自动选择", "type": "urltest", "outbounds": [ "🥇 ALL・优选", "🥈 ALL・备选" ], "fallback": { "enabled": true, "max_delay": "300ms" } },
+    { "tag": "🇭🇰 香港自动", "type": "urltest", "outbounds": [ "🥇 HK・优选", "🥈 HK・备选" ], "fallback": { "enabled": true, "max_delay": "300ms" } },
+    { "tag": "🇹🇼 台湾自动", "type": "urltest", "outbounds": [ "🥇 TW・优选", "🥈 TW・备选" ], "fallback": { "enabled": true, "max_delay": "300ms" } },
+    { "tag": "🇯🇵 日本自动", "type": "urltest", "outbounds": [ "🥇 JP・优选", "🥈 JP・备选" ], "fallback": { "enabled": true, "max_delay": "300ms" } },
+    { "tag": "🇸🇬 狮城自动", "type": "urltest", "outbounds": [ "🥇 SG・优选", "🥈 SG・备选" ], "fallback": { "enabled": true, "max_delay": "300ms" } },
+    { "tag": "🇺🇸 美国自动", "type": "urltest", "outbounds": [ "🥇 US・优选", "🥈 US・备选" ], "fallback": { "enabled": true, "max_delay": "300ms" } },
+
+    { "tag": "🥇 ALL・优选", "type": "urltest", "providers": [ "SNTP" ], "interval": "2m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW|日本|🇯🇵|JP|美国|🇺🇸|US|新加坡|狮城|🇸🇬|SG)", "exclude": "(?i)(2.00x|排除2)" },
+    { "tag": "🥇 HK・优选", "type": "urltest", "providers": [ "SNTP" ], "interval": "2m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(香港|🇭🇰|HK)", "exclude": "(?i)(2.00x|排除2)" },
+    { "tag": "🥇 TW・优选", "type": "urltest", "providers": [ "SNTP" ], "interval": "2m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(台湾|🇹🇼|TW)", "exclude": "(?i)(2.00x|排除2)" },
+    { "tag": "🥇 JP・优选", "type": "urltest", "providers": [ "SNTP" ], "interval": "2m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(日本|🇯🇵|JP)", "exclude": "(?i)(2.00x|排除2)" },
+    { "tag": "🥇 SG・优选", "type": "urltest", "providers": [ "SNTP" ], "interval": "2m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(新加坡|狮城|🇸🇬|SG)", "exclude": "(?i)(2.00x|排除2)" },
+    { "tag": "🥇 US・优选", "type": "urltest", "providers": [ "SNTP" ], "interval": "2m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(美国|🇺🇸|US)", "exclude": "(?i)(2.00x|排除2)" },
+
+    { "tag": "🥈 ALL・备选", "type": "urltest", "providers": [ "SakuraCat" ], "interval": "2m", "tolerance": 20, "url": "https://captive.apple.com/generate_204", "include": "(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW|日本|🇯🇵|JP|美国|🇺🇸|US|新加坡|狮城|🇸🇬|SG)", "exclude": "(?i)(2.00x|排除2)" },
+    { "tag": "🥈 HK・备选", "type": "urltest", "providers": [ "SakuraCat" ], "interval": "2m", "tolerance": 20, "url": "https://captive.apple.com/generate_204", "include": "(?i)(香港|🇭🇰|HK)", "exclude": "(?i)(2.00x|排除2)" },
+    { "tag": "🥈 TW・备选", "type": "urltest", "providers": [ "SakuraCat" ], "interval": "2m", "tolerance": 20, "url": "https://captive.apple.com/generate_204", "include": "(?i)(台湾|🇹🇼|TW)", "exclude": "(?i)(2.00x|排除2)" },
+    { "tag": "🥈 JP・备选", "type": "urltest", "providers": [ "SakuraCat" ], "interval": "2m", "tolerance": 20, "url": "https://captive.apple.com/generate_204", "include": "(?i)(日本|🇯🇵|JP)", "exclude": "(?i)(2.00x|排除2)" },
+    { "tag": "🥈 SG・备选", "type": "urltest", "providers": [ "SakuraCat" ], "interval": "2m", "tolerance": 20, "url": "https://captive.apple.com/generate_204", "include": "(?i)(新加坡|狮城|🇸🇬|SG)", "exclude": "(?i)(2.00x|排除2)" },
+    { "tag": "🥈 US・备选", "type": "urltest", "providers": [ "SakuraCat" ], "interval": "2m", "tolerance": 20, "url": "https://captive.apple.com/generate_204", "include": "(?i)(美国|🇺🇸|US)", "exclude": "(?i)(2.00x|排除2)" }
   ],
   "route": {
     "rules": [
@@ -158,6 +179,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/anti-ad_ads.srs",
         "url": "https://v6.gh-proxy.org/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/anti-ad-sing-box.srs"
       },
@@ -166,6 +188,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/My_ads.srs",
         "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Adblock.srs"
       },
@@ -174,6 +197,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/Proxy_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo-lite/geosite/proxy.srs"
       },
@@ -182,6 +206,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/Proxy+_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Proxy.srs"
       },
@@ -190,6 +215,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/Cloudflare_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/cloudflare.srs"
       },
@@ -198,6 +224,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/Cloudflare-cn_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/cloudflare-cn.srs"
       },
@@ -206,6 +233,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/Cloudflare_ip.srs",
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/cloudflare.srs"
       },
@@ -214,6 +242,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/Google_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/google.srs"
       },
@@ -222,6 +251,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/GoogleFCM_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/googlefcm.srs"
       },
@@ -230,6 +260,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/Google_ip.srs",
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/google.srs"
       },
@@ -238,6 +269,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/Microsoft_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/microsoft.srs"
       },
@@ -246,6 +278,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/Microsoft-cn_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/microsoft@cn.srs"
       },
@@ -254,6 +287,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/Mihoyo-cn_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/mihoyo-cn.srs"
       },
@@ -262,6 +296,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/Emby_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Emby.srs"
       },
@@ -270,6 +305,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/Emby-cn_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Emby-CN.srs"
       },
@@ -278,6 +314,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/AI_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-ai-!cn.srs"
       },
@@ -286,6 +323,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/AI_ip.srs",
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/ai.srs"
       },
@@ -294,6 +332,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/Games_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-games-!cn.srs"
       },
@@ -302,6 +341,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/Games-download_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-game-platforms-download.srs"
       },
@@ -310,6 +350,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/EHentai_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/ehentai.srs"
       },
@@ -318,6 +359,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/Japan_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Japan.srs"
       },
@@ -326,6 +368,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/Taiwan_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Taiwan.srs"
       },
@@ -334,6 +377,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/TikTok_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/tiktok.srs"
       },
@@ -342,6 +386,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/YouTube_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/youtube.srs"
       },
@@ -350,6 +395,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/Telegram_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/telegram.srs"
       },
@@ -358,6 +404,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/Telegram_ip.srs",
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/telegram.srs"
       },
@@ -366,6 +413,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/China_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/cn.srs"
       },
@@ -374,6 +422,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/China+_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/China.srs"
       },
@@ -382,6 +431,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/China_ip.srs",
         "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/cncidr.srs"
       },
@@ -390,6 +440,7 @@
         "type": "remote",
         "format": "binary",
         "update_interval": "24h",
+        "download_detour": "🌐 本地直连",
         "path": "./rules/Fake-ip-Filter.srs",
         "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/fake-ip-filter.srs"
       }
