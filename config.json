@@ -3,7 +3,7 @@
     {
       "tag": "SNTP",
       "type": "remote",
-      "update_interval": "24h",
+      "update_interval": "1d",
       "download_detour": "🌐 本地直连",
       "path": "./providers/SNTP.json",
       "url": "http://localhost:3000/download/SNTP",
@@ -13,7 +13,7 @@
     {
       "tag": "SakuraCat",
       "type": "remote",
-      "update_interval": "24h",
+      "update_interval": "1d",
       "download_detour": "🌐 本地直连",
       "path": "./providers/SakuraCat.json",
       "url": "http://localhost:3000/download/SakuraCat",
