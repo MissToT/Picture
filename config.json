@@ -69,7 +69,13 @@
       "tag": "mixed-in",
       "type": "mixed",
       "listen": "::",
-      "listen_port": 7890
+      "listen_port": 7890,
+      "users": [
+        {
+          "username": "Ruruka",
+          "password": "DaiSuiKi"
+        }
+      ]
     },
     {
       "tag": "tproxy-in",
