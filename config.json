@@ -97,7 +97,7 @@
     { "tag": "📱 Telegram", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🐦 Twitter", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🎬 Emby", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "📙 ExHentai", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "📚 E-Hentai", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🎶 TikTok", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "📺 YouTube", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🤖 AI", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
@@ -107,7 +107,7 @@
     { "tag": "👻 国外代理", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🐼 国内代理", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🍥 漏网之鱼", "type": "selector", "use_all_providers": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "outbounds": [ "📦 手动选择", "💌 谷歌推送", "📱 Telegram", "🐦 Twitter", "🎬 Emby", "📙 ExHentai", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🌸 日本代理", "🐸 台湾代理", "👻 国外代理", "🐼 国内代理", "🍥 漏网之鱼", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "outbounds": [ "📦 手动选择", "💌 谷歌推送", "📱 Telegram", "🐦 Twitter", "🎬 Emby", "📚 E-Hentai", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🌸 日本代理", "🐸 台湾代理", "👻 国外代理", "🐼 国内代理", "🍥 漏网之鱼", "🌐 本地直连", "⛔️ 拒绝连接" ] },
 
     { "tag": "♻️ 自动选择", "type": "urltest", "outbounds": [ "🥇 ALL・优选", "🥈 ALL・备选" ], "fallback": { "enabled": true, "max_delay": "500ms" }, "interval": "5m", "url": "https://captive.apple.com/generate_204" },
     { "tag": "🇭🇰 香港自动", "type": "urltest", "outbounds": [ "🥇 HK・优选", "🥈 HK・备选" ], "fallback": { "enabled": true, "max_delay": "500ms" }, "interval": "5m", "url": "https://captive.apple.com/generate_204" },
@@ -146,7 +146,7 @@
       { "rule_set": "YouTube_domain", "outbound": "📺 YouTube" },
       { "rule_set": "Emby-cn_domain", "outbound": "🐼 国内代理" },
       { "rule_set": "Emby_domain", "outbound": "🎬 Emby" },
-      { "rule_set": "EHentai_domain", "outbound": "📙 ExHentai" },
+      { "rule_set": "E-Hentai_domain", "outbound": "📚 E-Hentai" },
       { "rule_set": "Mihoyo-cn_domain", "outbound": "🐼 国内代理" },
       { "rule_set": "Games_domain", "outbound": "🎮 Games" },
       { "rule_set": "Games-download_domain", "outbound": "🎮 Games" },
@@ -308,10 +308,10 @@
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-game-platforms-download.srs"
       },
       {
-        "tag": "EHentai_domain",
+        "tag": "E-Hentai_domain",
         "type": "remote",
         "format": "binary",
-        "path": "./rules/EHentai_domain.srs",
+        "path": "./rules/E-Hentai_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/ehentai.srs"
       },
       {
