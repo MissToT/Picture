@@ -9,8 +9,8 @@ FilterSG: &FilterSG {filter: '^(?=.*(?i)(新加坡|狮城|🇸🇬|SG))(?!.*(2.0
 FilterUS: &FilterUS {filter: '^(?=.*(?i)(美国|🇺🇸|US))(?!.*(2.00x|排除2)).*$'}
 # 锚点 - 策略组
 Select: &Select {type: select, include-all-providers: true, proxies: ['自动选择', '手动选择', '🇭🇰 香港自动', '🇹🇼 台湾自动', '🇯🇵 日本自动', '🇸🇬 狮城自动', '🇺🇸 美国自动', '🌐 本地直连', '⛔️ 拒绝连接']}
-UrlTest: &UrlTest {type: url-test, hidden: true, interval: 600, tolerance: 20, url: 'https://captive.apple.com/generate_204'}
-Fallback: &Fallback {type: fallback, hidden: true, interval: 600, url: 'https://captive.apple.com/generate_204'}
+UrlTest: &UrlTest {type: url-test, hidden: true, interval: 600, tolerance: 200, url: 'https://captive.apple.com/generate_204'}
+Fallback: &Fallback {type: fallback, hidden: true, interval: 120, url: 'https://captive.apple.com/generate_204'}
 # 锚点 - 规则集
 IPCIDR: &IPCIDR {type: http, interval: 86400, behavior: ipcidr, format: mrs}
 Domain: &Domain {type: http, interval: 86400, behavior: domain, format: mrs}
@@ -116,12 +116,12 @@ proxy-groups:
   - {name: '🥇 SG・优选', <<: [*UrlTest, *FilterSG], use: ['SNTP']}
   - {name: '🥇 US・优选', <<: [*UrlTest, *FilterUS], use: ['SNTP']}
 
-  - {name: '🥈 ALL・备选', <<: [*UrlTest, *FilterSelect], use: ['SakuraCat']}
-  - {name: '🥈 HK・备选', <<: [*UrlTest, *FilterHK], use: ['SakuraCat']}
-  - {name: '🥈 TW・备选', <<: [*UrlTest, *FilterTW], use: ['SakuraCat']}
-  - {name: '🥈 JP・备选', <<: [*UrlTest, *FilterJP], use: ['SakuraCat']}
-  - {name: '🥈 SG・备选', <<: [*UrlTest, *FilterSG], use: ['SakuraCat']}
-  - {name: '🥈 US・备选', <<: [*UrlTest, *FilterUS], use: ['SakuraCat']}
+  - {name: '🥈 ALL・备选', <<: [*UrlTest, *FilterSelect], tolerance: 20, use: ['SakuraCat']}
+  - {name: '🥈 HK・备选', <<: [*UrlTest, *FilterHK], tolerance: 20, use: ['SakuraCat']}
+  - {name: '🥈 TW・备选', <<: [*UrlTest, *FilterTW], tolerance: 20, use: ['SakuraCat']}
+  - {name: '🥈 JP・备选', <<: [*UrlTest, *FilterJP], tolerance: 20, use: ['SakuraCat']}
+  - {name: '🥈 SG・备选', <<: [*UrlTest, *FilterSG], tolerance: 20, use: ['SakuraCat']}
+  - {name: '🥈 US・备选', <<: [*UrlTest, *FilterUS], tolerance: 20, use: ['SakuraCat']}
 
 rule-providers:
   China_ip: {<<: *IPCIDR, url: 'https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/ipcidr/cn.mrs'}
