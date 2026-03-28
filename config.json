@@ -117,12 +117,12 @@
     { "tag": "🇸🇬 狮城自动", "type": "urltest", "outbounds": [ "🥇 SG・优选", "🥈 SG・备选" ], "fallback": { "enabled": true, "max_delay": "500ms" }, "interval": "2m", "url": "https://captive.apple.com/generate_204" },
     { "tag": "🇺🇸 美国自动", "type": "urltest", "outbounds": [ "🥇 US・优选", "🥈 US・备选" ], "fallback": { "enabled": true, "max_delay": "500ms" }, "interval": "2m", "url": "https://captive.apple.com/generate_204" },
 
-    { "tag": "🥇 ALL・优选", "type": "urltest", "providers": [ "SNTP" ], "interval": "10m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW|日本|🇯🇵|JP|美国|🇺🇸|US|新加坡|狮城|🇸🇬|SG)", "exclude": "(?i)(2.00x|排除2)" },
-    { "tag": "🥇 HK・优选", "type": "urltest", "providers": [ "SNTP" ], "interval": "10m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(香港|🇭🇰|HK)", "exclude": "(?i)(2.00x|排除2)" },
-    { "tag": "🥇 TW・优选", "type": "urltest", "providers": [ "SNTP" ], "interval": "10m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(台湾|🇹🇼|TW)", "exclude": "(?i)(2.00x|排除2)" },
-    { "tag": "🥇 JP・优选", "type": "urltest", "providers": [ "SNTP" ], "interval": "10m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(日本|🇯🇵|JP)", "exclude": "(?i)(2.00x|排除2)" },
-    { "tag": "🥇 SG・优选", "type": "urltest", "providers": [ "SNTP" ], "interval": "10m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(新加坡|狮城|🇸🇬|SG)", "exclude": "(?i)(2.00x|排除2)" },
-    { "tag": "🥇 US・优选", "type": "urltest", "providers": [ "SNTP" ], "interval": "10m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(美国|🇺🇸|US)", "exclude": "(?i)(2.00x|排除2)" },
+    { "tag": "🥇 ALL・优选", "type": "urltest", "providers": [ "SNTP" ], "interval": "10m", "tolerance": 50, "url": "https://captive.apple.com/generate_204", "include": "(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW|日本|🇯🇵|JP|美国|🇺🇸|US|新加坡|狮城|🇸🇬|SG)", "exclude": "(?i)(2.00x|排除2)" },
+    { "tag": "🥇 HK・优选", "type": "urltest", "providers": [ "SNTP" ], "interval": "10m", "tolerance": 50, "url": "https://captive.apple.com/generate_204", "include": "(?i)(香港|🇭🇰|HK)", "exclude": "(?i)(2.00x|排除2)" },
+    { "tag": "🥇 TW・优选", "type": "urltest", "providers": [ "SNTP" ], "interval": "10m", "tolerance": 50, "url": "https://captive.apple.com/generate_204", "include": "(?i)(台湾|🇹🇼|TW)", "exclude": "(?i)(2.00x|排除2)" },
+    { "tag": "🥇 JP・优选", "type": "urltest", "providers": [ "SNTP" ], "interval": "10m", "tolerance": 50, "url": "https://captive.apple.com/generate_204", "include": "(?i)(日本|🇯🇵|JP)", "exclude": "(?i)(2.00x|排除2)" },
+    { "tag": "🥇 SG・优选", "type": "urltest", "providers": [ "SNTP" ], "interval": "10m", "tolerance": 50, "url": "https://captive.apple.com/generate_204", "include": "(?i)(新加坡|狮城|🇸🇬|SG)", "exclude": "(?i)(2.00x|排除2)" },
+    { "tag": "🥇 US・优选", "type": "urltest", "providers": [ "SNTP" ], "interval": "10m", "tolerance": 50, "url": "https://captive.apple.com/generate_204", "include": "(?i)(美国|🇺🇸|US)", "exclude": "(?i)(2.00x|排除2)" },
 
     { "tag": "🥈 ALL・备选", "type": "urltest", "providers": [ "SakuraCat" ], "interval": "10m", "tolerance": 20, "url": "https://captive.apple.com/generate_204", "include": "(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW|日本|🇯🇵|JP|美国|🇺🇸|US|新加坡|狮城|🇸🇬|SG)", "exclude": "(?i)(2.00x|排除2)" },
     { "tag": "🥈 HK・备选", "type": "urltest", "providers": [ "SakuraCat" ], "interval": "10m", "tolerance": 20, "url": "https://captive.apple.com/generate_204", "include": "(?i)(香港|🇭🇰|HK)", "exclude": "(?i)(2.00x|排除2)" },
