@@ -84,7 +84,7 @@ proxies:
   - {name: '🔰 DNS-Hijack', type: dns}
 
 proxy-groups:
-  - {name: '手动选择', type: select, include-all-providers: true, icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Proxy.png'}
+  - {name: '手动选择', type: select, include-all-providers: true, interrupt-exist-connections: true, icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Proxy.png'}
   - {name: '谷歌推送', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png'}
   - {name: 'Telegram', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Orz-3/mini/raw/master/Color/Telegram.png'}
   - {name: 'Twitter', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Twitter.png'}
