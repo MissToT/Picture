@@ -10,7 +10,7 @@ FilterUS: &FilterUS {filter: '^(?=.*(?i)(美国|🇺🇸|US))(?!.*(2.00x|排除2
 # 锚点 - 策略组
 Select: &Select {type: select, include-all-providers: true, interrupt-exist-connections: true, proxies: ['自动选择', '手动选择', '🇭🇰 香港自动', '🇹🇼 台湾自动', '🇯🇵 日本自动', '🇸🇬 狮城自动', '🇺🇸 美国自动', '🌐 本地直连', '⛔️ 拒绝连接']}
 UrlTest: &UrlTest {type: url-test, interrupt-exist-connections: false, hidden: true, lazy: false, interval: 600, tolerance: 50, url: 'https://captive.apple.com/generate_204'}
-Fallback: &Fallback {type: fallback, interrupt-exist-connections: true, hidden: true, interval: 120, url: 'https://captive.apple.com/generate_204'}
+Fallback: &Fallback {type: fallback, interrupt-exist-connections: true, hidden: true, lazy: false, interval: 120, url: 'https://captive.apple.com/generate_204'}
 # 锚点 - 规则集
 IPCIDR: &IPCIDR {type: http, interval: 86400, behavior: ipcidr, format: mrs}
 Domain: &Domain {type: http, interval: 86400, behavior: domain, format: mrs}
