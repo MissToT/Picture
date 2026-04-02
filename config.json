@@ -43,19 +43,19 @@
   },
   "dns": {
     "servers": [
-      { "tag": "dns_resolver", "type": "udp", "server": "223.5.5.5" },
-      { "tag": "dns_ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns_resolver" },
-      { "tag": "dns_cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "👻 国外代理", "domain_resolver": "dns_resolver" },
-      { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/18" }
+      { "tag": "dns-resolver", "type": "udp", "server": "223.5.5.5" },
+      { "tag": "dns-ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns-resolver" },
+      { "tag": "dns-cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "👻 国外代理", "domain_resolver": "dns-resolver" },
+      { "tag": "dns-fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/18" }
     ],
     "rules": [
-      { "clash_mode": "直连", "server": "dns_ali" },
-      { "clash_mode": "全局", "server": "dns_cloudflare" },
+      { "clash_mode": "直连", "server": "dns-ali" },
+      { "clash_mode": "全局", "server": "dns-cloudflare" },
       { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "anti-ad_ads", "My_ads" ] } ], "action": "predefined", "rcode": "NOERROR" },
-      { "rule_set": "Fake-ip-Filter", "server": "dns_ali" },
-      { "query_type": [ "A", "AAAA" ], "server": "dns_fakeip" }
+      { "rule_set": "Fake-ip-Filter", "server": "dns-ali" },
+      { "query_type": [ "A", "AAAA" ], "server": "dns-fakeip" }
     ],
-    "final": "dns_cloudflare",
+    "final": "dns-cloudflare",
     "strategy": "prefer_ipv4",
     "reverse_mapping": true,
     "independent_cache": true
@@ -169,7 +169,7 @@
     "final": "🍥 漏网之鱼",
     "find_process": true,
     "auto_detect_interface": true,
-    "default_domain_resolver": "dns_ali",
+    "default_domain_resolver": "dns-ali",
     "rule_set": [
       {
         "tag": "anti-ad_ads",
