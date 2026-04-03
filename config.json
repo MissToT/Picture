@@ -3,6 +3,7 @@
     {
       "tag": "SNTP",
       "type": "remote",
+      "user_agent": "mihomo/1.19.22",
       "download_detour": "🌐 本地直连",
       "path": "./providers/SNTP.json",
       "url": "http://localhost:3000/download/SNTP",
@@ -12,6 +13,7 @@
     {
       "tag": "SakuraCat",
       "type": "remote",
+      "user_agent": "sing-box/1.13.5",
       "download_detour": "🌐 本地直连",
       "path": "./providers/SakuraCat.json",
       "url": "http://localhost:3000/download/SakuraCat",
