@@ -71,7 +71,7 @@ tun:
   enable: false
   mtu: 9000
   stack: gvisor
-  device: mihomo
+  device: Mate
   dns-hijack: ['any:53', 'tcp://any:53']
   auto-route: true
   strict-route: true
