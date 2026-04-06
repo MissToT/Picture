@@ -16,7 +16,7 @@ IPCIDR: &IPCIDR {type: http, interval: 86400, behavior: ipcidr, format: mrs}
 Domain: &Domain {type: http, interval: 86400, behavior: domain, format: mrs}
 Classical: &Classical {type: http, interval: 86400, behavior: classical, format: text}
 # 锚点 - 远程订阅组
-Providers: &Providers {type: http, interval: 86400, proxy: DIRECT, header: {User-Agent: ["mihomo/1.19.22"]}, health-check: {enable: true, url: 'https://captive.apple.com/generate_204', interval: 600}, <<: *FilterOthers}
+Providers: &Providers {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: 'https://captive.apple.com/generate_204', interval: 600}, <<: *FilterOthers}
 ############################################## - ⚓️ 锚点区结束 - ##############################################
 
 # 节点订阅
