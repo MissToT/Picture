@@ -1,9 +1,19 @@
 {
   "providers": [
     {
+      "tag": "Vitebits",
+      "type": "remote",
+      "user_agent": "sing-box",
+      "download_detour": "🌐 本地直连",
+      "path": "./providers/Vitebits.json",
+      "url": "http://localhost:3000/download/Vitebits",
+      "exclude": "(?i)(DIRECT|Traffic|Expire|流量|到期|时间|重置)",
+      "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
+    },
+    {
       "tag": "SNTP",
       "type": "remote",
-      "user_agent": "mihomo/1.19.22",
+      "user_agent": "mihomo",
       "download_detour": "🌐 本地直连",
       "path": "./providers/SNTP.json",
       "url": "http://localhost:3000/download/SNTP",
@@ -108,12 +118,12 @@
     { "tag": "🍥 漏网之鱼", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "📦 手动选择", "💌 谷歌推送", "📱 Telegram", "🐦 Twitter", "🎬 Emby", "📚 E-Hentai", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🌸 日本代理", "🐸 台湾代理", "👻 国外代理", "🐼 国内代理", "🍥 漏网之鱼", "🌐 本地直连", "⛔️ 拒绝连接" ] },
 
-    { "tag": "♻️ 自动选择", "type": "urltest", "outbounds": [ "🥇 ALL・优选", "🥈 ALL・备选" ], "interrupt_exist_connections": true, "fallback": { "enabled": true }, "interval": "1m", "url": "https://captive.apple.com/generate_204" },
-    { "tag": "🇭🇰 香港自动", "type": "urltest", "outbounds": [ "🥇 HK・优选", "🥈 HK・备选" ], "interrupt_exist_connections": true, "fallback": { "enabled": true }, "interval": "1m", "url": "https://captive.apple.com/generate_204" },
-    { "tag": "🇹🇼 台湾自动", "type": "urltest", "outbounds": [ "🥇 TW・优选", "🥈 TW・备选" ], "interrupt_exist_connections": true, "fallback": { "enabled": true }, "interval": "1m", "url": "https://captive.apple.com/generate_204" },
-    { "tag": "🇯🇵 日本自动", "type": "urltest", "outbounds": [ "🥇 JP・优选", "🥈 JP・备选" ], "interrupt_exist_connections": true, "fallback": { "enabled": true }, "interval": "1m", "url": "https://captive.apple.com/generate_204" },
-    { "tag": "🇸🇬 狮城自动", "type": "urltest", "outbounds": [ "🥇 SG・优选", "🥈 SG・备选" ], "interrupt_exist_connections": true, "fallback": { "enabled": true }, "interval": "1m", "url": "https://captive.apple.com/generate_204" },
-    { "tag": "🇺🇸 美国自动", "type": "urltest", "outbounds": [ "🥇 US・优选", "🥈 US・备选" ], "interrupt_exist_connections": true, "fallback": { "enabled": true }, "interval": "1m", "url": "https://captive.apple.com/generate_204" },
+    { "tag": "♻️ 自动选择", "type": "urltest", "outbounds": [ "🥇 ALL・优选", "⚙️ ALL・自建", "🥈 ALL・备选" ], "interrupt_exist_connections": true, "fallback": { "enabled": true }, "interval": "1m", "url": "https://captive.apple.com/generate_204" },
+    { "tag": "🇭🇰 香港自动", "type": "urltest", "outbounds": [ "🥇 HK・优选", "🥈 HK・备选", "⚙️ ALL・自建" ], "interrupt_exist_connections": true, "fallback": { "enabled": true }, "interval": "1m", "url": "https://captive.apple.com/generate_204" },
+    { "tag": "🇹🇼 台湾自动", "type": "urltest", "outbounds": [ "🥇 TW・优选", "🥈 TW・备选", "⚙️ ALL・自建" ], "interrupt_exist_connections": true, "fallback": { "enabled": true }, "interval": "1m", "url": "https://captive.apple.com/generate_204" },
+    { "tag": "🇯🇵 日本自动", "type": "urltest", "outbounds": [ "🥇 JP・优选", "⚙️ JP・自建", "🥈 JP・备选" ], "interrupt_exist_connections": true, "fallback": { "enabled": true }, "interval": "1m", "url": "https://captive.apple.com/generate_204" },
+    { "tag": "🇸🇬 狮城自动", "type": "urltest", "outbounds": [ "🥇 SG・优选", "⚙️ SG・自建", "🥈 SG・备选" ], "interrupt_exist_connections": true, "fallback": { "enabled": true }, "interval": "1m", "url": "https://captive.apple.com/generate_204" },
+    { "tag": "🇺🇸 美国自动", "type": "urltest", "outbounds": [ "🥇 US・优选", "⚙️ US・自建", "🥈 US・备选" ], "interrupt_exist_connections": true, "fallback": { "enabled": true }, "interval": "1m", "url": "https://captive.apple.com/generate_204" },
 
     { "tag": "🥇 ALL・优选", "type": "urltest", "providers": [ "SNTP" ], "interrupt_exist_connections": false, "interval": "3m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW|日本|🇯🇵|JP|美国|🇺🇸|US|新加坡|狮城|🇸🇬|SG)", "exclude": "(?i)(2.00x|排除2)" },
     { "tag": "🥇 HK・优选", "type": "urltest", "providers": [ "SNTP" ], "interrupt_exist_connections": false, "interval": "3m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(香港|🇭🇰|HK)", "exclude": "(?i)(2.00x|排除2)" },
@@ -127,7 +137,12 @@
     { "tag": "🥈 TW・备选", "type": "urltest", "providers": [ "SakuraCat" ], "interrupt_exist_connections": false, "interval": "3m", "tolerance": 20, "url": "https://captive.apple.com/generate_204", "include": "(?i)(台湾|🇹🇼|TW)", "exclude": "(?i)(2.00x|排除2)" },
     { "tag": "🥈 JP・备选", "type": "urltest", "providers": [ "SakuraCat" ], "interrupt_exist_connections": false, "interval": "3m", "tolerance": 20, "url": "https://captive.apple.com/generate_204", "include": "(?i)(日本|🇯🇵|JP)", "exclude": "(?i)(2.00x|排除2)" },
     { "tag": "🥈 SG・备选", "type": "urltest", "providers": [ "SakuraCat" ], "interrupt_exist_connections": false, "interval": "3m", "tolerance": 20, "url": "https://captive.apple.com/generate_204", "include": "(?i)(新加坡|狮城|🇸🇬|SG)", "exclude": "(?i)(2.00x|排除2)" },
-    { "tag": "🥈 US・备选", "type": "urltest", "providers": [ "SakuraCat" ], "interrupt_exist_connections": false, "interval": "3m", "tolerance": 20, "url": "https://captive.apple.com/generate_204", "include": "(?i)(美国|🇺🇸|US)", "exclude": "(?i)(2.00x|排除2)" }
+    { "tag": "🥈 US・备选", "type": "urltest", "providers": [ "SakuraCat" ], "interrupt_exist_connections": false, "interval": "3m", "tolerance": 20, "url": "https://captive.apple.com/generate_204", "include": "(?i)(美国|🇺🇸|US)", "exclude": "(?i)(2.00x|排除2)" },
+
+    { "tag": "⚙️ ALL・自建", "type": "urltest", "providers": [ "Vitebits" ], "interrupt_exist_connections": false, "interval": "3m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW|日本|🇯🇵|JP|美国|🇺🇸|US|新加坡|狮城|🇸🇬|SG)", "exclude": "(?i)(2.00x|排除2)" },
+    { "tag": "⚙️ JP・自建", "type": "urltest", "providers": [ "Vitebits" ], "interrupt_exist_connections": false, "interval": "3m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(日本|🇯🇵|JP)", "exclude": "(?i)(2.00x|排除2)" },
+    { "tag": "⚙️ SG・自建", "type": "urltest", "providers": [ "Vitebits" ], "interrupt_exist_connections": false, "interval": "3m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(新加坡|狮城|🇸🇬|SG)", "exclude": "(?i)(2.00x|排除2)" },
+    { "tag": "⚙️ US・自建", "type": "urltest", "providers": [ "Vitebits" ], "interrupt_exist_connections": false, "interval": "3m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(美国|🇺🇸|US)", "exclude": "(?i)(2.00x|排除2)" }
   ],
   "route": {
     "rules": [
