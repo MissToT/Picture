@@ -30,7 +30,7 @@ redir-port: 9797
 tproxy-port: 9898
 mode: rule
 log-level: silent
-ipv6: true
+ipv6: false
 allow-lan: true
 bind-address: '*'
 unified-delay: true
@@ -58,7 +58,7 @@ sniffer:
 
 dns:
   enable: true
-  ipv6: true
+  ipv6: false
   listen: 0.0.0.0:1053
   cache-algorithm: arc
   enhanced-mode: fake-ip
