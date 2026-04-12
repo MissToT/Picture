@@ -187,11 +187,11 @@ rules:
   - RULE-SET,Proxy_domain,国外代理
   - RULE-SET,China_domain,国内代理
   - RULE-SET,Private_ip,🌐 本地直连,no-resolve
-  - RULE-SET,Telegram_ip,Telegram
-  - RULE-SET,Twitter_ip,Twitter
-  - RULE-SET,AI_ip,AI
-  - RULE-SET,Google_ip,国外代理
-  - RULE-SET,Cloudflare_ip,国外代理
-  - RULE-SET,Proxy_ip,国外代理
+  - RULE-SET,Telegram_ip,Telegram,no-resolve
+  - RULE-SET,Twitter_ip,Twitter,no-resolve
+  - RULE-SET,AI_ip,AI,no-resolve
+  - RULE-SET,Google_ip,国外代理,no-resolve
+  - RULE-SET,Cloudflare_ip,国外代理,no-resolve
+  - RULE-SET,Proxy_ip,国外代理,no-resolve
   - RULE-SET,China_ip,国内代理
   - MATCH,漏网之鱼
