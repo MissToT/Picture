@@ -63,7 +63,7 @@ dns:
   cache-algorithm: arc
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
-  fake-ip-filter: ['RULE-SET:Fakeip-Filter']
+  fake-ip-filter: ['RULE-SET:Fakeip-Filter,Private_domain,China_domain,China+_domain']
   default-nameserver: [223.5.5.5, 119.29.29.29]
   nameserver: ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query']
 
