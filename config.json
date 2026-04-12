@@ -38,8 +38,8 @@
     }
   },
   "log": {
-    "disabled": false,
-    "level": "error",
+    "disabled": true,
+    "level": "info",
     "timestamp": true,
     "output": "sing-box.log"
   },
