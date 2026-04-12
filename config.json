@@ -38,8 +38,8 @@
     }
   },
   "log": {
-    "disabled": true,
-    "level": "info",
+    "disabled": false,
+    "level": "error",
     "timestamp": true,
     "output": "sing-box.log"
   },
@@ -55,9 +55,8 @@
       { "clash_mode": "全局", "server": "dns-cloudflare" },
       { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "anti-ad_ads", "My_ads" ] } ], "action": "predefined", "rcode": "NOERROR" },
       { "rule_set": [ "Fake-ip-Filter", "China_domain", "China+_domain" ], "server": "dns-ali" },
-      { "domain_suffix": "argotunnel.com", "server": "dns-cloudflare" },
       { "action": "evaluate", "server": "dns-cloudflare" },
-      { "match_response": true, "ip_is_private": true, "server": "dns-ali" },
+      { "match_response": true, "ip_is_private": true, "action": "respond" },
       { "match_response": true, "rule_set": "China_ip", "server": "dns-ali" },
       { "query_type": [ "A", "AAAA" ], "server": "dns-fakeip" }
     ],
