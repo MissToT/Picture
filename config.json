@@ -161,12 +161,12 @@
       { "rule_set": "Cloudflare_domain", "outbound": "👻 国外代理" },
       { "rule_set": "Proxy_domain", "outbound": "👻 国外代理" },
       { "rule_set": "China_domain", "outbound": "🐼 国内代理" },
-      { "action": "resolve", "match_only": true },
       { "rule_set": "Telegram_ip", "outbound": "📱 Telegram" },
       { "rule_set": "Twitter_ip", "outbound": "🐦 Twitter" },
       { "rule_set": "AI_ip", "outbound": "🤖 AI" },
       { "rule_set": "Google_ip", "outbound": "👻 国外代理" },
       { "rule_set": "Cloudflare_ip", "outbound": "👻 国外代理" },
+      { "action": "resolve", "match_only": true },
       { "rule_set": "China_ip", "outbound": "🐼 国内代理" }
     ],
     "final": "🍥 漏网之鱼",
