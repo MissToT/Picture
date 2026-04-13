@@ -62,7 +62,6 @@
     ],
     "final": "dns-cloudflare",
     "strategy": "prefer_ipv4",
-    "optimistic": false,
     "reverse_mapping": true
   },
   "inbounds": [
