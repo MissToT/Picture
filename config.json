@@ -3,7 +3,6 @@
     {
       "tag": "Vitebits",
       "type": "remote",
-      "user_agent": "sing-box",
       "download_detour": "🌐 本地直连",
       "path": "./providers/Vitebits.json",
       "url": "http://localhost:3000/download/Vitebits",
@@ -13,7 +12,6 @@
     {
       "tag": "SNTP",
       "type": "remote",
-      "user_agent": "mihomo",
       "download_detour": "🌐 本地直连",
       "path": "./providers/SNTP.json",
       "url": "http://localhost:3000/download/SNTP",
