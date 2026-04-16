@@ -49,20 +49,20 @@
       { "tag": "dns-google", "type": "https", "server": "dns.google", "detour": "👻 国外代理", "domain_resolver": "dns-bootstrap" },
       { "tag": "dns-cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "👻 国外代理", "domain_resolver": "dns-bootstrap" },
       { "tag": "dns-direct", "type": "group", "servers": [ "dns-ali", "dns-tencent" ] },
-      { "tag": "dns-proxy", "type": "group", "servers": [ "dns-cloudflare", "dns-google" ] },
+      { "tag": "dns-global", "type": "group", "servers": [ "dns-cloudflare", "dns-google" ] },
       { "tag": "dns-fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/18" }
     ],
     "rules": [
       { "clash_mode": "直连", "server": "dns-direct" },
-      { "clash_mode": "全局", "server": "dns-proxy" },
+      { "clash_mode": "全局", "server": "dns-global" },
       { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "anti-ad_ads", "My_ads" ] } ], "action": "predefined", "rcode": "NOERROR" },
       { "rule_set": [ "Fake-ip-Filter", "China_domain", "China+_domain" ], "server": "dns-direct" },
-      { "action": "evaluate", "server": "dns-proxy" },
+      { "action": "evaluate", "server": "dns-global" },
       { "match_response": true, "ip_is_private": true, "action": "respond" },
       { "match_response": true, "rule_set": "China_ip", "server": "dns-direct" },
       { "query_type": [ "A", "AAAA" ], "server": "dns-fakeip" }
     ],
-    "final": "dns-proxy",
+    "final": "dns-global",
     "strategy": "prefer_ipv4",
     "reverse_mapping": true
   },
