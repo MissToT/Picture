@@ -1,20 +1,20 @@
 {
   "providers": [
     {
-      "tag": "Vitebits",
-      "type": "remote",
-      "http_client": "direct-client",
-      "path": "./providers/Vitebits.json",
-      "url": "http://localhost:3000/download/Vitebits",
-      "exclude": "(?i)(DIRECT|Traffic|Expire|流量|到期|时间|重置)",
-      "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
-    },
-    {
       "tag": "SNTP",
       "type": "remote",
       "http_client": "direct-client",
       "path": "./providers/SNTP.json",
       "url": "http://localhost:3000/download/SNTP",
+      "exclude": "(?i)(DIRECT|Traffic|Expire|流量|到期|时间|重置)",
+      "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
+    },
+    {
+      "tag": "Vitebits",
+      "type": "remote",
+      "http_client": "direct-client",
+      "path": "./providers/Vitebits.json",
+      "url": "http://localhost:3000/download/Vitebits",
       "exclude": "(?i)(DIRECT|Traffic|Expire|流量|到期|时间|重置)",
       "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
     }
@@ -26,11 +26,11 @@
       "store_fakeip": true
     },
     "clash_api": {
-      "external_controller": "0.0.0.0:9090",
-      "external_ui": "webui",
-      "external_ui_download_url": "https://v6.gh-proxy.org/github.com/Zephyruso/zashboard/releases/download/v1.101.1/dist.zip",
       "secret": "",
       "default_mode": "规则",
+      "external_ui": "webui",
+      "external_controller": "0.0.0.0:9090",
+      "external_ui_download_url": "https://v6.gh-proxy.org/github.com/Zephyruso/zashboard/releases/download/v1.101.1/dist.zip",
       "access_control_allow_origin": "*",
       "access_control_allow_private_network": true
     }
