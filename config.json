@@ -107,7 +107,7 @@
     { "tag": "👻 国外代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🐼 国内代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🍥 漏网之鱼", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "📦 手动选择", "💌 谷歌推送", "📱 Telegram", "🐦 Twitter", "🎬 Emby", "📚 E-Hentai", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🌸 日本代理", "🐸 台湾代理", "👻 国外代理", "🐼 国内代理", "🍥 漏网之鱼", "🌐 本地直连", "⛔️ 拒绝连接" ] }
+    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "📦 手动选择", "♻️ 自动选择", "💌 谷歌推送", "📱 Telegram", "🐦 Twitter", "🎬 Emby", "📚 E-Hentai", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🌸 日本代理", "🐸 台湾代理", "👻 国外代理", "🐼 国内代理", "🍥 漏网之鱼", "🌐 本地直连", "⛔️ 拒绝连接" ] }
   ],
   "route": {
     "rules": [
