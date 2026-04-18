@@ -3,7 +3,7 @@
     {
       "tag": "Vitebits",
       "type": "remote",
-      "http_client": "direct-download",
+      "http_client": "direct-client",
       "path": "./providers/Vitebits.json",
       "url": "http://localhost:3000/download/Vitebits",
       "exclude": "(?i)(DIRECT|Traffic|Expire|流量|到期|时间|重置)",
@@ -12,7 +12,7 @@
     {
       "tag": "SNTP",
       "type": "remote",
-      "http_client": "direct-download",
+      "http_client": "direct-client",
       "path": "./providers/SNTP.json",
       "url": "http://localhost:3000/download/SNTP",
       "exclude": "(?i)(DIRECT|Traffic|Expire|流量|到期|时间|重置)",
@@ -44,25 +44,21 @@
   "dns": {
     "servers": [
       { "tag": "dns-bootstrap", "type": "udp", "server": "223.5.5.5" },
-      { "tag": "dns-ali", "type": "quic", "server": "dns.alidns.com", "domain_resolver": "dns-bootstrap" },
-      { "tag": "dns-tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns-bootstrap" },
-      { "tag": "dns-google", "type": "https", "server": "dns.google", "detour": "👻 国外代理", "domain_resolver": "dns-bootstrap" },
+      { "tag": "dns-ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns-bootstrap" },
       { "tag": "dns-cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "👻 国外代理", "domain_resolver": "dns-bootstrap" },
-      { "tag": "dns-direct", "type": "group", "servers": [ "dns-ali", "dns-tencent" ] },
-      { "tag": "dns-global", "type": "group", "servers": [ "dns-cloudflare", "dns-google" ] },
       { "tag": "dns-fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/18" }
     ],
     "rules": [
-      { "clash_mode": "直连", "server": "dns-direct" },
-      { "clash_mode": "全局", "server": "dns-global" },
+      { "clash_mode": "直连", "server": "dns-ali" },
+      { "clash_mode": "全局", "server": "dns-cloudflare" },
       { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "anti-ad_ads", "My_ads" ] } ], "action": "predefined", "rcode": "NOERROR" },
-      { "rule_set": [ "Fake-ip-Filter", "China_domain", "China+_domain" ], "server": "dns-direct" },
-      { "action": "evaluate", "server": "dns-global" },
+      { "rule_set": [ "Fake-ip-Filter", "China_domain", "China+_domain" ], "server": "dns-ali" },
+      { "action": "evaluate", "server": "dns-cloudflare" },
       { "match_response": true, "ip_is_private": true, "action": "respond" },
-      { "match_response": true, "rule_set": "China_ip", "server": "dns-direct" },
+      { "match_response": true, "rule_set": "China_ip", "server": "dns-ali" },
       { "query_type": [ "A", "AAAA" ], "server": "dns-fakeip" }
     ],
-    "final": "dns-global",
+    "final": "dns-cloudflare",
     "strategy": "prefer_ipv4",
     "reverse_mapping": true
   },
@@ -96,40 +92,22 @@
     { "tag": "⛔️ 拒绝连接", "type": "block" },
     { "tag": "🌐 本地直连", "type": "direct" },
     { "tag": "📦 手动选择", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true },
-    { "tag": "💌 谷歌推送", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "📱 Telegram", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🐦 Twitter", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🎬 Emby", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "📚 E-Hentai", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🎶 TikTok", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "📺 YouTube", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🤖 AI", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🎮 Games", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🌸 日本代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇯🇵 日本自动", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(日本|🇯🇵|JP|japan)" },
-    { "tag": "🐸 台湾代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇹🇼 台湾自动", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(台湾|🇹🇼|TW|taiwan)" },
-    { "tag": "👻 国外代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🐼 国内代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🍥 漏网之鱼", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🇭🇰 香港自动", "🇹🇼 台湾自动", "🇯🇵 日本自动", "🇸🇬 狮城自动", "🇺🇸 美国自动", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "📦 手动选择", "💌 谷歌推送", "📱 Telegram", "🐦 Twitter", "🎬 Emby", "📚 E-Hentai", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🌸 日本代理", "🐸 台湾代理", "👻 国外代理", "🐼 国内代理", "🍥 漏网之鱼", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-
-    { "tag": "♻️ 自动选择", "type": "urltest", "outbounds": [ "🥇 ALL・优选", "🥈 ALL・备选" ], "interrupt_exist_connections": true, "fallback": { "enabled": true }, "interval": "1m", "url": "https://captive.apple.com/generate_204" },
-    { "tag": "🇭🇰 香港自动", "type": "urltest", "outbounds": [ "🥇 HK・优选", "🥈 ALL・备选" ], "interrupt_exist_connections": true, "fallback": { "enabled": true }, "interval": "1m", "url": "https://captive.apple.com/generate_204" },
-    { "tag": "🇹🇼 台湾自动", "type": "urltest", "outbounds": [ "🥇 TW・优选", "🥈 ALL・备选" ], "interrupt_exist_connections": true, "fallback": { "enabled": true }, "interval": "1m", "url": "https://captive.apple.com/generate_204" },
-    { "tag": "🇯🇵 日本自动", "type": "urltest", "outbounds": [ "🥇 JP・优选", "🥈 JP・备选" ], "interrupt_exist_connections": true, "fallback": { "enabled": true }, "interval": "1m", "url": "https://captive.apple.com/generate_204" },
-    { "tag": "🇸🇬 狮城自动", "type": "urltest", "outbounds": [ "🥇 SG・优选", "🥈 SG・备选" ], "interrupt_exist_connections": true, "fallback": { "enabled": true }, "interval": "1m", "url": "https://captive.apple.com/generate_204" },
-    { "tag": "🇺🇸 美国自动", "type": "urltest", "outbounds": [ "🥇 US・优选", "🥈 US・备选" ], "interrupt_exist_connections": true, "fallback": { "enabled": true }, "interval": "1m", "url": "https://captive.apple.com/generate_204" },
-
-    { "tag": "🥇 ALL・优选", "type": "urltest", "providers": [ "SNTP" ], "interrupt_exist_connections": false, "interval": "3m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW|日本|🇯🇵|JP|美国|🇺🇸|US|新加坡|狮城|🇸🇬|SG)", "exclude": "(?i)(2.00x|排除2)" },
-    { "tag": "🥇 HK・优选", "type": "urltest", "providers": [ "SNTP" ], "interrupt_exist_connections": false, "interval": "3m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(香港|🇭🇰|HK)", "exclude": "(?i)(2.00x|排除2)" },
-    { "tag": "🥇 TW・优选", "type": "urltest", "providers": [ "SNTP" ], "interrupt_exist_connections": false, "interval": "3m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(台湾|🇹🇼|TW)", "exclude": "(?i)(2.00x|排除2)" },
-    { "tag": "🥇 JP・优选", "type": "urltest", "providers": [ "SNTP" ], "interrupt_exist_connections": false, "interval": "3m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(日本|🇯🇵|JP)", "exclude": "(?i)(2.00x|排除2)" },
-    { "tag": "🥇 SG・优选", "type": "urltest", "providers": [ "SNTP" ], "interrupt_exist_connections": false, "interval": "3m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(新加坡|狮城|🇸🇬|SG)", "exclude": "(?i)(2.00x|排除2)" },
-    { "tag": "🥇 US・优选", "type": "urltest", "providers": [ "SNTP" ], "interrupt_exist_connections": false, "interval": "3m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(美国|🇺🇸|US)", "exclude": "(?i)(2.00x|排除2)" },
-
-    { "tag": "🥈 ALL・备选", "type": "urltest", "providers": [ "Vitebits" ], "interrupt_exist_connections": false, "interval": "3m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW|日本|🇯🇵|JP|美国|🇺🇸|US|新加坡|狮城|🇸🇬|SG)", "exclude": "(?i)(2.00x|排除2)" },
-    { "tag": "🥈 JP・备选", "type": "urltest", "providers": [ "Vitebits" ], "interrupt_exist_connections": false, "interval": "3m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(日本|🇯🇵|JP)", "exclude": "(?i)(2.00x|排除2)" },
-    { "tag": "🥈 SG・备选", "type": "urltest", "providers": [ "Vitebits" ], "interrupt_exist_connections": false, "interval": "3m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(新加坡|狮城|🇸🇬|SG)", "exclude": "(?i)(2.00x|排除2)" },
-    { "tag": "🥈 US・备选", "type": "urltest", "providers": [ "Vitebits" ], "interrupt_exist_connections": false, "interval": "3m", "tolerance": 200, "url": "https://captive.apple.com/generate_204", "include": "(?i)(美国|🇺🇸|US)", "exclude": "(?i)(2.00x|排除2)" }
+    { "tag": "♻️ 自动选择", "type": "urltest", "use_all_providers": true, "interrupt_exist_connections": false, "interval": "5m", "tolerance": 100, "url": "https://captive.apple.com/generate_204", "include": "(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW|日本|🇯🇵|JP|美国|🇺🇸|US|新加坡|狮城|🇸🇬|SG)", "exclude": "(?i)(2.00x|排除2)" },
+    { "tag": "💌 谷歌推送", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "📱 Telegram", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🐦 Twitter", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🎬 Emby", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "📚 E-Hentai", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🎶 TikTok", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "📺 YouTube", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🤖 AI", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🎮 Games", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🌸 日本代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(日本|🇯🇵|JP|japan)" },
+    { "tag": "🐸 台湾代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW)" },
+    { "tag": "👻 国外代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🐼 国内代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🍥 漏网之鱼", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "📦 手动选择", "💌 谷歌推送", "📱 Telegram", "🐦 Twitter", "🎬 Emby", "📚 E-Hentai", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🌸 日本代理", "🐸 台湾代理", "👻 国外代理", "🐼 国内代理", "🍥 漏网之鱼", "🌐 本地直连", "⛔️ 拒绝连接" ] }
   ],
   "route": {
     "rules": [
@@ -173,7 +151,7 @@
     "final": "🍥 漏网之鱼",
     "find_process": true,
     "auto_detect_interface": true,
-    "default_domain_resolver": "dns-direct",
+    "default_domain_resolver": "dns-ali",
     "rule_set": [
       {
         "tag": "anti-ad_ads",
@@ -402,7 +380,7 @@
     ]
   },
   "http_clients": [
-    { "tag": "direct-download" },
-    { "tag": "proxy-download", "detour": "👻 国外代理" }
+    { "tag": "direct-client" },
+    { "tag": "proxy-client", "detour": "👻 国外代理" }
   ]
 }
