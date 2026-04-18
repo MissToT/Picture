@@ -3,7 +3,7 @@
     {
       "tag": "Vitebits",
       "type": "remote",
-      "download_detour": "🌐 本地直连",
+      "http_client": "direct-download",
       "path": "./providers/Vitebits.json",
       "url": "http://localhost:3000/download/Vitebits",
       "exclude": "(?i)(DIRECT|Traffic|Expire|流量|到期|时间|重置)",
@@ -12,7 +12,7 @@
     {
       "tag": "SNTP",
       "type": "remote",
-      "download_detour": "🌐 本地直连",
+      "http_client": "direct-download",
       "path": "./providers/SNTP.json",
       "url": "http://localhost:3000/download/SNTP",
       "exclude": "(?i)(DIRECT|Traffic|Expire|流量|到期|时间|重置)",
@@ -400,5 +400,9 @@
         "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/fake-ip-filter.srs"
       }
     ]
-  }
+  },
+  "http_clients": [
+    { "tag": "direct-download" },
+    { "tag": "proxy-download", "detour": "👻 国外代理" }
+  ]
 }
