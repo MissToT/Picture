@@ -53,7 +53,7 @@
           "cloudflare-dns.com": [ "104.16.248.249", "104.16.249.249" ]
         }
       },
-      { "tag": "dns-ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns-hosts" },
+      { "tag": "dns-ali", "type": "quic", "server": "dns.alidns.com", "domain_resolver": "dns-hosts" },
       { "tag": "dns-tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns-hosts" },
       { "tag": "dns-cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "👻 国外代理", "domain_resolver": "dns-hosts" },
       { "tag": "dns-google", "type": "https", "server": "dns.google", "detour": "👻 国外代理", "domain_resolver": "dns-hosts" },
