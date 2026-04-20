@@ -84,6 +84,12 @@
       "users": [ { "username": "Ruruka", "password": "DaiSuiKi" } ]
     },
     {
+      "tag": "redirect-in",
+      "type": "redirect",
+      "listen": "::",
+      "listen_port": 9797
+    },
+    {
       "tag": "tproxy-in",
       "type": "tproxy",
       "listen": "::",
