@@ -23,6 +23,7 @@
     "urltest_unified_delay": true,
     "cache_file": {
       "enabled": true,
+      "store_dns": true,
       "store_fakeip": true
     },
     "clash_api": {
@@ -64,6 +65,7 @@
     ],
     "final": "dns-global",
     "strategy": "prefer_ipv4",
+    "optimistic": true,
     "reverse_mapping": true
   },
   "inbounds": [
