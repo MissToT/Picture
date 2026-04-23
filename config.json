@@ -37,8 +37,8 @@
     }
   },
   "log": {
-    "disabled": false,
-    "level": "warn",
+    "disabled": true,
+    "level": "info",
     "timestamp": true,
     "output": "sing-box.log"
   },
