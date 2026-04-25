@@ -24,7 +24,8 @@
     "cache_file": {
       "enabled": true,
       "store_dns": true,
-      "store_fakeip": true
+      "store_fakeip": true,
+      "path": "cache.db"
     },
     "clash_api": {
       "secret": "",
