@@ -44,19 +44,11 @@
   },
   "dns": {
     "servers": [
-      {
-        "tag": "dns-hosts",
-        "type": "hosts",
-        "predefined": {
-          "dns.alidns.com": [ "223.5.5.5", "223.6.6.6" ],
-          "doh.pub": [ "1.12.12.12", "120.53.53.53" ],
-          "dns.google": [ "8.8.8.8", "8.8.4.4" ],
-          "cloudflare-dns.com": [ "104.16.248.249", "104.16.249.249" ] }
-      },
-      { "tag": "dns-ali", "type": "quic", "server": "dns.alidns.com", "domain_resolver": "dns-hosts" },
-      { "tag": "dns-tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns-hosts" },
-      { "tag": "dns-cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "👻 国外代理", "domain_resolver": "dns-hosts" },
-      { "tag": "dns-google", "type": "https", "server": "dns.google", "detour": "👻 国外代理", "domain_resolver": "dns-hosts" },
+      { "tag": "dns-bootstrap", "type": "udp", "server": "223.5.5.5" },
+      { "tag": "dns-ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns-bootstrap" },
+      { "tag": "dns-tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns-bootstrap" },
+      { "tag": "dns-cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "👻 国外代理", "domain_resolver": "dns-bootstrap" },
+      { "tag": "dns-google", "type": "https", "server": "dns.google", "detour": "👻 国外代理", "domain_resolver": "dns-bootstrap" },
       { "tag": "dns-direct", "type": "group", "servers": [ "dns-ali", "dns-tencent" ] },
       { "tag": "dns-global", "type": "group", "servers": [ "dns-cloudflare", "dns-google" ] },
       { "tag": "dns-fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/18" }
