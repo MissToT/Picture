@@ -3,7 +3,7 @@
     {
       "tag": "SNTP",
       "type": "remote",
-      "http_client": "direct-client",
+      "http_client": "direct-download",
       "path": "./providers/SNTP.json",
       "url": "http://localhost:3000/download/SNTP",
       "exclude": "(?i)(DIRECT|Traffic|Expire|流量|到期|时间|重置)",
@@ -12,7 +12,7 @@
     {
       "tag": "Vitebits",
       "type": "remote",
-      "http_client": "direct-client",
+      "http_client": "direct-download",
       "path": "./providers/Vitebits.json",
       "url": "http://localhost:3000/download/Vitebits",
       "exclude": "(?i)(DIRECT|Traffic|Expire|流量|到期|时间|重置)",
@@ -119,7 +119,7 @@
     { "tag": "👻 国外代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🐼 国内代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🍥 漏网之鱼", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "📦 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "📦 手动选择", "♻️ 自动选择", "💌 谷歌推送", "📱 Telegram", "🐦 Twitter", "🎬 Emby", "📚 E-Hentai", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🌸 日本代理", "🐸 台湾代理", "👻 国外代理", "🐼 国内代理", "🍥 漏网之鱼", "🌐 本地直连", "⛔️ 拒绝连接" ] }
+    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "📦 手动选择", "♻️ 自动选择", "🌐 本地直连", "⛔️ 拒绝连接", "💌 谷歌推送", "📱 Telegram", "🐦 Twitter", "🎬 Emby", "📚 E-Hentai", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🌸 日本代理", "🐸 台湾代理", "👻 国外代理", "🐼 国内代理", "🍥 漏网之鱼" ] }
   ],
   "route": {
     "rules": [
@@ -392,7 +392,7 @@
     ]
   },
   "http_clients": [
-    { "tag": "direct-client" },
-    { "tag": "proxy-client", "detour": "👻 国外代理" }
+    { "tag": "direct-download" },
+    { "tag": "proxy-download", "detour": "👻 国外代理" }
   ]
 }
