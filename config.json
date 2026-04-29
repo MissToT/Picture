@@ -56,8 +56,8 @@
     "rules": [
       { "clash_mode": "直连", "server": "dns-direct" },
       { "clash_mode": "全局", "server": "dns-global" },
-      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "anti-ad_ads", "anti-ad+_ads" ] } ], "action": "predefined", "rcode": "NOERROR" },
-      { "rule_set": [ "Fake-ip-Filter", "China_domain", "China+_domain" ], "server": "dns-direct" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "anti-ad_domain", "reject_domain" ] } ], "action": "predefined", "rcode": "NOERROR" },
+      { "rule_set": [ "Fakeip-Filter_domain", "China_domain", "China+_domain" ], "server": "dns-direct" },
       { "action": "evaluate", "server": "dns-global" },
       { "match_response": true, "ip_is_private": true, "action": "respond" },
       { "match_response": true, "rule_set": "China_ip", "server": "dns-direct" },
@@ -128,7 +128,7 @@
       { "ip_is_private": true, "outbound": "🌐 本地直连" },
       { "clash_mode": "直连", "outbound": "🌐 本地直连" },
       { "clash_mode": "全局", "outbound": "GLOBAL" },
-      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "anti-ad_ads", "anti-ad+_ads" ] } ], "action": "reject", "method": "drop" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "anti-ad_domain", "reject_domain" ] } ], "action": "reject", "method": "drop" },
       { "rule_set": "GoogleFCM_domain", "outbound": "💌 谷歌推送" },
       { "rule_set": "Telegram_domain", "outbound": "📱 Telegram" },
       { "rule_set": "Twitter_domain", "outbound": "🐦 Twitter" },
@@ -166,17 +166,17 @@
     "default_domain_resolver": "dns-direct",
     "rule_set": [
       {
-        "tag": "anti-ad_ads",
+        "tag": "anti-ad_domain",
         "type": "remote",
         "format": "binary",
-        "path": "./rules/anti-ad_ads.srs",
+        "path": "./rules/anti-ad_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/anti-ad-sing-box.srs"
       },
       {
-        "tag": "anti-ad+_ads",
+        "tag": "reject_domain",
         "type": "remote",
         "format": "binary",
-        "path": "./rules/anti-ad+_ads.srs",
+        "path": "./rules/reject_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Adblock.srs"
       },
       {
@@ -383,10 +383,10 @@
         "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/cncidr.srs"
       },
       {
-        "tag": "Fake-ip-Filter",
+        "tag": "Fakeip-Filter_domain",
         "type": "remote",
         "format": "binary",
-        "path": "./rules/Fake-ip-Filter.srs",
+        "path": "./rules/Fakeip-Filter_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/fake-ip-filter.srs"
       }
     ]
