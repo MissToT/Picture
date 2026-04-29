@@ -56,7 +56,7 @@
     "rules": [
       { "clash_mode": "直连", "server": "dns-direct" },
       { "clash_mode": "全局", "server": "dns-global" },
-      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "anti-ad_ads", "My_ads" ] } ], "action": "predefined", "rcode": "NOERROR" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "anti-ad_ads", "anti-ad+_ads" ] } ], "action": "predefined", "rcode": "NOERROR" },
       { "rule_set": [ "Fake-ip-Filter", "China_domain", "China+_domain" ], "server": "dns-direct" },
       { "action": "evaluate", "server": "dns-global" },
       { "match_response": true, "ip_is_private": true, "action": "respond" },
@@ -128,7 +128,7 @@
       { "ip_is_private": true, "outbound": "🌐 本地直连" },
       { "clash_mode": "直连", "outbound": "🌐 本地直连" },
       { "clash_mode": "全局", "outbound": "GLOBAL" },
-      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "anti-ad_ads", "My_ads" ] } ], "action": "reject", "method": "drop" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "anti-ad_ads", "anti-ad+_ads" ] } ], "action": "reject", "method": "drop" },
       { "rule_set": "GoogleFCM_domain", "outbound": "💌 谷歌推送" },
       { "rule_set": "Telegram_domain", "outbound": "📱 Telegram" },
       { "rule_set": "Twitter_domain", "outbound": "🐦 Twitter" },
@@ -173,10 +173,10 @@
         "url": "https://v6.gh-proxy.org/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/anti-ad-sing-box.srs"
       },
       {
-        "tag": "My_ads",
+        "tag": "anti-ad+_ads",
         "type": "remote",
         "format": "binary",
-        "path": "./rules/My_ads.srs",
+        "path": "./rules/anti-ad+_ads.srs",
         "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Adblock.srs"
       },
       {
