@@ -58,7 +58,7 @@ dns:
   cache-algorithm: arc
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
-  fake-ip-filter: ['RULE-SET:Fakeip-Filter,Private_domain,China_domain,China+_domain']
+  fake-ip-filter: ['RULE-SET:Fakeip-Filter_domain,Private_domain,China_domain,China+_domain']
   default-nameserver: [223.5.5.5, 119.29.29.29]
   nameserver: ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query']
 
@@ -131,14 +131,14 @@ rule-providers:
   TikTok_domain: {<<: *Domain, url: 'https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/tiktok.mrs'}
   YouTube_domain: {<<: *Domain, url: 'https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/youtube.mrs'}
   E-Hentai_domain: {<<: *Domain, url: 'https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/ehentai.mrs'}
-  anti-ad_ads: {<<: *Domain, url: 'https://v6.gh-proxy.org/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/mihomo.mrs'}
-  My_ads: {<<: *Domain, url: 'https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/Adblock.mrs'}
-  Fakeip-Filter: {<<: *Domain, url: 'https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/fake-ip-filter.mrs'}
+  anti-ad_domain: {<<: *Domain, url: 'https://v6.gh-proxy.org/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/mihomo.mrs'}
+  reject_domain: {<<: *Domain, url: 'https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/Adblock.mrs'}
+  Fakeip-Filter_domain: {<<: *Domain, url: 'https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/fake-ip-filter.mrs'}
 
 rules:
   - DST-PORT,53,🔰 DNS-Hijack
-  - RULE-SET,My_ads,广告拦截
-  - RULE-SET,anti-ad_ads,广告拦截
+  - RULE-SET,reject_domain,广告拦截
+  - RULE-SET,anti-ad_domain,广告拦截
   - RULE-SET,Private_domain,🌐 本地直连
   - RULE-SET,GoogleFCM_domain,谷歌推送
   - RULE-SET,Telegram_domain,Telegram
