@@ -3,6 +3,7 @@
     {
       "tag": "SNTP",
       "type": "remote",
+      "http_client": "direct-download",
       "path": "./providers/SNTP.json",
       "url": "http://localhost:3000/download/SNTP",
       "exclude": "(?i)(DIRECT|Traffic|Expire|流量|到期|时间|重置)",
@@ -11,6 +12,7 @@
     {
       "tag": "Vitebits",
       "type": "remote",
+      "http_client": "direct-download",
       "path": "./providers/Vitebits.json",
       "url": "http://localhost:3000/download/Vitebits",
       "exclude": "(?i)(DIRECT|Traffic|Expire|流量|到期|时间|重置)",
