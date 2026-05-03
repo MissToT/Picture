@@ -171,6 +171,7 @@
     "final": "🍥 漏网之鱼",
     "find_process": true,
     "auto_detect_interface": true,
+    "default_http_client": "direct-download",
     "default_domain_resolver": "dns-direct",
     "rule_set": [
       {
