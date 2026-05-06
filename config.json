@@ -60,8 +60,8 @@
       { "tag": "dns-fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/18" }
     ],
     "rules": [
-      { "clash_mode": "全局直连", "server": "dns-direct" },
-      { "clash_mode": "全局代理", "server": "dns-global" },
+      { "clash_mode": "直连模式", "server": "dns-direct" },
+      { "clash_mode": "全局模式", "server": "dns-global" },
       { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "anti-ad_domain", "reject_domain" ] } ], "action": "predefined", "rcode": "NOERROR" },
       { "rule_set": [ "Fakeip-Filter_domain", "China_domain", "China+_domain" ], "server": "dns-direct" },
       { "action": "evaluate", "server": "dns-global" },
@@ -133,8 +133,8 @@
       { "action": "sniff" },
       { "type": "logical", "mode": "or", "rules": [ { "protocol": "dns" }, { "port": 53 } ], "action": "hijack-dns" },
       { "ip_is_private": true, "outbound": "🌐 本地直连" },
-      { "clash_mode": "全局直连", "outbound": "🌐 本地直连" },
-      { "clash_mode": "全局代理", "outbound": "GLOBAL" },
+      { "clash_mode": "直连模式", "outbound": "🌐 本地直连" },
+      { "clash_mode": "全局模式", "outbound": "GLOBAL" },
       { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "anti-ad_domain", "reject_domain" ] } ], "action": "reject", "method": "drop" },
       { "rule_set": "GoogleFCM_domain", "outbound": "💌 谷歌推送" },
       { "rule_set": "Telegram_domain", "outbound": "📱 Telegram" },
