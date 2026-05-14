@@ -375,7 +375,7 @@
         "type": "remote",
         "format": "binary",
         "path": "./rules/China_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/cn.srs"
+        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/cn.srs"
       },
       {
         "tag": "China+_domain",
@@ -389,7 +389,7 @@
         "type": "remote",
         "format": "binary",
         "path": "./rules/China_ip.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/cn.srs"
+        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/cncidr.srs"
       },
       {
         "tag": "Fakeip-Filter_domain",
