@@ -3,6 +3,7 @@
     {
       "tag": "SNTP",
       "type": "remote",
+      "update_interval": "365d",
       "path": "./providers/SNTP.json",
       "url": "http://localhost:3000/download/SNTP",
       "exclude": "(?i)(DIRECT|Traffic|Expire|流量|到期|时间|重置)",
@@ -11,6 +12,7 @@
     {
       "tag": "ZYJD",
       "type": "remote",
+      "update_interval": "365d",
       "path": "./providers/ZYJD.json",
       "url": "http://localhost:3000/download/%E8%87%AA%E5%BB%BA%E8%8A%82%E7%82%B9",
       "exclude": "(?i)(DIRECT|Traffic|Expire|流量|到期|时间|重置)",
