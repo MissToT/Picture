@@ -85,7 +85,7 @@ proxy-groups:
   - {name: 'Telegram', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Orz-3/mini/raw/master/Color/Telegram.png'}
   - {name: 'Twitter', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Twitter.png'}
   - {name: 'Emby', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Orz-3/mini/raw/master/Color/Emby.png'}
-  - {name: 'E-Hentai', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/MissToT/Picture/raw/main/icon/Exhentai.svg'}
+  - {name: 'ExHentai', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/MissToT/Picture/raw/main/icon/Exhentai.svg'}
   - {name: 'TikTok', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/TikTok.png'}
   - {name: 'YouTube', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Orz-3/mini/raw/master/Color/YouTube.png'}
   - {name: 'AI', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/ChatGPT.png'}
@@ -96,7 +96,7 @@ proxy-groups:
   - {name: '国内代理', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/China.png'}
   - {name: '广告拦截', type: select, proxies: ['⛔️ 拒绝连接', 'REJECT-DROP', 'PASS'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Hijacking.png'}
   - {name: '漏网之鱼', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png'}
-  - {name: 'GLOBAL', <<: [*Select, *FilterSelect], proxies: ['自动选择', '手动选择', '🌐 本地直连', '⛔️ 拒绝连接', '谷歌推送', 'Telegram', 'Twitter', 'Emby', 'E-Hentai', 'TikTok', 'YouTube', 'AI', 'Games', '日本代理', '台湾代理', '国外代理', '国内代理', '广告拦截', '漏网之鱼'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png'}
+  - {name: 'GLOBAL', <<: [*Select, *FilterSelect], proxies: ['自动选择', '手动选择', '🌐 本地直连', '⛔️ 拒绝连接', '谷歌推送', 'Telegram', 'Twitter', 'Emby', 'ExHentai', 'TikTok', 'YouTube', 'AI', 'Games', '日本代理', '台湾代理', '国外代理', '国内代理', '广告拦截', '漏网之鱼'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png'}
 
 rule-providers:
   China_ip: {<<: *IPCIDR, url: 'https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/ipcidr/cn.mrs'}
@@ -130,7 +130,7 @@ rule-providers:
   Taiwan_domain: {<<: *Domain, url: 'https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/Taiwan.mrs'}
   TikTok_domain: {<<: *Domain, url: 'https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/tiktok.mrs'}
   YouTube_domain: {<<: *Domain, url: 'https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/youtube.mrs'}
-  E-Hentai_domain: {<<: *Domain, url: 'https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/ehentai.mrs'}
+  ExHentai_domain: {<<: *Domain, url: 'https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/ehentai.mrs'}
   anti-ad_domain: {<<: *Domain, url: 'https://v6.gh-proxy.org/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/mihomo.mrs'}
   reject_domain: {<<: *Domain, url: 'https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/Adblock.mrs'}
   Fakeip-Filter_domain: {<<: *Domain, url: 'https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/fake-ip-filter.mrs'}
@@ -148,7 +148,7 @@ rules:
   - RULE-SET,YouTube_domain,YouTube
   - RULE-SET,Emby-cn_domain,国内代理
   - RULE-SET,Emby_domain,Emby
-  - RULE-SET,E-Hentai_domain,E-Hentai
+  - RULE-SET,ExHentai_domain,ExHentai
   - RULE-SET,Mihoyo-cn_domain,国内代理
   - RULE-SET,Games_domain,Games
   - RULE-SET,Games-download_domain,Games
