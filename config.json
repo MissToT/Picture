@@ -147,7 +147,7 @@
       { "rule_set": "YouTube_domain", "outbound": "📺 YouTube" },
       { "rule_set": "Emby-cn_domain", "outbound": "🐼 国内代理" },
       { "rule_set": "Emby_domain", "outbound": "🎬 Emby" },
-      { "rule_set": "E-Hentai_domain", "outbound": "📚 ExHentai" },
+      { "rule_set": "ExHentai_domain", "outbound": "📚 ExHentai" },
       { "rule_set": "Mihoyo-cn_domain", "outbound": "🐼 国内代理" },
       { "rule_set": "Games_domain", "outbound": "🎮 Games" },
       { "rule_set": "Games-download_domain", "outbound": "🎮 Games" },
@@ -310,10 +310,10 @@
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-game-platforms-download.srs"
       },
       {
-        "tag": "E-Hentai_domain",
+        "tag": "ExHentai_domain",
         "type": "remote",
         "format": "binary",
-        "path": "./rules/E-Hentai_domain.srs",
+        "path": "./rules/ExHentai_domain.srs",
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/ehentai.srs"
       },
       {
