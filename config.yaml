@@ -16,8 +16,8 @@ Providers: &Providers {type: http, interval: 86400, proxy: '订阅更新', healt
 
 # 节点订阅
 proxy-providers:
-  SNTP: {<<: *Providers, url: 'http://localhost:3000/download/SNTP', path: ./providers/SNTP.yaml, override: {additional-prefix: 'SNTP・'}}
-  ZYJD: {<<: *Providers, url: 'http://localhost:3000/download/%E8%87%AA%E5%BB%BA%E8%8A%82%E7%82%B9', path: ./providers/ZYJD.yaml, override: {additional-prefix: 'ZYJD・'}}
+  SNTP: {<<: *Providers, url: 'http://localhost:3000/download/SNTP', path: './providers/SNTP.yaml', override: {additional-prefix: 'SNTP・'}}
+  ZYJD: {<<: *Providers, url: 'http://localhost:3000/download/%E8%87%AA%E5%BB%BA%E8%8A%82%E7%82%B9', path: './providers/ZYJD.yaml', override: {additional-prefix: 'ZYJD・'}}
 
 # 基础配置
 mixed-port: 7890
@@ -35,7 +35,7 @@ authentication: ['Ruruka:DaiSuiKi']
 skip-auth-prefixes: ['127.0.0.1/8', '::1/128']
 
 external-ui-url: 'https://v6.gh-proxy.org/github.com/Zephyruso/zashboard/releases/download/v1.101.1/dist.zip'
-external-ui: ./webui
+external-ui: webui
 external-controller: 0.0.0.0:9090
 secret: ''
 
@@ -48,7 +48,10 @@ sniffer:
   parse-pure-ip: true
   force-dns-mapping: true
   override-destination: false
-  sniff: {HTTP: {ports: [80, 8080-8880], override-destination: true}, TLS: {ports: [443, 8443]}, QUIC: {ports: [443, 8443]}}
+  sniff: 
+    HTTP: {ports: [80, 8080-8880], override-destination: true}
+    TLS: {ports: [443, 8443]}
+    QUIC: {ports: [443, 8443]}
   skip-domain: ['Mijia Cloud']
 
 dns:
@@ -58,7 +61,13 @@ dns:
   cache-algorithm: arc
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
-  fake-ip-filter: ['RULE-SET:Fakeip-Filter_domain,Private_domain,China_domain,China+_domain']
+  fake-ip-filter-mode: rule
+  fake-ip-filter:
+    - RULE-SET,Fakeip-Filter_domain,real-ip
+    - RULE-SET,Private_domain,real-ip
+    - RULE-SET,China_domain,real-ip
+    - RULE-SET,China+_domain,real-ip
+    - MATCH,fake-ip
   default-nameserver: [223.5.5.5, 119.29.29.29]
   nameserver: ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query']
 
