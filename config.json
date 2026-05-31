@@ -178,7 +178,7 @@
         "type": "remote",
         "format": "binary",
         "path": "./rules/reject_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Adblock.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/reject.srs"
       },
       {
         "tag": "Proxy_domain",
