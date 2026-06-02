@@ -163,7 +163,7 @@
     "final": "🍥 漏网之鱼",
     "find_process": true,
     "auto_detect_interface": true,
-    "default_http_client": "client-download",
+    "default_http_client": "sub-client",
     "default_domain_resolver": "dns-direct",
     "rule_set": [
       {
@@ -393,6 +393,6 @@
     ]
   },
   "http_clients": [
-    { "tag": "client-download", "detour": "📦 订阅更新" }
+    { "tag": "sub-client", "headers": { "User-Agent": "Clash.Meta" }, "detour": "📦 订阅更新" }
   ]
 }
