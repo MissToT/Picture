@@ -54,7 +54,7 @@
     "rules": [
       { "clash_mode": "直连模式", "server": "dns-direct" },
       { "clash_mode": "全局模式", "server": "dns-global" },
-      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "anti-ad_domain", "reject_domain" ] } ], "action": "predefined", "rcode": "NOERROR" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "anti-ad_domain", "reject_domain" ] } ], "action": "predefined", "rcode": "NXDOMAIN" },
       { "rule_set": [ "Fakeip-Filter_domain", "China_domain", "China+_domain" ], "server": "dns-direct" },
       { "action": "evaluate", "server": "dns-global" },
       { "match_response": true, "ip_is_private": true, "action": "respond" },
@@ -71,8 +71,7 @@
       "tag": "mixed-in",
       "type": "mixed",
       "listen": "::",
-      "listen_port": 7890,
-      "users": [ { "username": "Ruruka", "password": "DaiSuiKi" } ]
+      "listen_port": 7890
     },
     {
       "tag": "redirect-in",
@@ -93,7 +92,7 @@
       "stack": "gvisor",
       "dns_mode": "hijack",
       "interface_name": "Box",
-      "address": "172.18.0.1/30",
+      "address": [ "172.18.0.1/30", "fdfe:dcba:9876::1/126" ],
       "auto_route": true,
       "strict_route": true,
       "auto_redirect": false
@@ -123,12 +122,13 @@
   ],
   "route": {
     "rules": [
+      { "type": "logical", "mode": "and", "rules": [ { "ip_version": 6 }, { "default_interface_address": "2000::/3", "invert": true } ], "action": "reject" },
       { "action": "sniff" },
       { "type": "logical", "mode": "or", "rules": [ { "protocol": "dns" }, { "port": 53 } ], "action": "hijack-dns" },
       { "ip_is_private": true, "outbound": "🌐 本地直连" },
       { "clash_mode": "直连模式", "outbound": "🌐 本地直连" },
       { "clash_mode": "全局模式", "outbound": "GLOBAL" },
-      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "anti-ad_domain", "reject_domain" ] } ], "action": "reject", "method": "drop" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "规则-允许广告", "invert": true }, { "rule_set": [ "anti-ad_domain", "reject_domain" ] } ], "action": "reject" },
       { "rule_set": "GoogleFCM_domain", "outbound": "💌 谷歌推送" },
       { "rule_set": "Telegram_domain", "outbound": "📱 Telegram" },
       { "rule_set": "Twitter_domain", "outbound": "🐦 Twitter" },
