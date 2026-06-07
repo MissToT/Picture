@@ -45,8 +45,8 @@
       { "tag": "dns-bootstrap", "type": "udp", "server": "223.5.5.5" },
       { "tag": "dns-ali", "type": "quic", "server": "dns.alidns.com", "domain_resolver": "dns-bootstrap" },
       { "tag": "dns-tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns-bootstrap" },
-      { "tag": "dns-cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "👻 国外代理" },
-      { "tag": "dns-google", "type": "https", "server": "dns.google", "detour": "👻 国外代理" },
+      { "tag": "dns-cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "🌍 国外代理" },
+      { "tag": "dns-google", "type": "https", "server": "dns.google", "detour": "🌍 国外代理" },
       { "tag": "dns-direct", "type": "group", "servers": [ "dns-ali", "dns-tencent" ] },
       { "tag": "dns-global", "type": "group", "servers": [ "dns-cloudflare", "dns-google" ] },
       { "tag": "dns-fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/18" }
@@ -68,26 +68,26 @@
   },
   "inbounds": [
     {
-      "tag": "mixed-in",
       "type": "mixed",
+      "tag": "mixed-in",
       "listen": "::",
       "listen_port": 7890
     },
     {
-      "tag": "redirect-in",
       "type": "redirect",
+      "tag": "redirect-in",
       "listen": "::",
       "listen_port": 9797
     },
     {
-      "tag": "tproxy-in",
       "type": "tproxy",
+      "tag": "tproxy-in",
       "listen": "::",
       "listen_port": 9898
     },
     {
-      "tag": "tun-in",
       "type": "tun",
+      "tag": "tun-in",
       "mtu": 9000,
       "stack": "gvisor",
       "dns_mode": "hijack",
@@ -115,10 +115,10 @@
     { "tag": "🎮 Games", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🌸 日本代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(日本|🇯🇵|JP|japan)" },
     { "tag": "🐸 台湾代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW)" },
-    { "tag": "👻 国外代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🐼 国内代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🌍 国外代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🍥 漏网之鱼", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接", "📦 订阅更新", "💌 谷歌推送", "📱 Telegram", "🐦 Twitter", "🎬 Emby", "📚 ExHentai", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🌸 日本代理", "🐸 台湾代理", "👻 国外代理", "🐼 国内代理", "🍥 漏网之鱼" ] }
+    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接", "📦 订阅更新", "💌 谷歌推送", "📱 Telegram", "🐦 Twitter", "🎬 Emby", "📚 ExHentai", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🌸 日本代理", "🐸 台湾代理", "🐼 国内代理", "🌍 国外代理", "🍥 漏网之鱼" ] }
   ],
   "route": {
     "rules": [
@@ -142,20 +142,20 @@
       { "rule_set": "Games-download_domain", "outbound": "🎮 Games" },
       { "rule_set": "Japan_domain", "outbound": "🌸 日本代理" },
       { "rule_set": "Taiwan_domain", "outbound": "🐸 台湾代理" },
-      { "rule_set": "Proxy+_domain", "outbound": "👻 国外代理" },
+      { "rule_set": "Proxy+_domain", "outbound": "🌍 国外代理" },
       { "rule_set": "China+_domain", "outbound": "🐼 国内代理" },
-      { "rule_set": "Google_domain", "outbound": "👻 国外代理" },
+      { "rule_set": "Google_domain", "outbound": "🌍 国外代理" },
       { "rule_set": "Microsoft-cn_domain", "outbound": "🐼 国内代理" },
-      { "rule_set": "Microsoft_domain", "outbound": "👻 国外代理" },
+      { "rule_set": "Microsoft_domain", "outbound": "🌍 国外代理" },
       { "rule_set": "Cloudflare-cn_domain", "outbound": "🐼 国内代理" },
-      { "rule_set": "Cloudflare_domain", "outbound": "👻 国外代理" },
-      { "rule_set": "Proxy_domain", "outbound": "👻 国外代理" },
+      { "rule_set": "Cloudflare_domain", "outbound": "🌍 国外代理" },
+      { "rule_set": "Proxy_domain", "outbound": "🌍 国外代理" },
       { "rule_set": "China_domain", "outbound": "🐼 国内代理" },
       { "rule_set": "Telegram_ip", "outbound": "📱 Telegram" },
       { "rule_set": "Twitter_ip", "outbound": "🐦 Twitter" },
       { "rule_set": "AI_ip", "outbound": "🤖 AI" },
-      { "rule_set": "Google_ip", "outbound": "👻 国外代理" },
-      { "rule_set": "Cloudflare_ip", "outbound": "👻 国外代理" },
+      { "rule_set": "Google_ip", "outbound": "🌍 国外代理" },
+      { "rule_set": "Cloudflare_ip", "outbound": "🌍 国外代理" },
       { "action": "resolve", "match_only": true },
       { "rule_set": "China_ip", "outbound": "🐼 国内代理" }
     ],
