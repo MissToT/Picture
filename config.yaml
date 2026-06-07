@@ -102,11 +102,11 @@ proxy-groups:
   - {name: 'Games', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png'}
   - {name: '日本代理', <<: *Select, filter: '^(?=.*(?i)(日本|🇯🇵|JP))(?!.*(2.00x|排除2)).*$', icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Japan.png'}
   - {name: '台湾代理', <<: *Select, filter: '^(?=.*(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW))(?!.*(2.00x|排除2)).*$', icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Taiwan.png'}
-  - {name: '国外代理', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/United_Nations.png'}
   - {name: '国内代理', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/China.png'}
+  - {name: '国外代理', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/United_Nations.png'}
   - {name: '广告拦截', type: select, proxies: ['⛔️ 拒绝连接', 'REJECT-DROP', 'PASS'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/AdBlack.png'}
   - {name: '漏网之鱼', <<: [*Select, *FilterSelect], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png'}
-  - {name: 'GLOBAL', <<: [*Select, *FilterSelect], proxies: ['自动选择', '手动选择', '🌐 本地直连', '⛔️ 拒绝连接', '订阅更新', '谷歌推送', 'Telegram', 'Twitter', 'Emby', 'ExHentai', 'TikTok', 'YouTube', 'AI', 'Games', '日本代理', '台湾代理', '国外代理', '国内代理', '广告拦截', '漏网之鱼'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png'}
+  - {name: 'GLOBAL', <<: [*Select, *FilterSelect], proxies: ['自动选择', '手动选择', '🌐 本地直连', '⛔️ 拒绝连接', '订阅更新', '谷歌推送', 'Telegram', 'Twitter', 'Emby', 'ExHentai', 'TikTok', 'YouTube', 'AI', 'Games', '日本代理', '台湾代理', '国内代理', '国外代理', '广告拦截', '漏网之鱼'], icon: 'https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png'}
 
 rule-providers:
   China_ip: {<<: *IPCIDR, url: 'https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/ipcidr/cn.mrs'}
