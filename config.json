@@ -17,6 +17,12 @@
       "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
     }
   ],
+  "log": {
+    "disabled": true,
+    "level": "info",
+    "timestamp": true,
+    "output": "sing-box.log"
+  },
   "experimental": {
     "urltest_unified_delay": true,
     "cache_file": {
@@ -33,12 +39,6 @@
       "access_control_allow_origin": "*",
       "access_control_allow_private_network": true
     }
-  },
-  "log": {
-    "disabled": true,
-    "level": "info",
-    "timestamp": true,
-    "output": "sing-box.log"
   },
   "dns": {
     "servers": [
@@ -66,6 +66,15 @@
     "optimistic": true,
     "reverse_mapping": true
   },
+  "http_clients": [
+    {
+      "tag": "sub-client",
+      "headers": {
+        "User-Agent": "Clash.Meta"
+      },
+      "detour": "📦 订阅更新"
+    }
+  ],
   "inbounds": [
     {
       "type": "mixed",
@@ -101,7 +110,7 @@
   "outbounds": [
     { "tag": "⛔️ 拒绝连接", "type": "block" },
     { "tag": "🌐 本地直连", "type": "direct" },
-    { "tag": "♻️ 自动选择", "type": "urltest", "use_all_providers": true, "interrupt_exist_connections": false, "interval": "5m", "tolerance": 100, "url": "https://captive.apple.com/generate_204", "include": "(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW|日本|🇯🇵|JP|美国|🇺🇸|US|新加坡|狮城|🇸🇬|SG)", "exclude": "(?i)(^|[\\s\\-_])([2-9](\\.\\d*)?|[1-9]\\d+(\\.\\d*)?|1\\.[1-9]\\d*)(x|倍率)" },
+    { "tag": "♻️ 自动选择", "type": "urltest", "use_all_providers": true, "interrupt_exist_connections": false, "interval": "5m", "tolerance": 100, "url": "https://captive.apple.com/generate_204", "include": "(?i)(🇭🇰|香港|HK|🇹🇼|台湾|TW|🇯🇵|日本|JP|🇺🇸|美国|US|🇸🇬|新加坡|狮城|SG)", "exclude": "(?i)(^|[\\s\\-_])([2-9](\\.\\d*)?|[1-9]\\d+(\\.\\d*)?|1\\.[1-9]\\d*)(x|倍率)" },
     { "tag": "🎯 手动选择", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true },
     { "tag": "📦 订阅更新", "type": "selector", "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "💌 谷歌推送", "type": "selector", "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
@@ -113,8 +122,8 @@
     { "tag": "📺 YouTube", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🤖 AI", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🎮 Games", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "🇯🇵 日本代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(日本|🇯🇵|JP|japan)" },
-    { "tag": "🇹🇼 台湾代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW)" },
+    { "tag": "🇯🇵 日本代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(🇯🇵|日本|Japan|JP)" },
+    { "tag": "🇹🇼 台湾代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(🇭🇰|香港|HongKong|HK|🇹🇼|台湾|Taiwan|TW)" },
     { "tag": "🇨🇳 国内代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🇺🇳 国外代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🍥 漏网之鱼", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
@@ -390,8 +399,5 @@
         "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/fake-ip-filter.srs"
       }
     ]
-  },
-  "http_clients": [
-    { "tag": "sub-client", "headers": { "User-Agent": "Clash.Meta" }, "detour": "📦 订阅更新" }
-  ]
+  }
 }
