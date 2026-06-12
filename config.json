@@ -5,7 +5,7 @@
       "type": "remote",
       "path": "./providers/SNTP.json",
       "url": "http://localhost:3000/download/SNTP",
-      "exclude": "(?i)(DIRECT|Traffic|Expire|流量|到期|时间|重置)",
+      "exclude": "(?i)(流量|到期|时间|重置)",
       "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
     },
     {
@@ -13,7 +13,7 @@
       "type": "remote",
       "path": "./providers/ZYJD.json",
       "url": "http://localhost:3000/download/%E8%87%AA%E5%BB%BA%E8%8A%82%E7%82%B9?includeUnsupportedProxy=true",
-      "exclude": "(?i)(DIRECT|Traffic|Expire|流量|到期|时间|重置)",
+      "exclude": "(?i)(流量|到期|时间|重置)",
       "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
     }
   ],
@@ -360,7 +360,7 @@
         "type": "remote",
         "format": "binary",
         "path": "./rules/China_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/cn.srs"
+        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version5/cn.srs"
       },
       {
         "tag": "China+_domain",
@@ -374,14 +374,14 @@
         "type": "remote",
         "format": "binary",
         "path": "./rules/China_ip.srs",
-        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/cncidr.srs"
+        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version5/cncidr.srs"
       },
       {
         "tag": "Fakeip-Filter_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Fakeip-Filter_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/fake-ip-filter.srs"
+        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version5/fake-ip-filter.srs"
       }
     ]
   }
