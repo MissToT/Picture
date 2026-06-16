@@ -90,8 +90,8 @@ proxies:
 proxy-groups:
   - { name: "自动选择", <<: [ *UrlTest, *FilterSelect ], include-all-providers: true, interval: 300, tolerance: 100, icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Bypass.png" }
   - { name: "手动选择", type: select, include-all-providers: true, interrupt-exist-connections: true, icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Proxy.png" }
-  - { name: "订阅更新", <<: *Select, include-all-providers: false, icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Loop.png" }
-  - { name: "谷歌推送", <<: *Select, include-all-providers: false, icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png" }
+  - { name: "订阅更新", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Loop.png" }
+  - { name: "谷歌推送", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png" }
   - { name: "Telegram", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/Orz-3/mini/raw/master/Color/Telegram.png" }
   - { name: "Twitter", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Twitter.png" }
   - { name: "Emby", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/Orz-3/mini/raw/master/Color/Emby.png" }
