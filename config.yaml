@@ -88,9 +88,10 @@ proxies:
   - { name: "🔰 DNS-Hijack", type: dns }
 
 proxy-groups:
-  - { name: "自动选择", <<: [ *UrlTest, *FilterSelect ], include-all-providers: true, interval: 300, tolerance: 100, icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Bypass.png" }
+  - { name: "自动选择", <<: [ *UrlTest, *FilterSelect ], include-all-providers: true, interval: 300, tolerance: 100, icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png" }
   - { name: "手动选择", type: select, include-all-providers: true, interrupt-exist-connections: true, icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Proxy.png" }
-  - { name: "订阅更新", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Loop.png" }
+  - { name: "订阅更新", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Stack.png" }
+  - { name: "广告拦截", type: select, proxies: [ "⛔️ 拒绝连接", "PASS" ], icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/AdBlack.png" }
   - { name: "谷歌推送", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png" }
   - { name: "Telegram", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/Orz-3/mini/raw/master/Color/Telegram.png" }
   - { name: "Twitter", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Twitter.png" }
@@ -104,9 +105,8 @@ proxy-groups:
   - { name: "台湾网站", <<: *Select, filter: "^(?=.*(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW))(?!.*(2.00x|排除2)).*$", icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Taiwan.png" }
   - { name: "国内直连", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/China.png" }
   - { name: "国外代理", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/United_Nations.png" }
-  - { name: "广告拦截", type: select, proxies: [ "⛔️ 拒绝连接", "PASS" ], icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/AdBlack.png" }
   - { name: "漏网之鱼", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png" }
-  - { name: "GLOBAL", <<: [ *Select, *FilterSelect ], proxies: [ "自动选择", "手动选择", "🌐 本地直连", "⛔️ 拒绝连接", "订阅更新", "谷歌推送", "Telegram", "Twitter", "Emby", "ExHentai", "TikTok", "YouTube", "AI", "Games", "日本网站", "台湾网站", "国内直连", "国外代理", "广告拦截", "漏网之鱼" ], icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png" }
+  - { name: "GLOBAL", <<: [ *Select, *FilterSelect ], proxies: [ "自动选择", "手动选择", "🌐 本地直连", "⛔️ 拒绝连接", "订阅更新", "广告拦截", "谷歌推送", "Telegram", "Twitter", "Emby", "ExHentai", "TikTok", "YouTube", "AI", "Games", "日本网站", "台湾网站", "国内直连", "国外代理", "漏网之鱼" ], icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png" }
 
 rule-providers:
   China_ip: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/ipcidr/cn.mrs" }
