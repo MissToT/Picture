@@ -1,0 +1,365 @@
+{
+  "providers": [
+    {
+      "tag": "SNTP",
+      "type": "remote",
+      "path": "./providers/SNTP.json",
+      "url": "http://localhost:5200/download/SNTP",
+      "exclude": "(?i)(流量|到期|时间|重置)",
+      "health_check": {
+        "enabled": true,
+        "url": "https://captive.apple.com/generate_204",
+        "interval": "10m"
+      }
+    }
+  ],
+  "log": {
+    "disabled": true,
+    "level": "info",
+    "timestamp": true,
+    "output": "sing-box.log"
+  },
+  "experimental": {
+    "urltest_unified_delay": true,
+    "cache_file": {
+      "enabled": true,
+      "store_dns": true,
+      "store_fakeip": true
+    },
+    "clash_api": {
+      "default_mode": "规则模式",
+      "external_ui": "dashboard",
+      "external_controller": "0.0.0.0:9090",
+      "external_ui_download_url": "https://v6.gh-proxy.org/github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip",
+      "access_control_allow_private_network": true
+    }
+  },
+  "services": [
+    {
+      "type": "api",
+      "listen": "0.0.0.0",
+      "listen_port": 9191,
+      "access_control_allow_private_network": true
+    }
+  ],
+  "dns": {
+    "servers": [
+      {
+        "tag": "dns-bootstrap",
+        "type": "udp",
+        "server": "223.5.5.5"
+      },
+      {
+        "tag": "dns-ali",
+        "type": "quic",
+        "server": "dns.alidns.com",
+        "domain_resolver": "dns-bootstrap"
+      },
+      {
+        "tag": "dns-tencent",
+        "type": "https",
+        "server": "doh.pub",
+        "domain_resolver": "dns-bootstrap"
+      },
+      {
+        "tag": "dns-cloudflare",
+        "type": "https",
+        "server": "cloudflare-dns.com",
+        "detour": "🇺🇳 国外代理"
+      },
+      {
+        "tag": "dns-google",
+        "type": "https",
+        "server": "dns.google",
+        "detour": "🇺🇳 国外代理"
+      },
+      {
+        "tag": "dns-direct",
+        "type": "group",
+        "servers": [
+          "dns-ali",
+          "dns-tencent"
+        ]
+      },
+      {
+        "tag": "dns-global",
+        "type": "group",
+        "servers": [
+          "dns-cloudflare",
+          "dns-google"
+        ]
+      },
+      {
+        "tag": "dns-fakeip",
+        "type": "fakeip",
+        "inet4_range": "198.18.0.0/15",
+        "inet6_range": "fc00::/18"
+      }
+    ],
+    "rules": [
+      {
+        "clash_mode": "直连模式",
+        "server": "dns-direct"
+      },
+      {
+        "clash_mode": "全局模式",
+        "server": "dns-global"
+      },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "clash_mode": "规则-允许广告",
+            "invert": true
+          },
+          {
+            "rule_set": "anti-ad"
+          }
+        ],
+        "action": "predefined",
+        "rcode": "NOERROR"
+      },
+      {
+        "rule_set": [
+          "fakeip-filter",
+          "cn-domain"
+        ],
+        "server": "dns-direct"
+      },
+      {
+        "action": "evaluate",
+        "server": "dns-global"
+      },
+      {
+        "match_response": true,
+        "ip_is_private": true,
+        "action": "respond"
+      },
+      {
+        "match_response": true,
+        "rule_set": "cn-ip",
+        "server": "dns-direct"
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "dns-fakeip"
+      }
+    ],
+    "final": "dns-global",
+    "strategy": "prefer_ipv4",
+    "optimistic": true,
+    "reverse_mapping": true
+  },
+  "http_clients": [
+    {
+      "tag": "sub-client",
+      "headers": {
+        "User-Agent": "Clash.Meta"
+      },
+      "detour": "📦 订阅更新"
+    }
+  ],
+  "inbounds": [
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "::",
+      "listen_port": 7890
+    },
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "mtu": 9000,
+      "stack": "gvisor",
+      "dns_mode": "hijack",
+      "interface_name": "Box",
+      "address": "172.18.0.1/30",
+      "auto_route": true,
+      "strict_route": true,
+      "auto_redirect": false
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "⛔️ 拒绝连接",
+      "type": "block"
+    },
+    {
+      "tag": "🌐 本地直连",
+      "type": "direct"
+    },
+    {
+      "tag": "🎯 手动选择",
+      "type": "selector",
+      "use_all_providers": true,
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "📦 订阅更新",
+      "type": "selector",
+      "use_all_providers": true,
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "🎯 手动选择",
+        "🌐 本地直连",
+        "⛔️ 拒绝连接"
+      ]
+    },
+    {
+      "tag": "🇨🇳 国内直连",
+      "type": "selector",
+      "use_all_providers": true,
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "🎯 手动选择",
+        "🌐 本地直连",
+        "⛔️ 拒绝连接"
+      ]
+    },
+    {
+      "tag": "🇺🇳 国外代理",
+      "type": "selector",
+      "use_all_providers": true,
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "🎯 手动选择",
+        "🌐 本地直连",
+        "⛔️ 拒绝连接"
+      ]
+    },
+    {
+      "tag": "🍥 漏网之鱼",
+      "type": "selector",
+      "use_all_providers": true,
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "🎯 手动选择",
+        "🌐 本地直连",
+        "⛔️ 拒绝连接"
+      ]
+    },
+    {
+      "tag": "GLOBAL",
+      "type": "selector",
+      "use_all_providers": true,
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "🎯 手动选择",
+        "🌐 本地直连",
+        "⛔️ 拒绝连接",
+        "📦 订阅更新",
+        "🇨🇳 国内直连",
+        "🇺🇳 国外代理",
+        "🍥 漏网之鱼"
+      ]
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "action": "sniff"
+      },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "protocol": "dns"
+          },
+          {
+            "port": 53
+          }
+        ],
+        "action": "hijack-dns"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "🌐 本地直连"
+      },
+      {
+        "clash_mode": "直连模式",
+        "outbound": "🌐 本地直连"
+      },
+      {
+        "clash_mode": "全局模式",
+        "outbound": "GLOBAL"
+      },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "clash_mode": "规则-允许广告",
+            "invert": true
+          },
+          {
+            "rule_set": "anti-ad"
+          }
+        ],
+        "action": "reject"
+      },
+      {
+        "rule_set": "proxy",
+        "outbound": "🇺🇳 国外代理"
+      },
+      {
+        "rule_set": "cn-domain",
+        "outbound": "🇨🇳 国内直连"
+      },
+      {
+        "action": "resolve",
+        "match_only": true
+      },
+      {
+        "rule_set": "cn-ip",
+        "outbound": "🇨🇳 国内直连"
+      }
+    ],
+    "final": "🍥 漏网之鱼",
+    "find_process": true,
+    "auto_detect_interface": true,
+    "default_http_client": "sub-client",
+    "default_domain_resolver": "dns-direct",
+    "rule_set": [
+      {
+        "tag": "anti-ad",
+        "type": "remote",
+        "format": "binary",
+        "path": "./rules/anti-ad.srs",
+        "url": "https://v6.gh-proxy.org/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/anti-ad-sing-box.srs"
+      },
+      {
+        "tag": "proxy",
+        "type": "remote",
+        "format": "binary",
+        "path": "./rules/proxy.srs",
+        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version5/proxy.srs"
+      },
+      {
+        "tag": "cn-domain",
+        "type": "remote",
+        "format": "binary",
+        "path": "./rules/cn-domain.srs",
+        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version5/cn.srs"
+      },
+      {
+        "tag": "cn-ip",
+        "type": "remote",
+        "format": "binary",
+        "path": "./rules/cn-ip.srs",
+        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version5/cncidr.srs"
+      },
+      {
+        "tag": "fakeip-filter",
+        "type": "remote",
+        "format": "binary",
+        "path": "./rules/fakeip-filter.srs",
+        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version5/fake-ip-filter.srs"
+      }
+    ]
+  }
+}
