@@ -1,0 +1,112 @@
+############################################## - ⚓️ 锚点区开始 - ##############################################
+# 锚点 - 筛选组
+FilterSelect: &FilterSelect { filter: "^(?=.*(?i)(香港|🇭🇰|HK|台湾|🇹🇼|TW|日本|🇯🇵|JP|美国|🇺🇸|US|新加坡|狮城|🇸🇬|SG))(?!.*(2.00x|排除2)).*$" }
+FilterOthers: &FilterOthers { filter: "^(?!.*(流量|到期|时间|重置))" }
+# 锚点 - 策略组
+Select: &Select { type: select, include-all-providers: true, interrupt-exist-connections: true, proxies: [ "手动选择", "🌐 本地直连", "⛔️ 拒绝连接"] }
+UrlTest: &UrlTest { type: url-test, interrupt-exist-connections: false, hidden: true, interval: 180, tolerance: 200, url: "https://captive.apple.com/generate_204" }
+Fallback: &Fallback { type: fallback, interrupt-exist-connections: true, hidden: true, interval: 60, url: "https://captive.apple.com/generate_204" }
+# 锚点 - 规则集
+IPCIDR: &IPCIDR { type: http, interval: 86400, proxy: "订阅更新", behavior: ipcidr, format: mrs }
+Domain: &Domain { type: http, interval: 86400, proxy: "订阅更新", behavior: domain, format: mrs }
+Classical: &Classical { type: http, interval: 86400, proxy: "订阅更新", behavior: classical, format: text }
+# 锚点 - 远程订阅组
+Providers: &Providers { type: http, interval: 86400, proxy: "订阅更新", health-check: { enable: true, url: "https://captive.apple.com/generate_204", interval: 600 }, <<: *FilterOthers }
+############################################## - ⚓️ 锚点区结束 - ##############################################
+
+# 节点订阅
+proxy-providers:
+  SNTP: { <<: *Providers, url: "http://localhost:5200/download/SNTP", path: "./providers/SNTP.yaml", override: { additional-prefix: "SNTP・" } }
+
+# 基础配置
+mixed-port: 7890
+mode: rule
+log-level: silent
+ipv6: false
+allow-lan: true
+bind-address: "*"
+unified-delay: true
+tcp-concurrent: true
+find-process-mode: always
+
+external-ui-url: "https://v6.gh-proxy.org/github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
+external-ui: webui
+external-controller: 0.0.0.0:9090
+secret: ""
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+sniffer:
+  enable: true
+  parse-pure-ip: true
+  force-dns-mapping: true
+  override-destination: false
+  sniff: 
+    HTTP: { ports: [ 80, 8080-8880 ], override-destination: true }
+    TLS: { ports: [ 443, 8443 ] }
+    QUIC: { ports: [ 443, 8443 ] }
+  skip-domain: [ "Mijia Cloud" ]
+
+dns:
+  enable: true
+  ipv6: false
+  listen: 0.0.0.0:1053
+  cache-algorithm: arc
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter-mode: rule
+  fake-ip-filter:
+    - RULE-SET,Fakeip-Filter_domain,real-ip
+    - RULE-SET,Private_domain,real-ip
+    - RULE-SET,China_domain,real-ip
+    - MATCH,fake-ip
+  default-nameserver: [ 223.5.5.5, 119.29.29.29 ]
+  nameserver: [ "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query" ]
+
+tun:
+  enable: true
+  mtu: 9000
+  stack: gvisor
+  device: Meta
+  dns-hijack: [ "any:53", "tcp://any:53" ]
+  auto-route: true
+  strict-route: true
+  auto-redirect: false
+  auto-detect-interface: true
+
+proxies:
+  - { name: "🌐 本地直连", type: direct }
+  - { name: "⛔️ 拒绝连接", type: reject }
+  - { name: "🔰 DNS-Hijack", type: dns }
+
+proxy-groups:
+  - { name: "手动选择", type: select, include-all-providers: true, interrupt-exist-connections: true, icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Proxy.png" }
+  - { name: "订阅更新", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Stack.png" }
+  - { name: "国内直连", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/China.png" }
+  - { name: "国外代理", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/United_Nations.png" }
+  - { name: "广告拦截", type: select, proxies: [ "⛔️ 拒绝连接", "PASS" ], icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/AdBlack.png" }
+  - { name: "漏网之鱼", <<: [ *Select, *FilterSelect ], icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png" }
+  - { name: "GLOBAL", <<: [ *Select, *FilterSelect ], proxies: [ "手动选择", "🌐 本地直连", "⛔️ 拒绝连接", "订阅更新", "国内直连", "国外代理", "广告拦截", "漏网之鱼" ], icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png" }
+
+rule-providers:
+  Private_ip:               { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/private.mrs" }
+  China_ip:                 { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/ipcidr/cn.mrs" }
+  Proxy_ip:                 { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/ipcidr/proxy.mrs" }
+  Private_domain:           { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/private.mrs" }
+  China_domain:             { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/cn.mrs" }
+  Proxy_domain:             { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/proxy.mrs" }
+  anti-ad_domain:           { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/mihomo.mrs" }
+  Fakeip-Filter_domain:     { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/fake-ip-filter.mrs" }
+
+rules:
+  - DST-PORT,53,🔰 DNS-Hijack
+  - RULE-SET,anti-ad_domain,广告拦截
+  - RULE-SET,Private_domain,🌐 本地直连
+  - RULE-SET,Proxy_domain,国外代理
+  - RULE-SET,China_domain,国内直连
+  - RULE-SET,Private_ip,🌐 本地直连,no-resolve
+  - RULE-SET,Proxy_ip,国外代理,no-resolve
+  - RULE-SET,China_ip,国内直连,no-resolve
+  - MATCH,漏网之鱼
