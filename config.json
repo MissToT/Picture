@@ -185,27 +185,6 @@
         "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/SingBox/Rules/domain/reject.srs"
       },
       {
-        "tag": "Proxy_domain",
-        "type": "remote",
-        "format": "binary",
-        "path": "./rules/Proxy_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/main/dist/domain/proxy.srs"
-      },
-      {
-        "tag": "Proxy_ip",
-        "type": "remote",
-        "format": "binary",
-        "path": "./rules/Proxy_ip.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/main/dist/ipcidr/proxy.srs"
-      },
-      {
-        "tag": "Proxy+_domain",
-        "type": "remote",
-        "format": "binary",
-        "path": "./rules/Proxy+_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/SingBox/Rules/domain/Proxy.srs"
-      },
-      {
         "tag": "Cloudflare_domain",
         "type": "remote",
         "format": "binary",
@@ -372,6 +351,27 @@
         "format": "binary",
         "path": "./rules/Twitter_ip.srs",
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/twitter.srs"
+      },
+      {
+        "tag": "Proxy_domain",
+        "type": "remote",
+        "format": "binary",
+        "path": "./rules/Proxy_domain.srs",
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/main/dist/domain/proxy.srs"
+      },
+      {
+        "tag": "Proxy+_domain",
+        "type": "remote",
+        "format": "binary",
+        "path": "./rules/Proxy+_domain.srs",
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/SingBox/Rules/domain/Proxy.srs"
+      },
+      {
+        "tag": "Proxy_ip",
+        "type": "remote",
+        "format": "binary",
+        "path": "./rules/Proxy_ip.srs",
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/main/dist/ipcidr/proxy.srs"
       },
       {
         "tag": "China_domain",
