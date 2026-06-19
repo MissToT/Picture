@@ -182,224 +182,224 @@
         "type": "remote",
         "format": "binary",
         "path": "./rules/reject_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/reject.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/SingBox/Rules/domain/reject.srs"
       },
       {
         "tag": "Proxy_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Proxy_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/refs/heads/main/dist/domain/proxy.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/main/dist/domain/proxy.srs"
       },
       {
         "tag": "Proxy_ip",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Proxy_ip.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/refs/heads/main/dist/ipcidr/proxy.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/main/dist/ipcidr/proxy.srs"
       },
       {
         "tag": "Proxy+_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Proxy+_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Proxy.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/SingBox/Rules/domain/Proxy.srs"
       },
       {
         "tag": "Cloudflare_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Cloudflare_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/cloudflare.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/cloudflare.srs"
       },
       {
         "tag": "Cloudflare-cn_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Cloudflare-cn_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/cloudflare-cn.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/cloudflare-cn.srs"
       },
       {
         "tag": "Cloudflare_ip",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Cloudflare_ip.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/cloudflare.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/cloudflare.srs"
       },
       {
         "tag": "Google_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Google_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/google.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/google.srs"
       },
       {
         "tag": "GoogleFCM_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/GoogleFCM_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/googlefcm.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/SingBox/Rules/domain/googlefcm.srs"
       },
       {
         "tag": "Google_ip",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Google_ip.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/google.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/google.srs"
       },
       {
         "tag": "Microsoft_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Microsoft_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/microsoft.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/microsoft.srs"
       },
       {
         "tag": "Microsoft-cn_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Microsoft-cn_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/microsoft@cn.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/microsoft@cn.srs"
       },
       {
         "tag": "Mihoyo-cn_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Mihoyo-cn_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/mihoyo-cn.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/mihoyo-cn.srs"
       },
       {
         "tag": "Emby_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Emby_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Emby.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/SingBox/Rules/domain/Emby.srs"
       },
       {
         "tag": "Emby-cn_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Emby-cn_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Emby-CN.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/SingBox/Rules/domain/Emby-CN.srs"
       },
       {
         "tag": "AI_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/AI_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-ai-!cn.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/category-ai-!cn.srs"
       },
       {
         "tag": "AI_ip",
         "type": "remote",
         "format": "binary",
         "path": "./rules/AI_ip.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/ai.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/ai.srs"
       },
       {
         "tag": "Games_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Games_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-games-!cn.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/category-games-!cn.srs"
       },
       {
         "tag": "Games-download_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Games-download_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-game-platforms-download.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/category-game-platforms-download.srs"
       },
       {
         "tag": "ExHentai_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/ExHentai_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/ehentai.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/ehentai.srs"
       },
       {
         "tag": "Japan_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Japan_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Japan.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/SingBox/Rules/domain/Japan.srs"
       },
       {
         "tag": "Taiwan_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Taiwan_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/Taiwan.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/SingBox/Rules/domain/Taiwan.srs"
       },
       {
         "tag": "TikTok_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/TikTok_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/tiktok.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/tiktok.srs"
       },
       {
         "tag": "YouTube_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/YouTube_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/youtube.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/youtube.srs"
       },
       {
         "tag": "Telegram_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Telegram_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/telegram.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/telegram.srs"
       },
       {
         "tag": "Telegram_ip",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Telegram_ip.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/telegram.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/telegram.srs"
       },
       {
         "tag": "Twitter_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Twitter_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/twitter.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/twitter.srs"
       },
       {
         "tag": "Twitter_ip",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Twitter_ip.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geoip/twitter.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/twitter.srs"
       },
       {
         "tag": "China_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/China_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version5/cn.srs"
+        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/singbox/version5/cn.srs"
       },
       {
         "tag": "China+_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/China+_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/refs/heads/SingBox/Rules/domain/China.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/SingBox/Rules/domain/China.srs"
       },
       {
         "tag": "China_ip",
         "type": "remote",
         "format": "binary",
         "path": "./rules/China_ip.srs",
-        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version5/cncidr.srs"
+        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/singbox/version5/cncidr.srs"
       },
       {
         "tag": "Fakeip-Filter_domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/Fakeip-Filter_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version5/fake-ip-filter.srs"
+        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/singbox/version5/fake-ip-filter.srs"
       }
     ]
   }
