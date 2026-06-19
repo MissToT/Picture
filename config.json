@@ -160,6 +160,7 @@
       { "rule_set": "AI_ip", "outbound": "🤖 AI" },
       { "rule_set": "Google_ip", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "Cloudflare_ip", "outbound": "🇺🇳 国外代理" },
+      { "rule_set": "Proxy_ip", "outbound": "🇺🇳 国外代理" },
       { "action": "resolve", "match_only": true },
       { "rule_set": "China_ip", "outbound": "🇨🇳 国内直连" }
     ],
@@ -188,7 +189,14 @@
         "type": "remote",
         "format": "binary",
         "path": "./rules/Proxy_domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo-lite/geosite/proxy.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/refs/heads/main/dist/domain/proxy.srs"
+      },
+      {
+        "tag": "Proxy_ip",
+        "type": "remote",
+        "format": "binary",
+        "path": "./rules/Proxy_ip.srs",
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/refs/heads/main/dist/ipcidr/proxy.srs"
       },
       {
         "tag": "Proxy+_domain",
