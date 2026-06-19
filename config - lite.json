@@ -27,7 +27,7 @@
       "store_fakeip": true
     },
     "clash_api": {
-      "default_mode": "规则模式",
+      "default_mode": "Rule",
       "external_ui": "dashboard",
       "external_controller": "0.0.0.0:9090",
       "external_ui_download_url": "https://v6.gh-proxy.org/github.com/Zephyruso/zashboard/archive/gh-pages.zip",
@@ -98,11 +98,11 @@
     ],
     "rules": [
       {
-        "clash_mode": "直连模式",
+        "clash_mode": "Direct",
         "server": "dns-direct"
       },
       {
-        "clash_mode": "全局模式",
+        "clash_mode": "Global",
         "server": "dns-global"
       },
       {
@@ -110,7 +110,7 @@
         "mode": "and",
         "rules": [
           {
-            "clash_mode": "规则-允许广告",
+            "clash_mode": "Rule-AllowAds",
             "invert": true
           },
           {
@@ -281,11 +281,11 @@
         "outbound": "🌐 本地直连"
       },
       {
-        "clash_mode": "直连模式",
+        "clash_mode": "Direct",
         "outbound": "🌐 本地直连"
       },
       {
-        "clash_mode": "全局模式",
+        "clash_mode": "Global",
         "outbound": "GLOBAL"
       },
       {
@@ -293,7 +293,7 @@
         "mode": "and",
         "rules": [
           {
-            "clash_mode": "规则-允许广告",
+            "clash_mode": "Rule-AllowAds",
             "invert": true
           },
           {
