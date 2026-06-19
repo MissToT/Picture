@@ -30,7 +30,7 @@
       "default_mode": "规则模式",
       "external_ui": "dashboard",
       "external_controller": "0.0.0.0:9090",
-      "external_ui_download_url": "https://v6.gh-proxy.org/github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip",
+      "external_ui_download_url": "https://v6.gh-proxy.org/github.com/Zephyruso/zashboard/archive/gh-pages.zip",
       "access_control_allow_private_network": true
     }
   },
@@ -337,28 +337,28 @@
         "type": "remote",
         "format": "binary",
         "path": "./rules/proxy.srs",
-        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version5/proxy.srs"
+        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/singbox/version5/proxy.srs"
       },
       {
         "tag": "cn-domain",
         "type": "remote",
         "format": "binary",
         "path": "./rules/cn-domain.srs",
-        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version5/cn.srs"
+        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/singbox/version5/cn.srs"
       },
       {
         "tag": "cn-ip",
         "type": "remote",
         "format": "binary",
         "path": "./rules/cn-ip.srs",
-        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version5/cncidr.srs"
+        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/singbox/version5/cncidr.srs"
       },
       {
         "tag": "fakeip-filter",
         "type": "remote",
         "format": "binary",
         "path": "./rules/fakeip-filter.srs",
-        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version5/fake-ip-filter.srs"
+        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/singbox/version5/fake-ip-filter.srs"
       }
     ]
   }
