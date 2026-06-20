@@ -280,15 +280,28 @@ cat > "${SERVICE_FILE}" << 'SERVICE_EOF'
 name="sing-box"
 description="Sing-box Daemon"
 command="/usr/local/bin/sing-box"
-command_args="run -c /etc/sing-box/config.json"
+command_args="run -c /etc/sing-box/config.json -D /etc/sing-box"
 command_background="true"
 pidfile="/run/${RC_SVCNAME}.pid"
 output_log="/var/log/sing-box.log"
 error_log="/var/log/sing-box.log"
+supervisor="supervise-daemon"
+respawn_delay=3
+respawn_max=0
 
 depend() {
     need net
     use dns logger
+}
+
+start_post() {
+    sleep 1
+    if [ -f "$pidfile" ]; then
+        local pid=$(cat "$pidfile")
+        if [ -n "$pid" ]; then
+            echo -1000 > /proc/$pid/oom_score_adj 2>/dev/null
+        fi
+    fi
 }
 SERVICE_EOF
 
