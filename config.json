@@ -9,10 +9,10 @@
       "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
     },
     {
-      "tag": "ZYJD",
+      "tag": "OWN",
       "type": "remote",
-      "path": "./providers/ZYJD.json",
-      "url": "http://localhost:3000/download/%E8%87%AA%E5%BB%BA%E8%8A%82%E7%82%B9?includeUnsupportedProxy=true",
+      "path": "./providers/OwnNode.json",
+      "url": "http://localhost:3000/download/OwnNode?includeUnsupportedProxy=true",
       "exclude": "(?i)(流量|到期|时间|重置)",
       "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
     }
