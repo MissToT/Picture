@@ -16,8 +16,8 @@ Providers: &Providers { type: http, interval: 86400, proxy: "订阅更新", heal
 
 # 节点订阅
 proxy-providers:
-  SNTP: { <<: *Providers, url: "http://localhost:3000/download/SNTP", path: "./providers/SNTP.yaml", override: { additional-prefix: "SNTP・" } }
-  ZYJD: { <<: *Providers, url: "http://localhost:3000/download/%E8%87%AA%E5%BB%BA%E8%8A%82%E7%82%B9", path: "./providers/ZYJD.yaml", override: { additional-prefix: "ZYJD・" } }
+  SNTP: { <<: *Providers, url: "http://localhost:3000/download/SNTP", path: "./providers/SNTP.yaml", override: { additional-prefix: "[SNTP]" } }
+  OwnNode: { <<: *Providers, url: "http://localhost:3000/download/OwnNode", path: "./providers/OwnNode.yaml", override: { additional-prefix: "[OWN]" } }
 
 # 基础配置
 mixed-port: 7890
