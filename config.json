@@ -117,12 +117,14 @@
     { "tag": "📺 YouTube", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🤖 AI", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🎮 Games", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🔍 Google", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🧩 Cloudflare", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🇯🇵 日本网站", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(🇯🇵|日本|Japan|JP)" },
     { "tag": "🇹🇼 台湾网站", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(🇭🇰|香港|HongKong|HK|🇹🇼|台湾|Taiwan|TW)" },
     { "tag": "🇨🇳 国内直连", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🇺🇳 国外代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🍥 漏网之鱼", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接", "📦 订阅更新", "💌 谷歌推送", "📱 Telegram", "🐦 Twitter", "🎬 Emby", "📚 ExHentai", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🇯🇵 日本网站", "🇹🇼 台湾网站", "🇨🇳 国内直连", "🇺🇳 国外代理", "🍥 漏网之鱼" ] }
+    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接", "📦 订阅更新", "💌 谷歌推送", "📱 Telegram", "🐦 Twitter", "🎬 Emby", "📚 ExHentai", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🔍 Google", "🧩 Cloudflare", "🇯🇵 日本网站", "🇹🇼 台湾网站", "🇨🇳 国内直连", "🇺🇳 国外代理", "🍥 漏网之鱼" ] }
   ],
   "route": {
     "rules": [
@@ -148,18 +150,18 @@
       { "rule_set": "Taiwan_domain", "outbound": "🇹🇼 台湾网站" },
       { "rule_set": "Proxy+_domain", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "China+_domain", "outbound": "🇨🇳 国内直连" },
-      { "rule_set": "Google_domain", "outbound": "🇺🇳 国外代理" },
+      { "rule_set": "Google_domain", "outbound": "🔍 Google" },
       { "rule_set": "Microsoft-cn_domain", "outbound": "🇨🇳 国内直连" },
       { "rule_set": "Microsoft_domain", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "Cloudflare-cn_domain", "outbound": "🇨🇳 国内直连" },
-      { "rule_set": "Cloudflare_domain", "outbound": "🇺🇳 国外代理" },
+      { "rule_set": "Cloudflare_domain", "outbound": "🧩 Cloudflare" },
       { "rule_set": "Proxy_domain", "outbound": "🇺🇳 国外代理" },
       { "rule_set": "China_domain", "outbound": "🇨🇳 国内直连" },
       { "rule_set": "Telegram_ip", "outbound": "📱 Telegram" },
       { "rule_set": "Twitter_ip", "outbound": "🐦 Twitter" },
       { "rule_set": "AI_ip", "outbound": "🤖 AI" },
-      { "rule_set": "Google_ip", "outbound": "🇺🇳 国外代理" },
-      { "rule_set": "Cloudflare_ip", "outbound": "🇺🇳 国外代理" },
+      { "rule_set": "Google_ip", "outbound": "🔍 Google" },
+      { "rule_set": "Cloudflare_ip", "outbound": "🧩 Cloudflare" },
       { "rule_set": "Proxy_ip", "outbound": "🇺🇳 国外代理" },
       { "action": "resolve", "match_only": true },
       { "rule_set": "China_ip", "outbound": "🇨🇳 国内直连" }
