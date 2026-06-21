@@ -278,8 +278,14 @@ fi
 cat > "${CONFIG_FILE}" << CONFIG_EOF
 {
   "log": {
-    "level": "error",
+    "disabled": true,
+    "level": "info",
     "timestamp": true
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true
+    }
   },
   "inbounds": [
     {
@@ -346,6 +352,16 @@ respawn_max=0
 depend() {
     need net
     use dns logger
+}
+
+start_post() {
+    sleep 1
+    if [ -f "\$pidfile" ]; then
+        local pid=\$(cat "\$pidfile")
+        if [ -n "\$pid" ]; then
+            echo -1000 > /proc/\$pid/oom_score_adj 2>/dev/null
+        fi
+    fi
 }
 SERVICE_EOF
 
