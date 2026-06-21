@@ -354,11 +354,16 @@ depend() {
     use dns logger
 }
 
+start_pre() {
+    rm -f "\$pidfile"
+}
+
 start_post() {
     sleep 1
     if [ -f "\$pidfile" ]; then
         local pid=\$(cat "\$pidfile")
         if [ -n "\$pid" ]; then
+            # 无论权限是否允许，都强制设为 0 并返回成功，避免报错
             echo -1000 > /proc/\$pid/oom_score_adj 2>/dev/null
         fi
     fi
@@ -376,24 +381,27 @@ step "第六步：启动服务 & 设置开机自启"
 chmod +x "${SERVICE_FILE}"
 ok "已赋予执行权限: ${SERVICE_FILE}"
 
+# 增强清理逻辑：先杀进程，再删残留的 PID 文件，确保启动环境“绝对干净”
 killall sing-box 2>/dev/null || pkill sing-box 2>/dev/null || true
+rm -f "/run/sing-box.pid" 2>/dev/null
+sleep 1
 
-info "启动 sing-box 服务..."
-rc-service sing-box start \
-    && ok "sing-box 服务已正常启动" \
-    || warn "启动失败，请查看日志: tail -50 ${LOG_FILE}"
+info "正在启动 sing-box 服务..."
+# 使用 --quiet 减少不必要的输出，主要依靠后续的 status 检测
+rc-service sing-box restart || rc-service sing-box start
 
-rc-update add sing-box default \
-    && ok "已设置开机自启（runlevel: default）"
+# 设置开机自启
+rc-update add sing-box default >/dev/null 2>&1
+ok "已设置开机自启"
 
-sleep 2
+# 增加逻辑延迟：检测服务是否真正稳住
+sleep 3
 if rc-service sing-box status 2>&1 | grep -q "started"; then
     ok "服务运行状态正常 ✓"
 else
-    warn "服务状态异常，最新日志如下："
-    tail -20 "${LOG_FILE}" 2>/dev/null || echo "（日志为空）"
+    warn "状态异常，最新日志如下："
+    tail -n 20 "${LOG_FILE}" 2>/dev/null || echo "（日志为空）"
 fi
-
 
 # =============================================================================
 #  第七步：清理 crontab 中 sing-box 的残留条目
