@@ -19,8 +19,7 @@ SB_REPO="reF1nd/sing-box-releases"
 INSTALL_BIN="/usr/local/bin/sing-box"
 CONFIG_DIR="/etc/sing-box"
 CONFIG_FILE="${CONFIG_DIR}/config.json"
-RULES_DIR="${CONFIG_DIR}/rules"
-LOG_FILE="/var/log/sing-box.log"
+LOG_FILE="${CONFIG_DIR}/sing-box.log"
 SERVICE_FILE="/etc/init.d/sing-box"
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -43,7 +42,7 @@ ask()   { printf "${CYAN}[INPUT]${NC}  %s" "$*"; }
 
 
 # =============================================================================
-#  第一步：查看系统版本和架构
+#  第一步：检测系统版本和架构
 # =============================================================================
 step "第一步：检测系统信息"
 
@@ -60,12 +59,12 @@ info "系统发行版 : ${OS_NAME} ${OS_VER}"
 info "CPU 架构   : ${RAW_ARCH}"
 
 case "${RAW_ARCH}" in
-    x86_64)         ARCH_TAG="amd64-musl"  ;;
-    aarch64|arm64)  ARCH_TAG="arm64-musl"  ;;
-    armv7l|armv7)   ARCH_TAG="armv7-musl"  ;;
+    x86_64)         ARCH_TAG="amd64-musl" ;;
+    aarch64|arm64)  ARCH_TAG="arm64-musl" ;;
+    armv7l|armv7)   ARCH_TAG="armv7-musl" ;;
     armv6l)         ARCH_TAG="armv6-musl"  ;;
-    i386|i686)      ARCH_TAG="386-musl"    ;;
-    s390x)          ARCH_TAG="s390x-musl"  ;;
+    i386|i686)      ARCH_TAG="386-musl"   ;;
+    s390x)          ARCH_TAG="s390x-musl" ;;
     *)              error "不支持的 CPU 架构: ${RAW_ARCH}，请手动修改 ARCH_TAG" ;;
 esac
 
@@ -80,9 +79,11 @@ fi
 
 # =============================================================================
 #  第二步：安装工具 → 确定版本 → 询问端口 → 生成 PSK
+#          → 获取公网 IP → 查询地理位置生成节点名
 # =============================================================================
 step "第二步：版本确认 & 参数配置"
 
+# ── 确保 curl / tar 可用 ──────────────────────────────────────────────────────
 if ! command -v curl >/dev/null 2>&1 || ! command -v tar >/dev/null 2>&1; then
     info "安装 curl / tar ..."
     case "${PKG}" in
@@ -96,6 +97,7 @@ else
     ok "curl / tar 已存在，跳过安装"
 fi
 
+# ── 确定 sing-box 版本 ────────────────────────────────────────────────────────
 if [ -n "${SB_VERSION_OVERRIDE}" ]; then
     SB_VERSION="${SB_VERSION_OVERRIDE}"
     info "使用手动指定版本: v${SB_VERSION}"
@@ -115,6 +117,7 @@ else
     fi
 fi
 
+# ── 询问端口 ──────────────────────────────────────────────────────────────────
 printf "\n"
 ask "请输入 Snell 监听端口（直接回车使用默认值 12349）: "
 read -r INPUT_PORT
@@ -126,6 +129,7 @@ if ! echo "${SNELL_PORT}" | grep -qE '^[0-9]+$' \
 fi
 ok "将使用端口: ${SNELL_PORT}"
 
+# ── 生成随机 PSK ──────────────────────────────────────────────────────────────
 if [ -r /proc/sys/kernel/random/uuid ]; then
     SNELL_PSK=$(cat /proc/sys/kernel/random/uuid)
 else
@@ -135,6 +139,7 @@ else
 fi
 ok "已生成随机 PSK: ${SNELL_PSK}"
 
+# ── 获取公网 IP（全脚本仅此一次）─────────────────────────────────────────────
 info "正在自动获取本机公网 IP..."
 SERVER_IP=""
 for _API in \
@@ -152,10 +157,59 @@ for _API in \
         break
     fi
 done
-
 if [ -z "${SERVER_IP}" ]; then
     warn "所有 IP 查询接口均失败，请在下方节点信息中手动替换 <YOUR_SERVER_IP>"
     SERVER_IP="<YOUR_SERVER_IP>"
+fi
+
+# ── 根据 IP 地理位置生成节点名 ────────────────────────────────────────────────
+NODE_NAME=""
+if [ "${SERVER_IP}" != "<YOUR_SERVER_IP>" ]; then
+    info "正在查询 IP 地理位置..."
+
+    # 主接口：ip-api.com（免费，无需鉴权，去掉了无需使用的 city 字段）
+    GEO_JSON=$(curl -fsSL --connect-timeout 8 \
+        "http://ip-api.com/json/${SERVER_IP}?fields=status,countryCode" \
+        2>/dev/null || echo "")
+    GEO_STATUS=$(printf '%s' "${GEO_JSON}" \
+        | grep -o '"status":"[^"]*"' | sed 's/"status":"//;s/"//g')
+
+    if [ "${GEO_STATUS}" = "success" ]; then
+        GEO_CODE=$(printf '%s' "${GEO_JSON}" \
+            | grep -o '"countryCode":"[^"]*"' | sed 's/"countryCode":"//;s/"//g' | tr 'a-z' 'A-Z')
+    else
+        # 备用接口：ipinfo.io
+        warn "ip-api.com 无响应，尝试备用接口 ipinfo.io..."
+        GEO_JSON=$(curl -fsSL --connect-timeout 8 \
+            "https://ipinfo.io/${SERVER_IP}/json" 2>/dev/null || echo "")
+        GEO_CODE=$(printf '%s' "${GEO_JSON}" \
+            | grep -o '"country":"[^"]*"' | sed 's/"country":"//;s/"//g' | tr 'a-z' 'A-Z')
+    fi
+
+    if [ -n "${GEO_CODE}" ]; then
+        # 将 2 位国家代码转换为对应的国旗 Emoji (基于 Unicode 字符偏移)
+        # 逻辑: ASCII 'A' 到区域指示符 🇦 的十进制差值为 127397
+        if command -v perl >/dev/null 2>&1; then
+            FLAG_EMOJI=$(echo "${GEO_CODE}" | perl -CS -pe 's/([A-Z])/chr(ord($1)+127397)/ge' 2>/dev/null)
+        elif command -v python3 >/dev/null 2>&1; then
+            FLAG_EMOJI=$(python3 -c "print(''.join(chr(ord(c) + 127397) for c in '${GEO_CODE}'))" 2>/dev/null)
+        else
+            # 纯 Bash 原生回退方案 (需要 Bash 4.2+ 支持 \U 扩展)
+            CHAR1=$(printf '%d' "'${GEO_CODE:0:1}")
+            CHAR2=$(printf '%d' "'${GEO_CODE:1:1}")
+            FLAG_EMOJI=$(printf "\U$(printf '%08x' $((CHAR1 + 127397)))\U$(printf '%08x' $((CHAR2 + 127397)))" 2>/dev/null)
+        fi
+
+        # 拼接最终要求的格式：[Emoji] [简写] [协议]
+        NODE_NAME="${FLAG_EMOJI} ${GEO_CODE} Snell"
+    fi
+fi
+
+if [ -n "${NODE_NAME}" ]; then
+    ok "地理位置: ${GEO_CODE} → 节点名: ${NODE_NAME}"
+else
+    NODE_NAME="Snell-${SERVER_IP}"
+    warn "无法获取地理位置，使用 IP 作为节点名: ${NODE_NAME}"
 fi
 
 
@@ -172,6 +226,7 @@ info "版本    : v${SB_VERSION}"
 info "文件名  : ${TARBALL}"
 info "下载地址: ${DL_URL}"
 
+# 停止旧服务（若存在），清理残余进程，再覆盖二进制
 if [ -f "${SERVICE_FILE}" ] && command -v rc-service >/dev/null 2>&1; then
     rc-service sing-box stop 2>/dev/null && info "已停止旧 sing-box 服务" || true
 fi
@@ -207,11 +262,11 @@ ok "版本验证: ${INSTALLED_VER}"
 
 
 # =============================================================================
-#  第四步：准备配置文件
+#  第四步：写入配置文件
 # =============================================================================
 step "第四步：部署配置文件"
 
-mkdir -p "${CONFIG_DIR}" "${RULES_DIR}"
+mkdir -p "${CONFIG_DIR}"
 ok "配置目录已创建: ${CONFIG_DIR}"
 
 if [ -f "${CONFIG_FILE}" ]; then
@@ -270,21 +325,22 @@ info "检查配置语法..."
 
 
 # =============================================================================
-#  第五步：创建开机自启脚本和进程守护脚本（OpenRC）
+#  第五步：写入 OpenRC 服务脚本
+#  （仅写文件，不做任何服务操作，统一在第六步处理）
 # =============================================================================
-step "第五步：创建 OpenRC 守护服务"
+step "第五步：写入 OpenRC 守护服务脚本"
 
-cat > "${SERVICE_FILE}" << 'SERVICE_EOF'
+cat > "${SERVICE_FILE}" << SERVICE_EOF
 #!/sbin/openrc-run
 
 name="sing-box"
 description="Sing-box Daemon"
 command="/usr/local/bin/sing-box"
-command_args="run -c /etc/sing-box/config.json -D /etc/sing-box"
+command_args="run -c ${CONFIG_FILE} -D ${CONFIG_DIR}"
 command_background="true"
-pidfile="/run/${RC_SVCNAME}.pid"
-output_log="/var/log/sing-box.log"
-error_log="/var/log/sing-box.log"
+pidfile="/run/\${RC_SVCNAME}.pid"
+output_log="${LOG_FILE}"
+error_log="${LOG_FILE}"
 supervisor="supervise-daemon"
 respawn_delay=3
 respawn_max=0
@@ -296,26 +352,26 @@ depend() {
 
 start_post() {
     sleep 1
-    if [ -f "$pidfile" ]; then
-        local pid=$(cat "$pidfile")
-        if [ -n "$pid" ]; then
-            echo -1000 > /proc/$pid/oom_score_adj 2>/dev/null
+    if [ -f "\$pidfile" ]; then
+        local pid=\$(cat "\$pidfile")
+        if [ -n "\$pid" ]; then
+            echo -1000 > /proc/\$pid/oom_score_adj 2>/dev/null
         fi
     fi
 }
 SERVICE_EOF
 
-chmod +x "${SERVICE_FILE}"
 ok "服务脚本已写入: ${SERVICE_FILE}"
 
 
 # =============================================================================
 #  第六步：赋权 → 清残进程 → 启动 → 设置开机自启
+#  （配置文件与服务脚本均已就绪后统一执行）
 # =============================================================================
-step "第六步：启动服务 & 开机自启"
+step "第六步：启动服务 & 设置开机自启"
 
 chmod +x "${SERVICE_FILE}"
-ok "已赋予执行权限: chmod +x ${SERVICE_FILE}"
+ok "已赋予执行权限: ${SERVICE_FILE}"
 
 killall sing-box 2>/dev/null || pkill sing-box 2>/dev/null || true
 
@@ -351,35 +407,11 @@ fi
 
 
 # =============================================================================
-#  第八步：获取公网 IP，生成格式节点信息
+#  第八步：生成格式化节点信息
 # =============================================================================
 step "第八步：生成节点连接信息"
 
-info "正在获取服务器公网 IP..."
-SERVER_IP=""
-for API_URL in \
-    "https://api.ipify.org" \
-    "https://ifconfig.me/ip" \
-    "https://ip.sb" \
-    "https://api4.my-ip.io/ip"; do
-    SERVER_IP=$(curl -fsSL --connect-timeout 6 "${API_URL}" 2>/dev/null | tr -d '[:space:]')
-    if echo "${SERVER_IP}" | grep -qE '^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$'; then
-        ok "服务器公网 IP: ${SERVER_IP}"
-        break
-    fi
-    SERVER_IP=""
-done
-
-if [ -z "${SERVER_IP}" ]; then
-    warn "无法自动获取公网 IP，请将下方 <YOUR_SERVER_IP> 替换为实际 IP"
-    SERVER_IP="<YOUR_SERVER_IP>"
-fi
-
-NODE_NAME="Snell-${SERVER_IP}"
-
-# ────────────────────────────────────────────────────────────────────────────
-#  格式一：Clash / Mihomo 格式（YAML 代理块）
-# ────────────────────────────────────────────────────────────────────────────
+# ── 格式一：Clash / Mihomo 格式（YAML 代理块）────────────────────────────────
 CLASH_PROXY="  - name: \"${NODE_NAME}\"
     type: snell
     server: ${SERVER_IP}
@@ -392,9 +424,7 @@ CLASH_PROXY="  - name: \"${NODE_NAME}\"
     tfo: true
     udp: true"
 
-# ────────────────────────────────────────────────────────────────────────────
-#  格式二：Sing-box 格式（outbound 节点块，直接复制到 outbounds 数组中使用）
-# ────────────────────────────────────────────────────────────────────────────
+# ── 格式二：Sing-box 格式（outbound 节点块）──────────────────────────────────
 SINGBOX_OUT="{
   \"type\": \"snell\",
   \"tag\": \"${NODE_NAME}\",
@@ -423,7 +453,7 @@ printf "${BOLD}${BLUE}║  常用命令                                         
 printf "${BOLD}${BLUE}║    启动  rc-service sing-box start                           ║${NC}\n"
 printf "${BOLD}${BLUE}║    停止  rc-service sing-box stop                            ║${NC}\n"
 printf "${BOLD}${BLUE}║    重启  rc-service sing-box restart                         ║${NC}\n"
-printf "${BOLD}${BLUE}║    日志  tail -f /var/log/sing-box.log                       ║${NC}\n"
+printf "${BOLD}${BLUE}║    日志  tail -f %-44s║${NC}\n" "${LOG_FILE}"
 printf "${BOLD}${BLUE}╚══════════════════════════════════════════════════════════════╝${NC}\n"
 
 # ── 节点信息 ──────────────────────────────────────────────────────────────────
