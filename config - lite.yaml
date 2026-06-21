@@ -16,7 +16,7 @@ Providers: &Providers { type: http, interval: 86400, proxy: "订阅更新", heal
 
 # 节点订阅
 proxy-providers:
-  SNTP: { <<: *Providers, url: "http://localhost:5200/download/SNTP", path: "./providers/SNTP.yaml", override: { additional-prefix: "SNTP・" } }
+  SNTP: { <<: *Providers, url: "http://localhost:5200/download/SNTP", path: "./providers/SNTP.yaml", override: { additional-prefix: "[SNTP]・" } }
 
 # 基础配置
 mixed-port: 7890
