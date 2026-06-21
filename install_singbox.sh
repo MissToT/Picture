@@ -278,14 +278,8 @@ fi
 cat > "${CONFIG_FILE}" << CONFIG_EOF
 {
   "log": {
-    "disabled": true,
-    "level": "info",
+    "level": "error",
     "timestamp": true
-  },
-  "experimental": {
-    "cache_file": {
-      "enabled": true
-    }
   },
   "inbounds": [
     {
@@ -341,10 +335,10 @@ name="sing-box"
 description="Sing-box Daemon"
 command="/usr/local/bin/sing-box"
 command_args="run -c ${CONFIG_FILE} -D ${CONFIG_DIR}"
+command_background="true"
 pidfile="/run/\${RC_SVCNAME}.pid"
 output_log="${LOG_FILE}"
 error_log="${LOG_FILE}"
-
 supervisor="supervise-daemon"
 respawn_delay=3
 respawn_max=0
