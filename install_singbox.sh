@@ -405,16 +405,6 @@ depend() {
     need net
     use dns logger
 }
-
-start_post() {
-    sleep 1
-    if [ -f "\$pidfile" ]; then
-        local pid=\$(cat "\$pidfile")
-        if [ -n "\$pid" ]; then
-            echo -1000 > /proc/\$pid/oom_score_adj 2>/dev/null
-        fi
-    fi
-}
 SERVICE_EOF
 
 ok "服务脚本已写入: ${SERVICE_FILE}"
