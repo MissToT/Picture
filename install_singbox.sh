@@ -273,11 +273,6 @@ cat > "${CONFIG_FILE}" << CONFIG_EOF
     "level": "info",
     "timestamp": true
   },
-  "experimental": {
-    "cache_file": {
-      "enabled": true
-    }
-  },
   "inbounds": [
     {
       "type": "snell",
