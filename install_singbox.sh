@@ -320,10 +320,27 @@ info "检查配置语法..."
 # =============================================================================
 step "第五步：内存与 NAT 网络防断流优化"
 
-# 获取系统总内存 (MB)
-MEM_MB=$(free -m | awk '/^Mem:/{print $2}')
-[ -z "$MEM_MB" ] && MEM_MB=256
-info "检测到系统内存: ${MEM_MB} MB"
+# 获取真实内存限制 (优先读取 cgroup v2 或 v1，若无效则手动设置)
+get_real_mem() {
+    local mem_limit
+    # 尝试读取 cgroup v2
+    if [ -f /sys/fs/cgroup/memory.max ]; then
+        mem_limit=$(cat /sys/fs/cgroup/memory.max 2>/dev/null)
+        [ "$mem_limit" != "max" ] && echo $((mem_limit / 1024 / 1024)) && return
+    fi
+    # 尝试读取 cgroup v1
+    if [ -f /sys/fs/cgroup/memory/memory.limit_in_bytes ]; then
+        mem_limit=$(cat /sys/fs/cgroup/memory/memory.limit_in_bytes 2>/dev/null)
+        [ -n "$mem_limit" ] && [ "$mem_limit" -lt 1099511627776 ] && echo $((mem_limit / 1024 / 1024)) && return
+    fi
+    # 兜底：如果还是读到宿主机的超大内存，强制锁死为你的真实套餐内存 (请按需修改这里)
+    echo 256 
+}
+
+MEM_MB=$(get_real_mem)
+# 如果检测值依然异常大（超过 2GB），强制回退到 256MB
+[ "$MEM_MB" -gt 2048 ] && MEM_MB=256
+info "NAT 容器真实内存识别为: ${MEM_MB} MB"
 
 # 基于单协议/单节点 (Single Mode) 策略动态计算 Go 运行限制
 if [ "$MEM_MB" -le 128 ]; then
