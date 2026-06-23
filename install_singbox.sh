@@ -4,6 +4,7 @@
 #  仓库: https://github.com/reF1nd/sing-box-releases
 #  说明: 自动获取最新 Latest 稳定版；端口可手动输入；PSK 随机生成
 #        安装完成后自动输出 Clash / Sing-box 两种格式节点信息
+#        [已集成]: 低内存 NAT 机防 OOM 与防断流专项优化
 # =============================================================================
 
 set -e
@@ -167,7 +168,7 @@ NODE_NAME=""
 if [ "${SERVER_IP}" != "<YOUR_SERVER_IP>" ]; then
     info "正在查询 IP 地理位置..."
 
-    # 主接口：ip-api.com（免费，无需鉴权，去掉了无需使用的 city 字段）
+    # 主接口：ip-api.com
     GEO_JSON=$(curl -fsSL --connect-timeout 8 \
         "http://ip-api.com/json/${SERVER_IP}?fields=status,countryCode" \
         2>/dev/null || echo "")
@@ -187,20 +188,15 @@ if [ "${SERVER_IP}" != "<YOUR_SERVER_IP>" ]; then
     fi
 
     if [ -n "${GEO_CODE}" ]; then
-        # 将 2 位国家代码转换为对应的国旗 Emoji (基于 Unicode 字符偏移)
-        # 逻辑: ASCII 'A' 到区域指示符 🇦 的十进制差值为 127397
         if command -v perl >/dev/null 2>&1; then
             FLAG_EMOJI=$(echo "${GEO_CODE}" | perl -CS -pe 's/([A-Z])/chr(ord($1)+127397)/ge' 2>/dev/null)
         elif command -v python3 >/dev/null 2>&1; then
             FLAG_EMOJI=$(python3 -c "print(''.join(chr(ord(c) + 127397) for c in '${GEO_CODE}'))" 2>/dev/null)
         else
-            # 纯 Bash 原生回退方案 (需要 Bash 4.2+ 支持 \U 扩展)
             CHAR1=$(printf '%d' "'${GEO_CODE:0:1}")
             CHAR2=$(printf '%d' "'${GEO_CODE:1:1}")
             FLAG_EMOJI=$(printf "\U$(printf '%08x' $((CHAR1 + 127397)))\U$(printf '%08x' $((CHAR2 + 127397)))" 2>/dev/null)
         fi
-
-        # 拼接最终要求的格式：[Emoji] [简写] [协议]
         NODE_NAME="${FLAG_EMOJI} ${GEO_CODE} Snell"
     fi
 fi
@@ -226,7 +222,6 @@ info "版本    : v${SB_VERSION}"
 info "文件名  : ${TARBALL}"
 info "下载地址: ${DL_URL}"
 
-# 停止旧服务（若存在），清理残余进程，再覆盖二进制
 if [ -f "${SERVICE_FILE}" ] && command -v rc-service >/dev/null 2>&1; then
     rc-service sing-box stop 2>/dev/null && info "已停止旧 sing-box 服务" || true
 fi
@@ -237,10 +232,6 @@ cd /root
 info "下载中，请稍候..."
 curl -fSL --progress-bar -o "${TARBALL}" "${DL_URL}" || {
     printf "\n${RED}[ERROR]${NC} 下载失败！\n"
-    printf "  可能原因：\n"
-    printf "  1. 网络不通或 GitHub 访问受限\n"
-    printf "  2. 版本 v%s 不存在对应架构文件: %s\n" "${SB_VERSION}" "${TARBALL}"
-    printf "  3. 手动确认: https://github.com/%s/releases\n" "${SB_REPO}"
     exit 1
 }
 ok "下载完成: ${TARBALL}"
@@ -330,15 +321,76 @@ info "检查配置语法..."
 
 
 # =============================================================================
-#  第五步：写入 OpenRC 服务脚本
+#  第五步：低内存与 NAT 网络防断流优化 (动态资源算法)
 # =============================================================================
-step "第五步：写入 OpenRC 守护服务脚本"
+step "第五步：内存与 NAT 网络防断流优化"
+
+# 获取系统总内存 (MB)
+MEM_MB=$(free -m | awk '/^Mem:/{print $2}')
+[ -z "$MEM_MB" ] && MEM_MB=256
+info "检测到系统内存: ${MEM_MB} MB"
+
+# 基于单协议/单节点 (Single Mode) 策略动态计算 Go 运行限制
+if [ "$MEM_MB" -le 128 ]; then
+    GOMEM="72MiB"; GOGC="90"; GOMAX="1"
+elif [ "$MEM_MB" -le 192 ]; then
+    GOMEM="104MiB"; GOGC="100"; GOMAX="1"
+elif [ "$MEM_MB" -le 256 ]; then
+    GOMEM="144MiB"; GOGC="100"; GOMAX="1"
+elif [ "$MEM_MB" -le 512 ]; then
+    GOMEM="280MiB"; GOGC="100"; GOMAX="2"
+else
+    GOMEM="$((MEM_MB * 60 / 100))MiB"
+    GOGC="100"
+    GOMAX=$(nproc 2>/dev/null || echo 1)
+    [ "$GOMAX" -gt 4 ] && GOMAX=4
+fi
+
+ok "动态调整 Go 内存回收参数: GOMEMLIMIT=${GOMEM}, GOGC=${GOGC}, GOMAXPROCS=${GOMAX}"
+
+info "正在应用 NAT 机器 TCP 防断流内核参数..."
+mkdir -p /etc/sysctl.d
+cat > /etc/sysctl.d/99-singbox-nat.conf << EOF
+# 缩短 TCP 保活，防 NAT 强制回收空闲长连接造成的卡顿
+net.ipv4.tcp_keepalive_time = 120
+net.ipv4.tcp_keepalive_intvl = 30
+net.ipv4.tcp_keepalive_probes = 3
+net.ipv4.tcp_fin_timeout = 15
+net.ipv4.tcp_tw_reuse = 1
+EOF
+
+# 极低内存机型限制连接缓冲区增长，防止 OOM
+if [ "$MEM_MB" -le 256 ]; then
+    cat >> /etc/sysctl.d/99-singbox-nat.conf << EOF
+net.core.rmem_max = 1048576
+net.core.wmem_max = 1048576
+net.ipv4.tcp_rmem = 4096 87380 1048576
+net.ipv4.tcp_wmem = 4096 65536 1048576
+EOF
+elif [ "$MEM_MB" -le 512 ]; then
+    cat >> /etc/sysctl.d/99-singbox-nat.conf << EOF
+net.core.rmem_max = 2097152
+net.core.wmem_max = 2097152
+net.ipv4.tcp_rmem = 4096 87380 2097152
+net.ipv4.tcp_wmem = 4096 65536 2097152
+EOF
+fi
+
+# LXC/OpenVZ 架构由于权限原因可能会报错，这里容错处理
+sysctl -p /etc/sysctl.d/99-singbox-nat.conf >/dev/null 2>&1 || warn "当前系统无权修改 sysctl（常见于 LXC），已安全跳过网络调优"
+ok "系统网络参数优化完毕"
+
+
+# =============================================================================
+#  第六步：写入 OpenRC 服务脚本 (带内存限制注入)
+# =============================================================================
+step "第六步：写入 OpenRC 守护服务脚本"
 
 cat > "${SERVICE_FILE}" << SERVICE_EOF
 #!/sbin/openrc-run
 
 name="sing-box"
-description="Sing-box Daemon"
+description="Sing-box Daemon (Optimized for NAT)"
 command="/usr/local/bin/sing-box"
 command_args="run -c ${CONFIG_FILE} -D ${CONFIG_DIR}"
 command_background="true"
@@ -348,6 +400,11 @@ error_log="${LOG_FILE}"
 supervisor="supervise-daemon"
 respawn_delay=3
 respawn_max=0
+
+# 动态注入内存与 GC 限制 (防 OOM 核心参数)
+export GOMEMLIMIT="${GOMEM}"
+export GOGC="${GOGC}"
+export GOMAXPROCS="${GOMAX}"
 
 depend() {
     need net
@@ -369,9 +426,9 @@ ok "服务脚本已写入: ${SERVICE_FILE}"
 
 
 # =============================================================================
-#  第六步：赋权 → 清残进程 → 启动 → 设置开机自启
+#  第七步：赋权 → 清残进程 → 启动 → 设置开机自启
 # =============================================================================
-step "第六步：启动服务 & 设置开机自启"
+step "第七步：启动服务 & 设置开机自启"
 
 chmod +x "${SERVICE_FILE}"
 ok "已赋予执行权限: ${SERVICE_FILE}"
@@ -396,9 +453,9 @@ fi
 
 
 # =============================================================================
-#  第七步：清理 crontab 中 sing-box 的残留条目
+#  第八步：清理 crontab 中 sing-box 的残留条目
 # =============================================================================
-step "第七步：清理 crontab 残留"
+step "第八步：清理 crontab 残留"
 
 CRON_ORIG=$(crontab -l 2>/dev/null || echo "")
 if echo "${CRON_ORIG}" | grep -q "sing-box"; then
@@ -410,9 +467,9 @@ fi
 
 
 # =============================================================================
-#  第八步：生成格式化节点信息
+#  第九步：生成格式化节点信息
 # =============================================================================
-step "第八步：生成节点连接信息"
+step "第九步：生成节点连接信息"
 
 # ── 格式一：Clash / Mihomo 格式（YAML 代理块）────────────────────────────────
 CLASH_PROXY="  - name: \"${NODE_NAME}\"
@@ -449,6 +506,7 @@ printf "${BOLD}${BLUE}║              sing-box 安装部署完成！           
 printf "${BOLD}${BLUE}╠══════════════════════════════════════════════════════════════╣${NC}\n"
 printf "${BOLD}${BLUE}║  内核版本 : %-47s║${NC}\n" "${INSTALLED_VER}"
 printf "${BOLD}${BLUE}║  服务状态 : %-47s║${NC}\n" "$(rc-service sing-box status 2>&1 | grep -o 'started\|stopped' || echo 'unknown')"
+printf "${BOLD}${BLUE}║  内存限制 : GOMEMLIMIT=%-36s║${NC}\n" "${GOMEM}"
 printf "${BOLD}${BLUE}║  配置文件 : %-47s║${NC}\n" "${CONFIG_FILE}"
 printf "${BOLD}${BLUE}║  日志文件 : %-47s║${NC}\n" "${LOG_FILE}"
 printf "${BOLD}${BLUE}╠══════════════════════════════════════════════════════════════╣${NC}\n"
