@@ -18,8 +18,8 @@
     }
   ],
   "log": {
-    "disabled": true,
-    "level": "info",
+    "disabled": false,
+    "level": "fatal",
     "timestamp": true,
     "output": "sing-box.log"
   },
@@ -31,11 +31,11 @@
       "store_fakeip": true
     },
     "clash_api": {
-      "secret": "",
+      "secret": "RurukaSuki",
       "default_mode": "Rule",
-      "external_ui": "webui",
+      "external_ui": "dashboard",
       "external_controller": "0.0.0.0:9090",
-      "external_ui_download_url": "https://v6.gh-proxy.org/github.com/Zephyruso/zashboard/releases/download/v1.101.1/dist.zip",
+      "external_ui_download_url": "https://v6.gh-proxy.org/github.com/Zephyruso/zashboard/archive/gh-pages.zip",
       "access_control_allow_origin": "*",
       "access_control_allow_private_network": true
     }
@@ -45,7 +45,7 @@
       "type": "api",
       "listen": "0.0.0.0",
       "listen_port": 9191,
-      "secret": "",
+      "secret": "RurukaSuki",
       "access_control_allow_origin": "*",
       "access_control_allow_private_network": true
     }
@@ -64,7 +64,7 @@
     "rules": [
       { "clash_mode": "Direct", "server": "dns-direct" },
       { "clash_mode": "Global", "server": "dns-global" },
-      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "Rule-AllowAds", "invert": true }, { "rule_set": [ "anti-ad_domain", "reject_domain" ] } ], "action": "predefined", "rcode": "NOERROR" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "AllowAds", "invert": true }, { "rule_set": [ "anti-ad_domain", "reject_domain" ] } ], "action": "predefined", "rcode": "NOERROR" },
       { "rule_set": [ "Fakeip-Filter_domain", "China_domain", "China+_domain" ], "server": "dns-direct" },
       { "action": "evaluate", "server": "dns-global" },
       { "match_response": true, "ip_is_private": true, "action": "respond" },
@@ -133,7 +133,7 @@
       { "ip_is_private": true, "outbound": "🌐 本地直连" },
       { "clash_mode": "Direct", "outbound": "🌐 本地直连" },
       { "clash_mode": "Global", "outbound": "GLOBAL" },
-      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "Rule-AllowAds", "invert": true }, { "rule_set": [ "anti-ad_domain", "reject_domain" ] } ], "action": "reject" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "AllowAds", "invert": true }, { "rule_set": [ "anti-ad_domain", "reject_domain" ] } ], "action": "reject" },
       { "rule_set": "GoogleFCM_domain", "outbound": "💌 谷歌推送" },
       { "rule_set": "Telegram_domain", "outbound": "📱 Telegram" },
       { "rule_set": "Twitter_domain", "outbound": "🐦 Twitter" },
