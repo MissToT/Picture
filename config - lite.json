@@ -114,7 +114,7 @@
         "mode": "and",
         "rules": [
           {
-            "clash_mode": "Rule-AllowAds",
+            "clash_mode": "AllowAds",
             "invert": true
           },
           {
@@ -297,7 +297,7 @@
         "mode": "and",
         "rules": [
           {
-            "clash_mode": "Rule-AllowAds",
+            "clash_mode": "AllowAds",
             "invert": true
           },
           {
