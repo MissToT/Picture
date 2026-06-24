@@ -34,10 +34,10 @@ find-process-mode: always
 authentication: [ "Ruruka:DaiSuiKi" ]
 skip-auth-prefixes: [ "127.0.0.1/8", "::1/128" ]
 
-external-ui-url: "https://v6.gh-proxy.org/github.com/Zephyruso/zashboard/releases/download/v1.101.1/dist.zip"
-external-ui: webui
+external-ui-url: "https://v6.gh-proxy.org/github.com/Zephyruso/zashboard/archive/gh-pages.zip"
+external-ui: "dashboard"
 external-controller: 0.0.0.0:9090
-secret: ""
+secret: "RurukaSuki"
 
 profile:
   store-selected: true
