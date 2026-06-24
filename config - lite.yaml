@@ -29,10 +29,10 @@ unified-delay: true
 tcp-concurrent: true
 find-process-mode: always
 
-external-ui-url: "https://v6.gh-proxy.org/github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
-external-ui: webui
+external-ui-url: "https://v6.gh-proxy.org/github.com/Zephyruso/zashboard/archive/gh-pages.zip"
+external-ui: "dashboard"
 external-controller: 0.0.0.0:9090
-secret: ""
+secret: "RurukaSuki"
 
 profile:
   store-selected: true
