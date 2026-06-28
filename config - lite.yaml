@@ -8,8 +8,8 @@ UrlTest: &UrlTest { type: url-test, interrupt-exist-connections: false, hidden: 
 Fallback: &Fallback { type: fallback, interrupt-exist-connections: true, hidden: true, interval: 60, url: "https://captive.apple.com/generate_204" }
 # 锚点 - 规则集
 IPCIDR: &IPCIDR { type: http, interval: 86400, proxy: "订阅更新", behavior: ipcidr, format: mrs }
-Domain: &Domain { type: http, interval: 86400, proxy: "订阅更新", behavior: domain, format: mrs }
-Classical: &Classical { type: http, interval: 86400, proxy: "订阅更新", behavior: classical, format: text }
+DOMAIN: &DOMAIN { type: http, interval: 86400, proxy: "订阅更新", behavior: domain, format: mrs }
+CLASSICAL: &CLASSICAL { type: http, interval: 86400, proxy: "订阅更新", behavior: classical, format: text }
 # 锚点 - 远程订阅组
 Providers: &Providers { type: http, interval: 86400, proxy: "订阅更新", health-check: { enable: true, url: "https://captive.apple.com/generate_204", interval: 600 }, <<: *FilterOthers }
 ############################################## - ⚓️ 锚点区结束 - ##############################################
@@ -94,11 +94,11 @@ rule-providers:
   Private_ip:               { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/private.mrs" }
   China_ip:                 { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/ipcidr/cn.mrs" }
   Proxy_ip:                 { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/ipcidr/proxy.mrs" }
-  Private_domain:           { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/private.mrs" }
-  China_domain:             { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/cn.mrs" }
-  Proxy_domain:             { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/proxy.mrs" }
-  anti-ad_domain:           { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/mihomo.mrs" }
-  Fakeip-Filter_domain:     { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/fake-ip-filter.mrs" }
+  Private_domain:           { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/private.mrs" }
+  China_domain:             { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/cn.mrs" }
+  Proxy_domain:             { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/proxy.mrs" }
+  anti-ad_domain:           { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/mihomo.mrs" }
+  Fakeip-Filter_domain:     { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/fake-ip-filter.mrs" }
 
 rules:
   - DST-PORT,53,🔰 DNS-Hijack
