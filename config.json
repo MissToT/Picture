@@ -219,7 +219,7 @@
         "type": "remote",
         "format": "binary",
         "path": "./rules/google-fcm-geosite.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/SingBox/Rules/domain/googlefcm.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/googlefcm@!cn.srs"
       },
       {
         "tag": "google-geoip",
