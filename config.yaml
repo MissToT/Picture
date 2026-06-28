@@ -152,7 +152,7 @@ rules:
   - RULE-SET,reject-geosite,广告拦截
   - RULE-SET,anti-ad-geosite,广告拦截
   - RULE-SET,private-geosite,🌐 本地直连
-  - RULE-SET,GoogleFCM-geosite,谷歌推送
+  - RULE-SET,google-fcm-geosite,谷歌推送
   - RULE-SET,telegram-geosite,Telegram
   - RULE-SET,twitter-geosite,Twitter
   - RULE-SET,tiktok-geosite,TikTok
