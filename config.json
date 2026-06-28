@@ -12,7 +12,7 @@
       "tag": "OWN",
       "type": "remote",
       "path": "./providers/OwnNode.json",
-      "url": "http://localhost:3000/download/OwnNode?includeUnsupportedProxy=true",
+      "url": "http://localhost:3000/download/OwnNode",
       "exclude": "(?i)(流量|到期|时间|重置)",
       "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
     }
@@ -79,6 +79,9 @@
   "http_clients": [
     {
       "tag": "sub-client",
+      "headers": {
+        "User-Agent": "Clash.Meta"
+      },
       "detour": "📦 订阅更新"
     }
   ],
