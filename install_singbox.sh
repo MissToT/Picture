@@ -483,11 +483,20 @@ printf "${BOLD}${BLUE}╚══════════════════�
 
 printf "\n${BOLD}${YELLOW}══════════════════  节点连接信息（请复制保存）  ══════════════════${NC}\n"
 
-# Snell 输出 (更新为标准 URI 格式)
+# Snell 输出
 if [ $INSTALL_SNELL -eq 1 ]; then
-    printf "\n${BOLD}${MAGENTA}▌ [Snell 节点]${NC} - 分享链接\n"
-    SNELL_LINK="snell://${SERVER_IP}:${SNELL_PORT}?psk=${SNELL_PSK}&obfs=http&obfs-host=${SNELL_OBFS}&version=5#${GEO_CODE}_Snell"
-    printf "${GREEN}%s${NC}\n" "${SNELL_LINK}"
+    printf "\n${BOLD}${MAGENTA}▌ [Snell 节点]${NC} - ${GEO_CODE}\n"
+    printf "${GREEN}%s${NC}\n" "  - name: \"${GEO_CODE} Snell\"
+    type: snell
+    server: ${SERVER_IP}
+    port: ${SNELL_PORT}
+    psk: ${SNELL_PSK}
+    version: 5
+    obfs-opts:
+      mode: http
+      host: ${SNELL_OBFS}
+    tfo: true
+    udp: true"
 fi
 
 # AnyTLS 输出
