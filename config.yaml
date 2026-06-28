@@ -8,8 +8,8 @@ UrlTest: &UrlTest { type: url-test, interrupt-exist-connections: false, hidden: 
 Fallback: &Fallback { type: fallback, interrupt-exist-connections: true, hidden: true, interval: 60, url: "https://captive.apple.com/generate_204" }
 # 锚点 - 规则集
 IPCIDR: &IPCIDR { type: http, interval: 86400, proxy: "订阅更新", behavior: ipcidr, format: mrs }
-Domain: &Domain { type: http, interval: 86400, proxy: "订阅更新", behavior: domain, format: mrs }
-Classical: &Classical { type: http, interval: 86400, proxy: "订阅更新", behavior: classical, format: text }
+DOMAIN: &DOMAIN { type: http, interval: 86400, proxy: "订阅更新", behavior: domain, format: mrs }
+CLASSICAL: &CLASSICAL { type: http, interval: 86400, proxy: "订阅更新", behavior: classical, format: text }
 # 锚点 - 远程订阅组
 Providers: &Providers { type: http, interval: 86400, proxy: "订阅更新", health-check: { enable: true, url: "https://captive.apple.com/generate_204", interval: 600 }, <<: *FilterOthers }
 ############################################## - ⚓️ 锚点区结束 - ##############################################
@@ -119,33 +119,33 @@ rule-providers:
   Google_ip: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/google.mrs" }
   Cloudflare_ip: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/cloudflare.mrs" }
   AI_ip: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/ai.mrs" }
-  China_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/cn.mrs" }
-  China+_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/China.mrs" }
-  Proxy_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/proxy.mrs" }
-  Proxy+_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/Proxy.mrs" }
-  Private_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/private.mrs" }
-  Telegram_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/telegram.mrs" }
-  Twitter_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/twitter.mrs" }
-  Google_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/google.mrs" }
-  GoogleFCM_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/googlefcm.mrs" }
-  Microsoft_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft.mrs" }
-  Microsoft-cn_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft@cn.mrs" }
-  Cloudflare_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cloudflare.mrs" }
-  Cloudflare-cn_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cloudflare-cn.mrs" }
-  Games_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-games-!cn.mrs" }
-  Games-download_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-game-platforms-download.mrs" }
-  Mihoyo-cn_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/mihoyo-cn.mrs" }
-  AI_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-ai-!cn.mrs" }
-  Emby_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/Emby.mrs" }
-  Emby-cn_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/Emby-CN.mrs" }
-  Japan_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/Japan.mrs" }
-  Taiwan_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/Taiwan.mrs" }
-  TikTok_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/tiktok.mrs" }
-  YouTube_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/youtube.mrs" }
-  ExHentai_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/ehentai.mrs" }
-  anti-ad_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/mihomo.mrs" }
-  reject_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/reject.mrs" }
-  Fakeip-Filter_domain: { <<: *Domain, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/fake-ip-filter.mrs" }
+  China_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/cn.mrs" }
+  China+_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/China.mrs" }
+  Proxy_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/proxy.mrs" }
+  Proxy+_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/Proxy.mrs" }
+  Private_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/private.mrs" }
+  Telegram_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/telegram.mrs" }
+  Twitter_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/twitter.mrs" }
+  Google_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/google.mrs" }
+  GoogleFCM_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/googlefcm.mrs" }
+  Microsoft_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft.mrs" }
+  Microsoft-cn_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft@cn.mrs" }
+  Cloudflare_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cloudflare.mrs" }
+  Cloudflare-cn_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cloudflare-cn.mrs" }
+  Games_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-games-!cn.mrs" }
+  Games-download_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-game-platforms-download.mrs" }
+  Mihoyo-cn_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/mihoyo-cn.mrs" }
+  AI_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-ai-!cn.mrs" }
+  Emby_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/Emby.mrs" }
+  Emby-cn_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/Emby-CN.mrs" }
+  Japan_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/Japan.mrs" }
+  Taiwan_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/Taiwan.mrs" }
+  TikTok_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/tiktok.mrs" }
+  YouTube_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/youtube.mrs" }
+  ExHentai_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/ehentai.mrs" }
+  anti-ad_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/mihomo.mrs" }
+  reject_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/reject.mrs" }
+  Fakeip-Filter_domain: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/fake-ip-filter.mrs" }
 
 rules:
   - DST-PORT,53,🔰 DNS-Hijack
