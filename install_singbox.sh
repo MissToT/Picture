@@ -181,26 +181,26 @@ fi
 # =============================================================================
 step "第四步：协议选择与参数配置"
 
-printf "${CYAN}请选择需要安装的协议 (支持多选如 1 2 3，或选 4 全选):${NC}\n"
+printf "${CYAN}请选择需要安装的协议 (支持多选，请用逗号隔开，如 1,2,3):${NC}\n"
 printf "  1) Snell\n"
 printf "  2) AnyTLS\n"
 printf "  3) VLESS+REALITY\n"
-printf "  4) 全选\n"
 ask "请输入选项 [默认: 1]: "
 read -r PROTO_CHOICE
 PROTO_CHOICE="${PROTO_CHOICE:-1}"
 
 INSTALL_SNELL=0; INSTALL_ANYTLS=0; INSTALL_VLESS=0
 
-if echo "$PROTO_CHOICE" | grep -q "4"; then
-    INSTALL_SNELL=1; INSTALL_ANYTLS=1; INSTALL_VLESS=1
-else
-    echo "$PROTO_CHOICE" | grep -q "1" && INSTALL_SNELL=1
-    echo "$PROTO_CHOICE" | grep -q "2" && INSTALL_ANYTLS=1
-    echo "$PROTO_CHOICE" | grep -q "3" && INSTALL_VLESS=1
-fi
+# 将输入的逗号替换为空格进行遍历，容错处理用户的各种输入格式
+for choice in $(echo "$PROTO_CHOICE" | tr ',' ' '); do
+    case "$choice" in
+        1) INSTALL_SNELL=1 ;;
+        2) INSTALL_ANYTLS=1 ;;
+        3) INSTALL_VLESS=1 ;;
+    esac
+done
 
-[ $INSTALL_SNELL -eq 0 ] && [ $INSTALL_ANYTLS -eq 0 ] && [ $INSTALL_VLESS -eq 0 ] && error "未选择任何协议！"
+[ $INSTALL_SNELL -eq 0 ] && [ $INSTALL_ANYTLS -eq 0 ] && [ $INSTALL_VLESS -eq 0 ] && error "未选择任何有效协议，请重新运行脚本！"
 
 if [ $INSTALL_SNELL -eq 1 ]; then
     printf "\n${BOLD}${MAGENTA}--- Snell 设置 ---${NC}\n"
