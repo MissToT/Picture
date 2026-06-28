@@ -118,7 +118,7 @@
             "invert": true
           },
           {
-            "rule_set": "anti-ad"
+            "rule_set": "anti-ad-geosite"
           }
         ],
         "action": "predefined",
@@ -126,8 +126,8 @@
       },
       {
         "rule_set": [
-          "fakeip-filter",
-          "cn-domain"
+          "fakeip-filter-geosite",
+          "china-geosite"
         ],
         "server": "dns-direct"
       },
@@ -142,7 +142,7 @@
       },
       {
         "match_response": true,
-        "rule_set": "cn-ip",
+        "rule_set": "china-geoip",
         "server": "dns-direct"
       },
       {
@@ -301,7 +301,7 @@
             "invert": true
           },
           {
-            "rule_set": "anti-ad"
+            "rule_set": "anti-ad-geosite"
           }
         ],
         "action": "reject"
@@ -311,7 +311,7 @@
         "outbound": "🇺🇳 国外代理"
       },
       {
-        "rule_set": "cn-domain",
+        "rule_set": "china-geosite",
         "outbound": "🇨🇳 国内直连"
       },
       {
@@ -319,7 +319,7 @@
         "match_only": true
       },
       {
-        "rule_set": "cn-ip",
+        "rule_set": "china-geoip",
         "outbound": "🇨🇳 国内直连"
       }
     ],
@@ -330,10 +330,10 @@
     "default_domain_resolver": "dns-direct",
     "rule_set": [
       {
-        "tag": "anti-ad",
+        "tag": "anti-ad-geosite",
         "type": "remote",
         "format": "binary",
-        "path": "./rules/anti-ad.srs",
+        "path": "./rules/anti-ad-geosite.srs",
         "url": "https://v6.gh-proxy.org/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/anti-ad-sing-box.srs"
       },
       {
@@ -344,24 +344,24 @@
         "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/singbox/version5/proxy.srs"
       },
       {
-        "tag": "cn-domain",
+        "tag": "china-geosite",
         "type": "remote",
         "format": "binary",
-        "path": "./rules/cn-domain.srs",
+        "path": "./rules/china-geosite.srs",
         "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/singbox/version5/cn.srs"
       },
       {
-        "tag": "cn-ip",
+        "tag": "china-geoip",
         "type": "remote",
         "format": "binary",
-        "path": "./rules/cn-ip.srs",
+        "path": "./rules/china-geoip.srs",
         "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/singbox/version5/cncidr.srs"
       },
       {
-        "tag": "fakeip-filter",
+        "tag": "fakeip-filter-geosite",
         "type": "remote",
         "format": "binary",
-        "path": "./rules/fakeip-filter.srs",
+        "path": "./rules/fakeip-filter-geosite.srs",
         "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/singbox/version5/fake-ip-filter.srs"
       }
     ]
