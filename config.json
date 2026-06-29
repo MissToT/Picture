@@ -64,8 +64,8 @@
     "rules": [
       { "clash_mode": "Direct", "server": "dns-direct" },
       { "clash_mode": "Global", "server": "dns-global" },
-      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "AllowAds", "invert": true }, { "rule_set": [ "anti-ad-geosite", "reject-geosite" ] } ], "action": "predefined", "rcode": "NOERROR" },
-      { "rule_set": [ "fakeip-filter-geosite", "china-geosite", "china-custom-geosite" ], "server": "dns-direct" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "AllowAds", "invert": true }, { "rule_set": "adblock-geosite" } ], "action": "predefined", "rcode": "NOERROR" },
+      { "rule_set": [ "fakeip-filter-geosite", "china-geosite" ], "server": "dns-direct" },
       { "action": "evaluate", "server": "dns-global" },
       { "match_response": true, "ip_is_private": true, "action": "respond" },
       { "match_response": true, "rule_set": "china-geoip", "server": "dns-direct" },
@@ -136,7 +136,7 @@
       { "ip_is_private": true, "outbound": "🌐 本地直连" },
       { "clash_mode": "Direct", "outbound": "🌐 本地直连" },
       { "clash_mode": "Global", "outbound": "GLOBAL" },
-      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "AllowAds", "invert": true }, { "rule_set": [ "anti-ad-geosite", "reject-geosite" ] } ], "action": "reject" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "AllowAds", "invert": true }, { "rule_set": "adblock-geosite" } ], "action": "reject" },
       { "rule_set": "google-fcm-geosite", "outbound": "💌 谷歌推送" },
       { "rule_set": "telegram-geosite", "outbound": "📱 Telegram" },
       { "rule_set": "twitter-geosite", "outbound": "🐦 Twitter" },
@@ -151,8 +151,6 @@
       { "rule_set": "games-download-geosite", "outbound": "🎮 Games" },
       { "rule_set": "japan-geosite", "outbound": "🇯🇵 日本网站" },
       { "rule_set": "taiwan-geosite", "outbound": "🇹🇼 台湾网站" },
-      { "rule_set": "proxy-custom-geosite", "outbound": "🇺🇳 国外代理" },
-      { "rule_set": "china-custom-geosite", "outbound": "🇨🇳 国内直连" },
       { "rule_set": "google-geosite", "outbound": "🔍 Google" },
       { "rule_set": "microsoft-cn-geosite", "outbound": "🇨🇳 国内直连" },
       { "rule_set": "microsoft-geosite", "outbound": "🇺🇳 国外代理" },
@@ -176,18 +174,11 @@
     "default_domain_resolver": "dns-direct",
     "rule_set": [
       {
-        "tag": "anti-ad-geosite",
+        "tag": "adblock-geosite",
         "type": "remote",
         "format": "binary",
-        "path": "./rules/anti-ad-geosite.srs",
-        "url": "https://v6.gh-proxy.org/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/anti-ad-sing-box.srs"
-      },
-      {
-        "tag": "reject-geosite",
-        "type": "remote",
-        "format": "binary",
-        "path": "./rules/reject-geosite.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/SingBox/Rules/domain/reject.srs"
+        "path": "./rules/adblock-geosite.srs",
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/geosite/adblock.srs"
       },
       {
         "tag": "cloudflare-geosite",
@@ -306,14 +297,14 @@
         "type": "remote",
         "format": "binary",
         "path": "./rules/japan-geosite.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/SingBox/Rules/domain/Japan.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/geosite/japan.srs"
       },
       {
         "tag": "taiwan-geosite",
         "type": "remote",
         "format": "binary",
         "path": "./rules/taiwan-geosite.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/SingBox/Rules/domain/Taiwan.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/geosite/taiwan.srs"
       },
       {
         "tag": "tiktok-geosite",
@@ -362,42 +353,28 @@
         "type": "remote",
         "format": "binary",
         "path": "./rules/proxy-geosite.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/main/dist/domain/proxy.srs"
-      },
-      {
-        "tag": "proxy-custom-geosite",
-        "type": "remote",
-        "format": "binary",
-        "path": "./rules/proxy-custom-geosite.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/SingBox/Rules/domain/Proxy.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/geosite/proxy.srs"
       },
       {
         "tag": "proxy-geoip",
         "type": "remote",
         "format": "binary",
         "path": "./rules/proxy-geoip.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/main/dist/ipcidr/proxy.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/geoip/proxy.srs"
       },
       {
         "tag": "china-geosite",
         "type": "remote",
         "format": "binary",
         "path": "./rules/china-geosite.srs",
-        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/singbox/version5/cn.srs"
-      },
-      {
-        "tag": "china-custom-geosite",
-        "type": "remote",
-        "format": "binary",
-        "path": "./rules/china-custom-geosite.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/SingBox/Rules/domain/China.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/geosite/china.srs"
       },
       {
         "tag": "china-geoip",
         "type": "remote",
         "format": "binary",
         "path": "./rules/china-geoip.srs",
-        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/singbox/version5/cncidr.srs"
+        "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/geoip/china.srs"
       },
       {
         "tag": "fakeip-filter-geosite",
