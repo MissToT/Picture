@@ -58,9 +58,9 @@ dns:
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter-mode: rule
   fake-ip-filter:
-    - RULE-SET,fakeip-filter-geosite,real-ip
-    - RULE-SET,private-geosite,real-ip
-    - RULE-SET,china-geosite,real-ip
+    - RULE-SET,GeoSite-FakeIP-Filter,real-ip
+    - RULE-SET,GeoSite-Private,real-ip
+    - RULE-SET,GeoSite-China,real-ip
     - MATCH,fake-ip
   default-nameserver: [ 223.5.5.5, 119.29.29.29 ]
   nameserver: [ "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query" ]
@@ -91,22 +91,22 @@ proxy-groups:
   - { name: "GLOBAL", <<: [ *Select, *FilterSelect ], proxies: [ "手动选择", "🌐 本地直连", "⛔️ 拒绝连接", "订阅更新", "国内直连", "国外代理", "广告拦截", "漏网之鱼" ], icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png" }
 
 rule-providers:
-  private-geoip:             { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/private.mrs" }
-  china-geoip:               { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/ipcidr/cn.mrs" }
-  proxy-geoip:               { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/ipcidr/proxy.mrs" }
-  private-geosite:           { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/private.mrs" }
-  china-geosite:             { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/cn.mrs" }
-  proxy-geosite:             { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/proxy.mrs" }
-  anti-ad-geosite:           { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/mihomo.mrs" }
-  fakeip-filter-geosite:     { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/fake-ip-filter.mrs" }
+  GeoIP-Private:             { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/private.mrs" }
+  GeoIP-China:               { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/ipcidr/cn.mrs" }
+  GeoIP-Proxy:               { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/ipcidr/proxy.mrs" }
+  GeoSite-Private:           { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/private.mrs" }
+  GeoSite-China:             { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/cn.mrs" }
+  GeoSite-Proxy:             { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/proxy.mrs" }
+  GeoSite-Anti-AD:           { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/mihomo.mrs" }
+  GeoSite-FakeIP-Filter:     { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/fake-ip-filter.mrs" }
 
 rules:
   - DST-PORT,53,🔰 DNS-Hijack
-  - RULE-SET,anti-ad-geosite,广告拦截
-  - RULE-SET,private-geosite,🌐 本地直连
-  - RULE-SET,proxy-geosite,国外代理
-  - RULE-SET,china-geosite,国内直连
-  - RULE-SET,private-geoip,🌐 本地直连,no-resolve
-  - RULE-SET,proxy-geoip,国外代理,no-resolve
-  - RULE-SET,china-geoip,国内直连,no-resolve
+  - RULE-SET,GeoSite-Anti-AD,广告拦截
+  - RULE-SET,GeoSite-Private,🌐 本地直连
+  - RULE-SET,GeoSite-Proxy,国外代理
+  - RULE-SET,GeoSite-China,国内直连
+  - RULE-SET,GeoIP-Private,🌐 本地直连,no-resolve
+  - RULE-SET,GeoIP-Proxy,国外代理,no-resolve
+  - RULE-SET,GeoIP-China,国内直连,no-resolve
   - MATCH,漏网之鱼
