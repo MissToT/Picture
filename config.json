@@ -66,9 +66,6 @@
       { "clash_mode": "Global", "server": "dns-global" },
       { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "AllowAds", "invert": true }, { "rule_set": "GeoSite-AdBlock" } ], "action": "predefined", "rcode": "NOERROR" },
       { "rule_set": [ "GeoSite-FakeIP-Filter", "GeoSite-China" ], "server": "dns-direct" },
-      { "action": "evaluate", "server": "dns-global" },
-      { "match_response": true, "ip_is_private": true, "action": "respond" },
-      { "match_response": true, "rule_set": "GeoIP-China", "server": "dns-direct" },
       { "query_type": [ "A", "AAAA" ], "server": "dns-fakeip" }
     ],
     "final": "dns-global",
