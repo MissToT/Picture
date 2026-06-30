@@ -91,14 +91,14 @@ proxy-groups:
   - { name: "GLOBAL", <<: [ *Select, *FilterSelect ], proxies: [ "手动选择", "🌐 本地直连", "⛔️ 拒绝连接", "订阅更新", "国内直连", "国外代理", "广告拦截", "漏网之鱼" ], icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png" }
 
 rule-providers:
-  GeoIP-Private:             { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/private.mrs" }
-  GeoIP-China:               { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/ipcidr/cn.mrs" }
-  GeoIP-Proxy:               { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/ipcidr/proxy.mrs" }
-  GeoSite-Private:           { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/private.mrs" }
-  GeoSite-China:             { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/cn.mrs" }
-  GeoSite-Proxy:             { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/proxy.mrs" }
-  GeoSite-Anti-AD:           { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/mihomo.mrs" }
-  GeoSite-FakeIP-Filter:     { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/fake-ip-filter.mrs" }
+  GeoIP-Private: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/private.mrs" }
+  GeoIP-China: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/ipcidr/cn.mrs" }
+  GeoIP-Proxy: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/ipcidr/proxy.mrs" }
+  GeoSite-Private: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/private.mrs" }
+  GeoSite-China: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/cn.mrs" }
+  GeoSite-Proxy: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/proxy.mrs" }
+  GeoSite-Anti-AD: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/mihomo.mrs" }
+  GeoSite-FakeIP-Filter: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/fake-ip-filter.mrs" }
 
 rules:
   - DST-PORT,53,🔰 DNS-Hijack
