@@ -132,20 +132,6 @@
         "server": "dns-direct"
       },
       {
-        "action": "evaluate",
-        "server": "dns-global"
-      },
-      {
-        "match_response": true,
-        "ip_is_private": true,
-        "action": "respond"
-      },
-      {
-        "match_response": true,
-        "rule_set": "GeoIP-China",
-        "server": "dns-direct"
-      },
-      {
         "query_type": [
           "A",
           "AAAA"
