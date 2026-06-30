@@ -63,9 +63,9 @@ dns:
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter-mode: rule
   fake-ip-filter:
-    - RULE-SET,fakeip-filter-geosite,real-ip
-    - RULE-SET,private-geosite,real-ip
-    - RULE-SET,china-geosite,real-ip
+    - RULE-SET,GeoSite-FakeIP-Filter,real-ip
+    - RULE-SET,GeoSite-Private,real-ip
+    - RULE-SET,GeoSite-China,real-ip
     - MATCH,fake-ip
   default-nameserver: [ 223.5.5.5, 119.29.29.29 ]
   nameserver: [ "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query" ]
@@ -110,70 +110,70 @@ proxy-groups:
   - { name: "GLOBAL", <<: [ *Select, *FilterSelect ], proxies: [ "自动选择", "手动选择", "🌐 本地直连", "⛔️ 拒绝连接", "订阅更新", "谷歌推送", "Telegram", "Twitter", "Emby", "ExHentai", "TikTok", "YouTube", "AI", "Games", "Google", "Cloudflare", "日本网站", "台湾网站", "国内直连", "国外代理", "广告拦截", "漏网之鱼" ], icon: "https://gh-proxy.com/github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png" }
 
 rule-providers:
-  china-geoip: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geoip/china.mrs" }
-  proxy-geoip: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geoip/proxy.mrs" }
-  private-geoip: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/private.mrs" }
-  telegram-geoip: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/telegram.mrs" }
-  twitter-geoip: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/twitter.mrs" }
-  google-geoip: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/google.mrs" }
-  cloudflare-geoip: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/cloudflare.mrs" }
-  ai-geoip: { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/ai.mrs" }
-  china-geosite: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/china.mrs" }
-  proxy-geosite: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/proxy.mrs" }
-  private-geosite: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/private.mrs" }
-  telegram-geosite: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/telegram.mrs" }
-  twitter-geosite: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/twitter.mrs" }
-  google-geosite: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/google.mrs" }
-  google-fcm-geosite: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/googlefcm@!cn.mrs" }
-  microsoft-geosite: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft.mrs" }
-  microsoft-cn-geosite: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft@cn.mrs" }
-  cloudflare-geosite: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cloudflare.mrs" }
-  cloudflare-cn-geosite: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cloudflare-cn.mrs" }
-  games-geosite: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-games-!cn.mrs" }
-  games-download-geosite: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-game-platforms-download.mrs" }
-  mihoyo-cn-geosite: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/mihoyo-cn.mrs" }
-  ai-geosite: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-ai-!cn.mrs" }
-  emby-geosite: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/Emby.mrs" }
-  emby-cn-geosite: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/Emby-CN.mrs" }
-  japan-geosite: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/japan.mrs" }
-  taiwan-geosite: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/taiwan.mrs" }
-  tiktok-geosite: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/tiktok.mrs" }
-  youtube-geosite: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/youtube.mrs" }
-  exhentai-geosite: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/ehentai.mrs" }
-  adblock-geosite: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/adblock.mrs" }
-  fakeip-filter-geosite: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/fake-ip-filter.mrs" }
+  GeoIP-China:                { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geoip/china.mrs" }
+  GeoIP-Proxy:                { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geoip/proxy.mrs" }
+  GeoIP-Private:              { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/private.mrs" }
+  GeoIP-Telegram:             { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/telegram.mrs" }
+  GeoIP-Twitter:              { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/twitter.mrs" }
+  GeoIP-Google:               { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/google.mrs" }
+  GeoIP-Cloudflare:           { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/cloudflare.mrs" }
+  GeoIP-AI:                   { <<: *IPCIDR, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/ai.mrs" }
+  GeoSite-China:              { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/china.mrs" }
+  GeoSite-Proxy:              { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/proxy.mrs" }
+  GeoSite-Private:            { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/private.mrs" }
+  GeoSite-Telegram:           { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/telegram.mrs" }
+  GeoSite-Twitter:            { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/twitter.mrs" }
+  GeoSite-Google:             { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/google.mrs" }
+  GeoSite-GoogleFCM:          { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/googlefcm@!cn.mrs" }
+  GeoSite-Microsoft:          { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft.mrs" }
+  GeoSite-Microsoft-CN:       { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft@cn.mrs" }
+  GeoSite-Cloudflare:         { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cloudflare.mrs" }
+  GeoSite-Cloudflare-CN:      { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cloudflare-cn.mrs" }
+  GeoSite-Games:              { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-games-!cn.mrs" }
+  GeoSite-Games-Download:     { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-game-platforms-download.mrs" }
+  GeoSite-Mihoyo-CN:          { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/mihoyo-cn.mrs" }
+  GeoSite-AI:                 { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-ai-!cn.mrs" }
+  GeoSite-Emby:               { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/Emby.mrs" }
+  GeoSite-Emby-CN:            { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/Emby-CN.mrs" }
+  GeoSite-Japan:              { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/japan.mrs" }
+  GeoSite-Taiwan:             { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/taiwan.mrs" }
+  GeoSite-TikTok:             { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/tiktok.mrs" }
+  GeoSite-YouTube:            { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/youtube.mrs" }
+  GeoSite-ExHentai:           { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/ehentai.mrs" }
+  GeoSite-AdBlock:            { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/adblock.mrs" }
+  GeoSite-FakeIP-Filter:      { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/meta/domain/fake-ip-filter.mrs" }
 
 rules:
   - DST-PORT,53,🔰 DNS-Hijack
-  - RULE-SET,adblock-geosite,广告拦截
-  - RULE-SET,private-geosite,🌐 本地直连
-  - RULE-SET,google-fcm-geosite,谷歌推送
-  - RULE-SET,telegram-geosite,Telegram
-  - RULE-SET,twitter-geosite,Twitter
-  - RULE-SET,tiktok-geosite,TikTok
-  - RULE-SET,ai-geosite,AI
-  - RULE-SET,youtube-geosite,YouTube
-  - RULE-SET,emby-cn-geosite,国内直连
-  - RULE-SET,emby-geosite,Emby
-  - RULE-SET,exhentai-geosite,ExHentai
-  - RULE-SET,mihoyo-cn-geosite,国内直连
-  - RULE-SET,games-geosite,Games
-  - RULE-SET,games-download-geosite,Games
-  - RULE-SET,japan-geosite,日本网站
-  - RULE-SET,taiwan-geosite,台湾网站
-  - RULE-SET,google-geosite,Google
-  - RULE-SET,microsoft-cn-geosite,国内直连
-  - RULE-SET,microsoft-geosite,国外代理
-  - RULE-SET,cloudflare-cn-geosite,国内直连
-  - RULE-SET,cloudflare-geosite,Cloudflare
-  - RULE-SET,proxy-geosite,国外代理
-  - RULE-SET,china-geosite,国内直连
-  - RULE-SET,private-geoip,🌐 本地直连,no-resolve
-  - RULE-SET,telegram-geoip,Telegram,no-resolve
-  - RULE-SET,twitter-geoip,Twitter,no-resolve
-  - RULE-SET,ai-geoip,AI,no-resolve
-  - RULE-SET,google-geoip,Google,no-resolve
-  - RULE-SET,cloudflare-geoip,Cloudflare,no-resolve
-  - RULE-SET,proxy-geoip,国外代理,no-resolve
-  - RULE-SET,china-geoip,国内直连,no-resolve
+  - RULE-SET,GeoSite-AdBlock,广告拦截
+  - RULE-SET,GeoSite-Private,🌐 本地直连
+  - RULE-SET,GeoSite-GoogleFCM,谷歌推送
+  - RULE-SET,GeoSite-Telegram,Telegram
+  - RULE-SET,GeoSite-Twitter,Twitter
+  - RULE-SET,GeoSite-TikTok,TikTok
+  - RULE-SET,GeoSite-AI,AI
+  - RULE-SET,GeoSite-YouTube,YouTube
+  - RULE-SET,GeoSite-Emby-CN,国内直连
+  - RULE-SET,GeoSite-Emby,Emby
+  - RULE-SET,GeoSite-ExHentai,ExHentai
+  - RULE-SET,GeoSite-Mihoyo-CN,国内直连
+  - RULE-SET,GeoSite-Games,Games
+  - RULE-SET,GeoSite-Games-Download,Games
+  - RULE-SET,GeoSite-Japan,日本网站
+  - RULE-SET,GeoSite-Taiwan,台湾网站
+  - RULE-SET,GeoSite-Google,Google
+  - RULE-SET,GeoSite-Microsoft-CN,国内直连
+  - RULE-SET,GeoSite-Microsoft,国外代理
+  - RULE-SET,GeoSite-Cloudflare-CN,国内直连
+  - RULE-SET,GeoSite-Cloudflare,Cloudflare
+  - RULE-SET,GeoSite-Proxy,国外代理
+  - RULE-SET,GeoSite-China,国内直连
+  - RULE-SET,GeoIP-Private,🌐 本地直连,no-resolve
+  - RULE-SET,GeoIP-Telegram,Telegram,no-resolve
+  - RULE-SET,GeoIP-Twitter,Twitter,no-resolve
+  - RULE-SET,GeoIP-AI,AI,no-resolve
+  - RULE-SET,GeoIP-Google,Google,no-resolve
+  - RULE-SET,GeoIP-Cloudflare,Cloudflare,no-resolve
+  - RULE-SET,GeoIP-Proxy,国外代理,no-resolve
+  - RULE-SET,GeoIP-China,国内直连,no-resolve
   - MATCH,漏网之鱼
