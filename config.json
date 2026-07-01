@@ -10,9 +10,9 @@
       "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
     },
     {
-      "tag": "SELF",
+      "tag": "OWN",
       "type": "remote",
-      "user_agent": "Clash.Meta",
+      "user_agent": "Sing-Box",
       "path": "./providers/OwnNode.json",
       "url": "http://localhost:3000/download/OwnNode",
       "exclude": "(?i)(流量|到期|时间|重置)",
