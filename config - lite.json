@@ -3,6 +3,7 @@
     {
       "tag": "SNTP",
       "type": "remote",
+      "user_agent": "Clash.Meta",
       "path": "./providers/SNTP.json",
       "url": "http://localhost:5200/download/SNTP",
       "exclude": "(?i)(流量|到期|时间|重置)",
@@ -147,9 +148,6 @@
   "http_clients": [
     {
       "tag": "sub-client",
-      "headers": {
-        "User-Agent": "Clash.Meta"
-      },
       "detour": "📦 订阅更新"
     }
   ],
