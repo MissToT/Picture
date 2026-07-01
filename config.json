@@ -3,14 +3,16 @@
     {
       "tag": "SNTP",
       "type": "remote",
+      "user_agent": "Clash.Meta",
       "path": "./providers/SNTP.json",
       "url": "http://localhost:3000/download/SNTP",
       "exclude": "(?i)(流量|到期|时间|重置)",
       "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
     },
     {
-      "tag": "OWN",
+      "tag": "SELF",
       "type": "remote",
+      "user_agent": "Clash.Meta",
       "path": "./providers/OwnNode.json",
       "url": "http://localhost:3000/download/OwnNode",
       "exclude": "(?i)(流量|到期|时间|重置)",
@@ -76,9 +78,6 @@
   "http_clients": [
     {
       "tag": "sub-client",
-      "headers": {
-        "User-Agent": "Clash.Meta"
-      },
       "detour": "📦 订阅更新"
     }
   ],
