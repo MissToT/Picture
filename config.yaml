@@ -130,8 +130,8 @@ rule-providers:
   GeoSite-Cloudflare: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cloudflare.mrs" }
   GeoSite-Cloudflare-CN: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cloudflare-cn.mrs" }
   GeoSite-Games: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-games-!cn.mrs" }
-  GeoSite-Games-CN: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-games-cn.mrs" }
   GeoSite-Games-Download: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-game-platforms-download.mrs" }
+  GeoSite-Mihoyo-CN: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/mihoyo-cn.mrs" }
   GeoSite-AI: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-ai-!cn.mrs" }
   GeoSite-Emby: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/Emby.mrs" }
   GeoSite-Emby-CN: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/Picture/raw/Meta/Rules/domain/Emby-CN.mrs" }
@@ -156,7 +156,7 @@ rules:
   - RULE-SET,GeoSite-Emby-CN,国内直连
   - RULE-SET,GeoSite-Emby,Emby
   - RULE-SET,GeoSite-ExHentai,ExHentai
-  - RULE-SET,GeoSite-Games-CN,国内直连
+  - RULE-SET,GeoSite-Mihoyo-CN,国内直连
   - RULE-SET,GeoSite-Games,Games
   - RULE-SET,GeoSite-Games-Download,Games
   - RULE-SET,GeoSite-Japan,日本网站
