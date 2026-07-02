@@ -142,7 +142,7 @@
       { "rule_set": "GeoSite-Emby-CN", "outbound": "🇨🇳 国内直连" },
       { "rule_set": "GeoSite-Emby", "outbound": "🎬 Emby" },
       { "rule_set": "GeoSite-ExHentai", "outbound": "📚 ExHentai" },
-      { "rule_set": "GeoSite-Mihoyo-CN", "outbound": "🇨🇳 国内直连" },
+      { "rule_set": "GeoSite-Games-CN", "outbound": "🇨🇳 国内直连" },
       { "rule_set": "GeoSite-Games", "outbound": "🎮 Games" },
       { "rule_set": "GeoSite-Games-Download", "outbound": "🎮 Games" },
       { "rule_set": "GeoSite-Japan", "outbound": "🇯🇵 日本网站" },
@@ -233,13 +233,6 @@
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/microsoft@cn.srs"
       },
       {
-        "tag": "GeoSite-Mihoyo-CN",
-        "type": "remote",
-        "format": "binary",
-        "path": "./rules/GeoSite-Mihoyo-CN.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/mihoyo-cn.srs"
-      },
-      {
         "tag": "GeoSite-Emby",
         "type": "remote",
         "format": "binary",
@@ -273,6 +266,13 @@
         "format": "binary",
         "path": "./rules/GeoSite-Games.srs",
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/category-games-!cn.srs"
+      },
+      {
+        "tag": "GeoSite-Games-CN",
+        "type": "remote",
+        "format": "binary",
+        "path": "./rules/GeoSite-Games-CN.srs",
+        "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/category-games-cn.srs"
       },
       {
         "tag": "GeoSite-Games-Download",
