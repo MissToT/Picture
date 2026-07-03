@@ -312,6 +312,7 @@
     "auto_detect_interface": true,
     "default_http_client": "sub-client",
     "default_domain_resolver": "dns-direct",
+    "default_domain_match_strategy": "prefer_fqdn",
     "rule_set": [
       {
         "tag": "GeoSite-Anti-AD",
