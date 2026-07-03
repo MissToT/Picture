@@ -70,13 +70,13 @@
         "tag": "dns-cloudflare",
         "type": "https",
         "server": "cloudflare-dns.com",
-        "detour": "🇺🇳 国外代理"
+        "detour": "GLOBAL"
       },
       {
         "tag": "dns-google",
         "type": "https",
         "server": "dns.google",
-        "detour": "🇺🇳 国外代理"
+        "detour": "GLOBAL"
       },
       {
         "tag": "dns-direct",
