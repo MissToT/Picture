@@ -68,6 +68,9 @@
       { "clash_mode": "Global", "server": "dns-global" },
       { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "AllowAds", "invert": true }, { "rule_set": "GeoSite-AdBlock" } ], "action": "predefined", "rcode": "NOERROR" },
       { "rule_set": [ "GeoSite-FakeIP-Filter", "GeoSite-China" ], "server": "dns-direct" },
+      { "action": "evaluate", "server": "dns-global" },
+      { "match_response": true, "ip_is_private": true, "action": "respond" },
+      { "match_response": true, "rule_set": "GeoIP-China", "server": "dns-direct" },
       { "query_type": [ "A", "AAAA" ], "server": "dns-fakeip" }
     ],
     "final": "dns-global",
@@ -160,7 +163,6 @@
       { "rule_set": "GeoIP-Google", "outbound": "🔍 Google" },
       { "rule_set": "GeoIP-Cloudflare", "outbound": "🧩 Cloudflare" },
       { "rule_set": "GeoIP-Proxy", "outbound": "🇺🇳 国外代理" },
-      { "action": "resolve", "match_only": true },
       { "rule_set": "GeoIP-China", "outbound": "🇨🇳 国内直连" }
     ],
     "final": "🍥 漏网之鱼",
