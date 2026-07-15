@@ -1,10 +1,10 @@
 {
   "providers": [
     {
-      "tag": "SNTP",
+      "tag": "守候",
       "type": "remote",
       "user_agent": "Clash.Meta",
-      "path": "./providers/SNTP.json",
+      "path": "./providers/守候.json",
       "url": "http://localhost:5200/download/SNTP",
       "exclude": "(?i)(流量|到期|时间|重置)",
       "health_check": {
