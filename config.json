@@ -14,7 +14,7 @@
       "type": "remote",
       "user_agent": "Sing-Box",
       "path": "./providers/自建.json",
-      "url": "http://localhost:3000/download/OwnNode",
+      "url": "http://localhost:3000/download/%E8%87%AA%E5%BB%BA",
       "exclude": "(?i)(流量|到期|时间|重置)",
       "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
     }
