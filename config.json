@@ -1,19 +1,19 @@
 {
   "providers": [
     {
-      "tag": "SNTP",
+      "tag": "守候",
       "type": "remote",
       "user_agent": "Clash.Meta",
-      "path": "./providers/SNTP.json",
+      "path": "./providers/守候.json",
       "url": "http://localhost:3000/download/SNTP",
       "exclude": "(?i)(流量|到期|时间|重置)",
       "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
     },
     {
-      "tag": "OWN",
+      "tag": "自建",
       "type": "remote",
       "user_agent": "Sing-Box",
-      "path": "./providers/OwnNode.json",
+      "path": "./providers/自建.json",
       "url": "http://localhost:3000/download/OwnNode",
       "exclude": "(?i)(流量|到期|时间|重置)",
       "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
