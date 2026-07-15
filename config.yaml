@@ -17,7 +17,7 @@ Providers: &Providers { type: http, interval: 86400, proxy: "订阅更新", heal
 # 节点订阅
 proxy-providers:
   守候: { <<: *Providers, url: "http://localhost:3000/download/SNTP", path: "./providers/守候.yaml", override: { additional-prefix: "[守候] " } }
-  自建: { <<: *Providers, url: "http://localhost:3000/download/OwnNode", path: "./providers/自建.yaml", override: { additional-prefix: "[自建] " } }
+  自建: { <<: *Providers, url: "http://localhost:3000/download/%E8%87%AA%E5%BB%BA", path: "./providers/自建.yaml", override: { additional-prefix: "[自建] " } }
 
 # 基础配置
 mixed-port: 7890
