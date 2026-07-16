@@ -50,21 +50,21 @@
   "dns": {
     "servers": [
       {
-        "tag": "dns-bootstrap",
+        "tag": "dns-resolver",
         "type": "udp",
         "server": "223.5.5.5"
       },
       {
         "tag": "dns-ali",
-        "type": "quic",
+        "type": "https",
         "server": "dns.alidns.com",
-        "domain_resolver": "dns-bootstrap"
+        "domain_resolver": "dns-resolver"
       },
       {
         "tag": "dns-tencent",
         "type": "https",
         "server": "doh.pub",
-        "domain_resolver": "dns-bootstrap"
+        "domain_resolver": "dns-resolver"
       },
       {
         "tag": "dns-cloudflare",
