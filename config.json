@@ -10,6 +10,15 @@
       "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
     },
     {
+      "tag": "良心云",
+      "type": "remote",
+      "user_agent": "Clash.Meta",
+      "path": "./providers/良心云.json",
+      "url": "http://localhost:3000/download/%E8%89%AF%E5%BF%83%E4%BA%91",
+      "exclude": "(?i)(流量|到期|时间|重置)",
+      "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
+    },
+    {
       "tag": "自建",
       "type": "remote",
       "user_agent": "Sing-Box",
