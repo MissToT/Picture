@@ -10,7 +10,7 @@
       "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
     },
     {
-      "tag": "良心云",
+      "tag": "良心",
       "type": "remote",
       "user_agent": "Clash.Meta",
       "path": "./providers/良心云.json",
