@@ -56,6 +56,7 @@ dns:
   cache-algorithm: arc
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
+  fake-ip-range6: fc00::/18
   fake-ip-filter-mode: rule
   fake-ip-filter:
     - RULE-SET,GeoSite-FakeIP-Filter,real-ip
