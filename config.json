@@ -5,7 +5,7 @@
       "type": "remote",
       "user_agent": "Clash.Meta",
       "path": "./providers/守候.json",
-      "url": "http://localhost:3000/download/SNTP",
+      "url": "http://localhost:3000/download/SNTP?includeUnsupportedProxy=true",
       "exclude": "(?i)(流量|到期|时间|重置)",
       "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
     },
@@ -14,7 +14,7 @@
       "type": "remote",
       "user_agent": "Clash.Meta",
       "path": "./providers/良心云.json",
-      "url": "http://localhost:3000/download/%E8%89%AF%E5%BF%83%E4%BA%91",
+      "url": "http://localhost:3000/download/%E8%89%AF%E5%BF%83%E4%BA%91?includeUnsupportedProxy=true",
       "exclude": "(?i)(流量|到期|时间|重置)",
       "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
     },
@@ -23,7 +23,7 @@
       "type": "remote",
       "user_agent": "Sing-Box",
       "path": "./providers/自建.json",
-      "url": "http://localhost:3000/download/%E8%87%AA%E5%BB%BA",
+      "url": "http://localhost:3000/download/%E8%87%AA%E5%BB%BA?includeUnsupportedProxy=true",
       "exclude": "(?i)(流量|到期|时间|重置)",
       "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
     }
