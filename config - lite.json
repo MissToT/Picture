@@ -137,7 +137,8 @@
           "A",
           "AAAA"
         ],
-        "server": "dns-fakeip"
+        "server": "dns-fakeip",
+        "rewrite_ttl": 1
       }
     ],
     "final": "dns-global",
