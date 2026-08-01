@@ -180,7 +180,7 @@
     "auto_detect_interface": true,
     "default_http_client": "sub-client",
     "default_domain_resolver": "dns-direct",
-    "default_domain_match_strategy": "prefer_fqdn",
+    "default_domain_match_strategy": "prefer_sniffhost",
     "rule_set": [
       { "tag": "GeoSite-AdBlock", "type": "remote", "path": "./rules/GeoSite-AdBlock.srs", "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/geosite/adblock.srs" },
       { "tag": "GeoSite-Cloudflare", "type": "remote", "path": "./rules/GeoSite-Cloudflare.srs", "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/cloudflare.srs" },
