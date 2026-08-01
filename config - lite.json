@@ -138,13 +138,15 @@
           "AAAA"
         ],
         "server": "dns-fakeip",
+        "disable_cache": true,
         "rewrite_ttl": 1
       }
     ],
     "final": "dns-global",
     "strategy": "prefer_ipv4",
     "optimistic": true,
-    "reverse_mapping": true
+    "reverse_mapping": true,
+    "round_robin_cache": true
   },
   "http_clients": [
     {
