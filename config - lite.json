@@ -138,7 +138,6 @@
           "AAAA"
         ],
         "server": "dns-fakeip",
-        "disable_cache": true,
         "rewrite_ttl": 1
       }
     ],
