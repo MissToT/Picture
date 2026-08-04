@@ -50,6 +50,13 @@
   "dns": {
     "servers": [
       {
+        "tag": "dns-hosts",
+        "type": "hosts",
+        "predefined": {
+          "services.googleapis.cn": "services.googleapis.com"
+        }
+      },
+      {
         "tag": "dns-resolver",
         "type": "udp",
         "server": "223.5.5.5"
@@ -102,6 +109,10 @@
       }
     ],
     "rules": [
+      {
+        "preferred_by": "dns-hosts",
+        "server": "dns-hosts"
+      },
       {
         "clash_mode": "Direct",
         "server": "dns-direct"
@@ -169,8 +180,7 @@
       "interface_name": "Box",
       "address": "172.18.0.1/30",
       "auto_route": true,
-      "strict_route": true,
-      "auto_redirect": false
+      "strict_route": true
     }
   ],
   "outbounds": [
