@@ -4,21 +4,21 @@
       "tag": "守候",
       "type": "remote",
       "path": "./providers/守候.json",
-      "url": "http://localhost:3000/download/SNTP?includeUnsupportedProxy=true",
+      "url": "http://localhost:3000/download/SNTP",
       "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
     },
     {
       "tag": "良心云",
       "type": "remote",
       "path": "./providers/良心云.json",
-      "url": "http://localhost:3000/download/%E8%89%AF%E5%BF%83%E4%BA%91?includeUnsupportedProxy=true",
+      "url": "http://localhost:3000/download/%E8%89%AF%E5%BF%83%E4%BA%91",
       "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
     },
     {
       "tag": "自建",
       "type": "remote",
       "path": "./providers/自建.json",
-      "url": "http://localhost:3000/download/%E8%87%AA%E5%BB%BA?includeUnsupportedProxy=true",
+      "url": "http://localhost:3000/download/%E8%87%AA%E5%BB%BA",
       "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
     }
   ],
@@ -57,7 +57,7 @@
   ],
   "dns": {
     "servers": [
-      { "tag": "dns-hosts", "type": "hosts", "predefined": { "dns.alidns.com": [ "223.5.5.5", "223.6.6.6" ], "doh.pub": [ "1.12.12.12", "120.53.53.53" ] } },
+      { "tag": "dns-hosts", "type": "hosts", "predefined": { "services.googleapis.cn": "services.googleapis.com", "dns.alidns.com": [ "223.5.5.5", "223.6.6.6" ], "doh.pub": [ "1.12.12.12", "120.53.53.53" ] } },
       { "tag": "dns-ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns-hosts" },
       { "tag": "dns-tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns-hosts" },
       { "tag": "dns-cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "GLOBAL" },
