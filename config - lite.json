@@ -57,7 +57,7 @@
       {
         "tag": "dns-resolver",
         "type": "udp",
-        "server": "223.5.5.5"
+        "server": "223.6.6.6"
       },
       {
         "tag": "dns-ali",
