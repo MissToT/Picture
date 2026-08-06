@@ -223,6 +223,7 @@
       "type": "selector",
       "use_all_providers": true,
       "interrupt_exist_connections": true,
+      "default": "🌐 本地直连",
       "outbounds": [
         "♻️ 自动选择",
         "🎯 手动选择",
@@ -235,6 +236,7 @@
       "type": "selector",
       "use_all_providers": true,
       "interrupt_exist_connections": true,
+      "default": "🌐 本地直连",
       "outbounds": [
         "♻️ 自动选择",
         "🎯 手动选择",
@@ -247,6 +249,7 @@
       "type": "selector",
       "use_all_providers": true,
       "interrupt_exist_connections": true,
+      "default": "🌐 本地直连",
       "outbounds": [
         "♻️ 自动选择",
         "🎯 手动选择",
