@@ -134,7 +134,7 @@
   ],
   "route": {
     "rules": [
-      { "action": "sniff" },
+      { "domain": "p.sda1.dev", "invert": true, "action": "sniff" },
       { "type": "logical", "mode": "or", "rules": [ { "protocol": "dns" }, { "port": 53 } ], "action": "hijack-dns" },
       { "ip_is_private": true, "outbound": "🌐 本地直连" },
       { "clash_mode": "Direct", "outbound": "🌐 本地直连" },
