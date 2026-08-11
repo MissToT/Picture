@@ -17,7 +17,6 @@ Providers: &Providers { type: http, interval: 86400, proxy: "订阅更新", heal
 # 节点订阅
 proxy-providers:
   守候: { <<: *Providers, url: "http://localhost:3000/download/SNTP", path: "./providers/守候.yaml", override: { additional-prefix: "[守候] " } }
-  良心云: { <<: *Providers, url: "http://localhost:3000/download/%E8%89%AF%E5%BF%83%E4%BA%91", path: "./providers/良心云.yaml", override: { additional-prefix: "[良心云] " } }
   自建: { <<: *Providers, url: "http://localhost:3000/download/%E8%87%AA%E5%BB%BA", path: "./providers/自建.yaml", override: { additional-prefix: "[自建] " } }
 
 # 基础配置
@@ -67,6 +66,7 @@ dns:
   fake-ip-range: 198.18.0.0/15
   fake-ip-filter-mode: rule
   fake-ip-filter:
+    - DOMAIN,p.sda1.dev,fake-ip
     - RULE-SET,GeoSite-FakeIP-Filter,real-ip
     - RULE-SET,GeoSite-Private,real-ip
     - RULE-SET,GeoSite-China,real-ip
