@@ -1,4 +1,5 @@
 {
+  "$schema": "https://v6.gh-proxy.org/github.com/reF1nd/sing-box/raw/reF1nd-testing/docs/schema.json",
   "providers": [
     {
       "tag": "守候",
@@ -50,10 +51,9 @@
   ],
   "dns": {
     "servers": [
-      { "tag": "dns-hosts", "type": "hosts", "predefined": { "services.googleapis.cn": "services.googleapis.com" } },
-      { "tag": "dns-resolver", "type": "udp", "server": "223.6.6.6" },
-      { "tag": "dns-ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns-resolver" },
-      { "tag": "dns-tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns-resolver" },
+      { "tag": "dns-hosts", "type": "hosts", "predefined": { "services.googleapis.cn": "services.googleapis.com", "dns.alidns.com": [ "223.6.6.6", "223.5.5.5" ], "doh.pub": [ "1.12.12.12", "120.53.53.53" ] } },
+      { "tag": "dns-ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns-hosts" },
+      { "tag": "dns-tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns-hosts" },
       { "tag": "dns-cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "GLOBAL" },
       { "tag": "dns-google", "type": "https", "server": "dns.google", "detour": "GLOBAL" },
       { "tag": "dns-direct", "type": "group", "servers": [ "dns-ali", "dns-tencent" ] },
@@ -128,7 +128,7 @@
   ],
   "route": {
     "rules": [
-      { "domain": "p.sda1.dev", "invert": true, "action": "sniff" },
+      { "action": "sniff" },
       { "type": "logical", "mode": "or", "rules": [ { "protocol": "dns" }, { "port": 53 } ], "action": "hijack-dns" },
       { "ip_is_private": true, "outbound": "🌐 本地直连" },
       { "clash_mode": "Direct", "outbound": "🌐 本地直连" },
