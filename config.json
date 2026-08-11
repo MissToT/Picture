@@ -1,5 +1,4 @@
 {
-  "$schema": "https://v6.gh-proxy.org/github.com/reF1nd/sing-box/raw/reF1nd-testing/docs/schema.json",
   "providers": [
     {
       "tag": "守候",
@@ -51,6 +50,7 @@
   ],
   "dns": {
     "servers": [
+      { "tag": "dns-hosts", "type": "hosts", "predefined": { "services.googleapis.cn": "services.googleapis.com" } },
       { "tag": "dns-resolver", "type": "udp", "server": "223.6.6.6" },
       { "tag": "dns-ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns-resolver" },
       { "tag": "dns-tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns-resolver" },
@@ -61,6 +61,7 @@
       { "tag": "dns-fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/18" }
     ],
     "rules": [
+      { "preferred_by": "dns-hosts", "server": "dns-hosts" },
       { "clash_mode": "Direct", "server": "dns-direct" },
       { "clash_mode": "Global", "server": "dns-global" },
       { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "AllowAds", "invert": true }, { "rule_set": "GeoSite-AdBlock" } ], "action": "predefined", "rcode": "NOERROR" },
