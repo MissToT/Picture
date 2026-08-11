@@ -51,9 +51,9 @@
   ],
   "dns": {
     "servers": [
-      { "tag": "dns-hosts", "type": "hosts", "predefined": { "services.googleapis.cn": "services.googleapis.com", "dns.alidns.com": [ "223.6.6.6", "223.5.5.5" ], "doh.pub": [ "1.12.12.12", "120.53.53.53" ] } },
-      { "tag": "dns-ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns-hosts" },
-      { "tag": "dns-tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns-hosts" },
+      { "tag": "dns-resolver", "type": "udp", "server": "223.6.6.6" },
+      { "tag": "dns-ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns-resolver" },
+      { "tag": "dns-tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns-resolver" },
       { "tag": "dns-cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "GLOBAL" },
       { "tag": "dns-google", "type": "https", "server": "dns.google", "detour": "GLOBAL" },
       { "tag": "dns-direct", "type": "group", "servers": [ "dns-ali", "dns-tencent" ] },
@@ -61,7 +61,6 @@
       { "tag": "dns-fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/18" }
     ],
     "rules": [
-      { "preferred_by": "dns-hosts", "server": "dns-hosts" },
       { "clash_mode": "Direct", "server": "dns-direct" },
       { "clash_mode": "Global", "server": "dns-global" },
       { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "AllowAds", "invert": true }, { "rule_set": "GeoSite-AdBlock" } ], "action": "predefined", "rcode": "NOERROR" },
