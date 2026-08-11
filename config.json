@@ -65,6 +65,7 @@
       { "clash_mode": "Direct", "server": "dns-direct" },
       { "clash_mode": "Global", "server": "dns-global" },
       { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "AllowAds", "invert": true }, { "rule_set": "GeoSite-AdBlock" } ], "action": "predefined", "rcode": "NOERROR" },
+      { "domain": "p.sda1.dev", "server": "dns-fakeip", "rewrite_ttl": 1 },
       { "rule_set": [ "GeoSite-FakeIP-Filter", "GeoSite-China" ], "server": "dns-direct" },
       { "tag": "evaluate", "rule_set": "GeoSite-Proxy", "invert": true, "action": "evaluate", "server": "dns-global", "client_subnet": "1.12.12.12/24" },
       { "match_response": "evaluate", "rule_set": "GeoIP-China", "server": "dns-direct" },
@@ -127,7 +128,7 @@
   ],
   "route": {
     "rules": [
-      { "domain": "p.sda1.dev", "invert": true, "action": "sniff" },
+      { "action": "sniff" },
       { "type": "logical", "mode": "or", "rules": [ { "protocol": "dns" }, { "port": 53 } ], "action": "hijack-dns" },
       { "ip_is_private": true, "outbound": "🌐 本地直连" },
       { "clash_mode": "Direct", "outbound": "🌐 本地直连" },
