@@ -67,7 +67,6 @@ dns:
   fake-ip-filter-mode: rule
   fake-ip-filter:
     - DOMAIN,p.sda1.dev,fake-ip
-    - DOMAIN,services.googleapis.cn,fake-ip
     - RULE-SET,GeoSite-FakeIP-Filter,real-ip
     - RULE-SET,GeoSite-Private,real-ip
     - RULE-SET,GeoSite-China,real-ip
