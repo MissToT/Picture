@@ -54,9 +54,6 @@ sniffer:
     QUIC: { ports: [ 443, 8443 ] }
   skip-domain: [ "p.sda1.dev" ]
 
-hosts:
-  "services.googleapis.cn": "services.googleapis.com"
-
 dns:
   enable: true
   ipv6: false
@@ -66,6 +63,7 @@ dns:
   fake-ip-range: 198.18.0.0/15
   fake-ip-filter-mode: rule
   fake-ip-filter:
+    - DOMAIN,services.googleapis.cn,fake-ip
     - DOMAIN,p.sda1.dev,fake-ip
     - RULE-SET,GeoSite-FakeIP-Filter,real-ip
     - RULE-SET,GeoSite-Private,real-ip
