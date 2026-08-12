@@ -49,9 +49,6 @@ sniffer:
     QUIC: { ports: [ 443, 8443 ] }
   skip-domain: [ "Mijia Cloud" ]
 
-hosts:
-  "services.googleapis.cn": "services.googleapis.com"
-
 dns:
   enable: true
   ipv6: false
