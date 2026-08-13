@@ -55,7 +55,7 @@ sniffer:
   skip-domain: [ "p.sda1.dev" ]
 
 hosts:
-  "services.googleapis.cn": "services.googleapis.com"
+  services.googleapis.cn: [ 142.250.199.227, 108.177.125.94 ]
 
 dns:
   enable: true
