@@ -135,6 +135,14 @@
         "rcode": "NOERROR"
       },
       {
+        "query_type": [
+          "SVCB",
+          "HTTPS"
+        ],
+        "action": "predefined",
+        "rcode": "NOTIMP"
+      },
+      {
         "rule_set": [
           "GeoSite-FakeIP-Filter",
           "GeoSite-China"
