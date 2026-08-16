@@ -129,16 +129,10 @@ rule-providers:
   GeoSite-Twitter: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/twitter.mrs" }
   GeoSite-Google: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/google.mrs" }
   GeoSite-GoogleFCM: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/googlefcm.mrs" }
-  GeoSite-Microsoft: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/microsoft.mrs" }
-  GeoSite-Microsoft-CN: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/microsoft-cn.mrs" }
   GeoSite-Cloudflare: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/cloudflare.mrs" }
-  GeoSite-Cloudflare-CN: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/cloudflare-cn.mrs" }
   GeoSite-Games: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/games.mrs" }
-  GeoSite-Games-Download: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/game-platforms-download.mrs" }
-  GeoSite-Mihoyo-CN: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/mihoyo-cn.mrs" }
   GeoSite-AI: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/ai.mrs" }
   GeoSite-Emby: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/emby.mrs" }
-  GeoSite-Emby-CN: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/emby-cn.mrs" }
   GeoSite-Japan: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/japan.mrs" }
   GeoSite-Taiwan: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/taiwan.mrs" }
   GeoSite-TikTok: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/tiktok.mrs" }
@@ -157,18 +151,12 @@ rules:
   - RULE-SET,GeoSite-TikTok,TikTok
   - RULE-SET,GeoSite-AI,AI
   - RULE-SET,GeoSite-YouTube,YouTube
-  - RULE-SET,GeoSite-Emby-CN,国内直连
   - RULE-SET,GeoSite-Emby,Emby
   - RULE-SET,GeoSite-ExHentai,ExHentai
-  - RULE-SET,GeoSite-Mihoyo-CN,国内直连
   - RULE-SET,GeoSite-Games,Games
-  - RULE-SET,GeoSite-Games-Download,Games
   - RULE-SET,GeoSite-Japan,日本网站
   - RULE-SET,GeoSite-Taiwan,台湾网站
   - RULE-SET,GeoSite-Google,Google
-  - RULE-SET,GeoSite-Microsoft-CN,国内直连
-  - RULE-SET,GeoSite-Microsoft,国外代理
-  - RULE-SET,GeoSite-Cloudflare-CN,国内直连
   - RULE-SET,GeoSite-Cloudflare,Cloudflare
   - RULE-SET,GeoSite-Proxy,国外代理
   - RULE-SET,GeoSite-China,国内直连
