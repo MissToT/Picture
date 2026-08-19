@@ -1,13 +1,14 @@
 {
+  "$schema": "https://v6.gh-proxy.org/github.com/reF1nd/sing-box/raw/reF1nd-testing/docs/schema.json",
   "providers": [
     {
-      "tag": "守候",
+      "tag": "自建",
       "type": "remote",
-      "path": "./providers/守候.json",
-      "url": "http://localhost:3000/download/SNTP",
+      "path": "./providers/自建.json",
+      "url": "http://localhost:5200/download/%E8%87%AA%E5%BB%BA",
       "health_check": {
         "enabled": true,
-        "url": "https://captive.apple.com/generate_204",
+        "url": "https://www.gstatic.com/generate_204",
         "interval": "10m"
       }
     }
@@ -51,7 +52,10 @@
         "tag": "dns-hosts",
         "type": "hosts",
         "predefined": {
-          "services.googleapis.cn": "services.googleapis.com"
+          "services.googleapis.cn": [
+            "64.233.188.94",
+            "64.233.189.94"
+          ]
         }
       },
       {
@@ -151,7 +155,7 @@
       },
       {
         "tag": "evaluate",
-        "rule_set": "GeoSite-Proxy",
+        "rule_set": "Geo-Proxy",
         "invert": true,
         "action": "evaluate",
         "server": "dns-global",
@@ -214,24 +218,17 @@
     {
       "tag": "♻️ 自动选择",
       "type": "urltest",
-      "use_all_providers": true,
-      "interrupt_exist_connections": false,
-      "url": "https://captive.apple.com/generate_204",
-      "interval": "3m",
-      "tolerance": 50
+      "use_all_providers": true
     },
     {
       "tag": "🎯 手动选择",
       "type": "selector",
-      "use_all_providers": true,
-      "interrupt_exist_connections": true
+      "use_all_providers": true
     },
     {
       "tag": "📦 订阅更新",
       "type": "selector",
       "use_all_providers": true,
-      "interrupt_exist_connections": true,
-      "default": "🌐 本地直连",
       "outbounds": [
         "♻️ 自动选择",
         "🎯 手动选择",
@@ -243,8 +240,6 @@
       "tag": "💌 谷歌推送",
       "type": "selector",
       "use_all_providers": true,
-      "interrupt_exist_connections": true,
-      "default": "🌐 本地直连",
       "outbounds": [
         "♻️ 自动选择",
         "🎯 手动选择",
@@ -256,8 +251,6 @@
       "tag": "🇨🇳 国内直连",
       "type": "selector",
       "use_all_providers": true,
-      "interrupt_exist_connections": true,
-      "default": "🌐 本地直连",
       "outbounds": [
         "♻️ 自动选择",
         "🎯 手动选择",
@@ -269,7 +262,6 @@
       "tag": "🇺🇳 国外代理",
       "type": "selector",
       "use_all_providers": true,
-      "interrupt_exist_connections": true,
       "outbounds": [
         "♻️ 自动选择",
         "🎯 手动选择",
@@ -281,7 +273,6 @@
       "tag": "🍥 漏网之鱼",
       "type": "selector",
       "use_all_providers": true,
-      "interrupt_exist_connections": true,
       "outbounds": [
         "♻️ 自动选择",
         "🎯 手动选择",
@@ -293,7 +284,6 @@
       "tag": "GLOBAL",
       "type": "selector",
       "use_all_providers": true,
-      "interrupt_exist_connections": true,
       "outbounds": [
         "♻️ 自动选择",
         "🎯 手动选择",
@@ -356,16 +346,12 @@
         "outbound": "💌 谷歌推送"
       },
       {
-        "rule_set": "GeoSite-Proxy",
+        "rule_set": "Geo-Proxy",
         "outbound": "🇺🇳 国外代理"
       },
       {
         "rule_set": "GeoSite-China",
         "outbound": "🇨🇳 国内直连"
-      },
-      {
-        "rule_set": "GeoIP-Proxy",
-        "outbound": "🇺🇳 国外代理"
       },
       {
         "rule_set": "GeoIP-China",
@@ -383,7 +369,7 @@
         "tag": "GeoSite-AdBlock",
         "type": "remote",
         "path": "./rules/GeoSite-AdBlock.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/geosite/adblock.srs"
+        "url": "https://v6.gh-proxy.org/github.com/privacy-protection-tools/anti-ad.github.io/raw/master/docs/anti-ad-sing-box.srs"
       },
       {
         "tag": "GeoSite-GoogleFCM",
@@ -392,34 +378,28 @@
         "url": "https://v6.gh-proxy.org/github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/googlefcm@!cn.srs"
       },
       {
-        "tag": "GeoSite-Proxy",
+        "tag": "Geo-Proxy",
         "type": "remote",
-        "path": "./rules/GeoSite-Proxy.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/geosite/proxy.srs"
-      },
-      {
-        "tag": "GeoIP-Proxy",
-        "type": "remote",
-        "path": "./rules/GeoIP-Proxy.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/geoip/proxy.srs"
+        "path": "./rules/Geo-Proxy.srs",
+        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/singbox/version2/proxy.srs"
       },
       {
         "tag": "GeoSite-China",
         "type": "remote",
         "path": "./rules/GeoSite-China.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/geosite/china.srs"
+        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/singbox/version2/cn.srs"
       },
       {
         "tag": "GeoIP-China",
         "type": "remote",
         "path": "./rules/GeoIP-China.srs",
-        "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/geoip/china.srs"
+        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/singbox/version2/cncidr.srs"
       },
       {
         "tag": "GeoSite-FakeIP-Filter",
         "type": "remote",
         "path": "./rules/GeoSite-FakeIP-Filter.srs",
-        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/singbox/version5/fake-ip-filter.srs"
+        "url": "https://v6.gh-proxy.org/github.com/QuixoticHeart/rule-set/raw/ruleset/singbox/version2/fake-ip-filter.srs"
       }
     ]
   }
