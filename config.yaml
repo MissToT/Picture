@@ -138,7 +138,7 @@ rule-providers:
   GeoSite-TikTok: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/tiktok.mrs" }
   GeoSite-YouTube: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/youtube.mrs" }
   GeoSite-ExHentai: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/ehentai.mrs" }
-  GeoSite-AdBlock: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/adblock.mrs" }
+  GeoSite-AdBlock: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/adblock/mihomo.mrs" }
   GeoSite-FakeIP-Filter: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/fake-ip-filter.mrs" }
 
 rules:
