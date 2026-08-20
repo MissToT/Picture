@@ -164,7 +164,7 @@
     "default_domain_resolver": "dns-direct",
     "default_domain_match_strategy": "prefer_fqdn",
     "rule_set": [
-      { "tag": "GeoSite-AdBlock", "type": "remote", "path": "./rules/GeoSite-AdBlock.srs", "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/geosite/adblock.srs" },
+      { "tag": "GeoSite-AdBlock", "type": "remote", "path": "./rules/GeoSite-AdBlock.srs", "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/adblock/sing-box.srs" },
       { "tag": "GeoSite-Cloudflare", "type": "remote", "path": "./rules/GeoSite-Cloudflare.srs", "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/geosite/cloudflare.srs" },
       { "tag": "GeoIP-Cloudflare", "type": "remote", "path": "./rules/GeoIP-Cloudflare.srs", "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/geoip/cloudflare.srs" },
       { "tag": "GeoSite-Google", "type": "remote", "path": "./rules/GeoSite-Google.srs", "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/geosite/google.srs" },
