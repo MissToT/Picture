@@ -4,7 +4,7 @@ FilterSelect: &FilterSelect { filter: "^(?=.*(?i)(香港|🇭🇰|HK|台湾|🇹
 FilterOthers: &FilterOthers { filter: "^(?!.*(DIRECT|Traffic|TRAFFIC|Expire|EXPIRE|流量|到期|时间|重置))" }
 # 锚点 - 策略组
 Select: &Select { type: select, include-all-providers: true, interrupt-exist-connections: true, proxies: [ "自动选择", "手动选择", "🌐 本地直连", "⛔️ 拒绝连接"] }
-UrlTest: &UrlTest { type: url-test, interrupt-exist-connections: false, hidden: true, interval: 180, tolerance: 50, url: "https://captive.apple.com/generate_204" }
+UrlTest: &UrlTest { type: url-test, interrupt-exist-connections: false, hidden: true, interval: 180, tolerance: 100, url: "https://captive.apple.com/generate_204" }
 Fallback: &Fallback { type: fallback, interrupt-exist-connections: true, hidden: true, interval: 60, url: "https://captive.apple.com/generate_204" }
 # 锚点 - 规则集
 IPCIDR: &IPCIDR { type: http, interval: 86400, proxy: "订阅更新", behavior: ipcidr, format: mrs }
