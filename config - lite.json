@@ -158,7 +158,7 @@
         "rule_set": "Geo-Proxy",
         "invert": true,
         "action": "evaluate",
-        "server": "dns-global",
+        "server": "dns-google",
         "client_subnet": "1.12.12.12/24"
       },
       {
