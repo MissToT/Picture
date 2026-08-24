@@ -104,7 +104,7 @@
   "outbounds": [
     { "tag": "⛔️ 拒绝连接", "type": "block" },
     { "tag": "🌐 本地直连", "type": "direct" },
-    { "tag": "♻️ 自动选择", "type": "urltest", "use_all_providers": true, "interrupt_exist_connections": false, "url": "https://captive.apple.com/generate_204", "interval": "3m", "tolerance": 50 },
+    { "tag": "♻️ 自动选择", "type": "urltest", "use_all_providers": true, "interrupt_exist_connections": false, "url": "https://captive.apple.com/generate_204", "interval": "3m", "tolerance": 100 },
     { "tag": "🎯 手动选择", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true },
     { "tag": "📦 订阅更新", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "💌 谷歌推送", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
