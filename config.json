@@ -67,7 +67,7 @@
       { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "AllowAds", "invert": true }, { "rule_set": "GeoSite-AdBlock" } ], "action": "predefined", "rcode": "NOERROR" },
       { "query_type": [ "SVCB", "HTTPS" ], "action": "predefined", "rcode": "NOTIMP" },
       { "rule_set": [ "GeoSite-FakeIP-Filter", "GeoSite-China" ], "server": "dns-direct" },
-      { "tag": "evaluate", "rule_set": "GeoSite-Proxy", "invert": true, "action": "evaluate", "server": "dns-google", "client_subnet": "1.12.12.12/24" },
+      { "tag": "evaluate", "rule_set": "GeoSite-Proxy", "invert": true, "action": "evaluate", "server": "dns-google", "client_subnet": "1.0.1.0/24" },
       { "match_response": "evaluate", "rule_set": "GeoIP-China", "server": "dns-direct" },
       { "query_type": [ "A", "AAAA" ], "server": "dns-fakeip", "rewrite_ttl": 1 }
     ],
