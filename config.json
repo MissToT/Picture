@@ -22,8 +22,8 @@
     "output": "sing-box.log"
   },
   "experimental": {
-    "tcp_concurrent": true,
     "urltest_unified_delay": true,
+    "tcp_concurrent": true,
     "cache_file": {
       "enabled": true,
       "store_dns": true,
