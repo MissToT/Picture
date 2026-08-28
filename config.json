@@ -5,7 +5,8 @@
       "type": "remote",
       "path": "./providers/守候.json",
       "url": "http://localhost:3000/download/SNTP",
-      "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
+      "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" },
+      "override_dialer": { "domain_resolver": "dns-hosts" }
     },
     {
       "tag": "自建",
@@ -50,7 +51,7 @@
   ],
   "dns": {
     "servers": [
-      { "tag": "dns-hosts", "type": "hosts", "predefined": { "services.googleapis.cn": [ "64.233.188.94", "64.233.189.94" ] } },
+      { "tag": "dns-hosts", "type": "hosts", "predefined": { "services.googleapis.cn": [ "64.233.188.94", "64.233.189.94" ], "24.d.d.d.d.266nets.com": [ "34.92.218.129", "35.241.99.159", "35.241.80.41" ] } },
       { "tag": "dns-resolver", "type": "udp", "server": "223.5.5.5" },
       { "tag": "dns-ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns-resolver" },
       { "tag": "dns-tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns-resolver" },
