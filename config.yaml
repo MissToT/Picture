@@ -67,13 +67,12 @@ dns:
   fake-ip-filter-mode: rule
   fake-ip-filter:
     - RULE-SET,GeoSite-AdBlock,real-ip
-    - DOMAIN,p.sda1.dev,fake-ip
+    - RULE-SET,GeoSite-FakeIP,fake-ip
     - RULE-SET,GeoSite-FakeIP-Filter,real-ip
     - RULE-SET,GeoSite-Private,real-ip
     - RULE-SET,GeoSite-China,real-ip
     - MATCH,fake-ip
-  nameserver-policy:
-    "rule-set:GeoSite-AdBlock": "rcode://success"
+  nameserver-policy: { "rule-set:GeoSite-AdBlock": "rcode://success" }
   default-nameserver: [ 223.5.5.5, 119.29.29.29 ]
   nameserver: [ "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query" ]
 
@@ -141,8 +140,9 @@ rule-providers:
   GeoSite-TikTok: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/tiktok.mrs" }
   GeoSite-YouTube: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/youtube.mrs" }
   GeoSite-E-Hentai: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/ehentai.mrs" }
-  GeoSite-AdBlock: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/adblock/mihomo.mrs" }
+  GeoSite-FakeIP: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/fake-ip.mrs" }
   GeoSite-FakeIP-Filter: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/mihomo/geo/geosite/fake-ip-filter.mrs" }
+  GeoSite-AdBlock: { <<: *DOMAIN, url: "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/adblock/mihomo.mrs" }
 
 rules:
   - DST-PORT,53,🔰 DNS-Hijack
