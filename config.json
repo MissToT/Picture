@@ -165,7 +165,7 @@
     "default_domain_match_strategy": "prefer_fqdn",
     "rule_set": [
       { "tag": "geosite/adblock", "type": "remote", "path": "./rules/geosite/adblock.srs", "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/adblock/sing-box.srs" },
-      { "tag": [ "geosite/cloudflare", "geoip/cloudflare", "geosite/google", "geoip/google", "geosite/googlefcm", "geosite/ai", "geoip/ai", "geosite/emby", "geosite/games", "geosite/ehentai", "geosite/japan", "geosite/taiwan", "geosite/tiktok", "geosite/youtube", "geosite/telegram", "geoip/telegram", "geosite/twitter", "geoip/twitter", "geosite/proxy", "geoip/proxy", "geosite/china", "geoip/china", "geosite/fake-ip-filter" ], "type": "remote", "path": "./rules/{tag}.srs", "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/{tag}.srs" }
+      { "tag": [ "geoip/ai", "geosite/ai", "geoip/china", "geosite/china", "geoip/proxy", "geosite/proxy", "geosite/emby", "geoip/google", "geosite/google", "geosite/games", "geosite/japan", "geoip/twitter", "geosite/twitter", "geosite/taiwan", "geosite/tiktok", "geoip/telegram", "geosite/telegram", "geosite/ehentai", "geosite/youtube", "geoip/cloudflare", "geosite/cloudflare", "geosite/googlefcm", "geosite/fake-ip-filter" ], "type": "remote", "path": "./rules/{tag}.srs", "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/{tag}.srs" }
     ]
   }
 }
