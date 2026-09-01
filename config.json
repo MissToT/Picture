@@ -118,7 +118,6 @@
     { "tag": "🌐 本地直连", "type": "direct" },
     { "tag": "♻️ 自动选择", "type": "urltest", "use_all_providers": true, "interrupt_exist_connections": false, "url": "https://captive.apple.com/generate_204", "interval": "3m", "tolerance": 100 },
     { "tag": "🎯 手动选择", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true },
-    { "tag": "🏠 家庭服务", "type": "selector", "interrupt_exist_connections": true, "outbounds": [ "🌐 本地直连", "tailscale-ep" ] },
     { "tag": "📦 订阅更新", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "💌 谷歌推送", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "📱 Telegram", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
@@ -135,8 +134,9 @@
     { "tag": "🇹🇼 台湾网站", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(🇭🇰|香港|HongKong|HK|🇹🇼|台湾|Taiwan|TW)" },
     { "tag": "🇨🇳 国内直连", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "🇺🇳 国外代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🏠 家庭服务", "type": "selector", "interrupt_exist_connections": true, "outbounds": [ "🌐 本地直连", "tailscale-ep" ] },
     { "tag": "🍥 漏网之鱼", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
-    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接", "🏠 家庭服务", "📦 订阅更新", "💌 谷歌推送", "📱 Telegram", "🐦 Twitter", "🎬 Emby", "📚 E-Hentai", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🔍 Google", "🧩 Cloudflare", "🇯🇵 日本网站", "🇹🇼 台湾网站", "🇨🇳 国内直连", "🇺🇳 国外代理", "🍥 漏网之鱼" ] }
+    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接", "📦 订阅更新", "💌 谷歌推送", "📱 Telegram", "🐦 Twitter", "🎬 Emby", "📚 E-Hentai", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🔍 Google", "🧩 Cloudflare", "🇯🇵 日本网站", "🇹🇼 台湾网站", "🇨🇳 国内直连", "🇺🇳 国外代理", "🏠 家庭服务", "🍥 漏网之鱼" ] }
   ],
   "route": {
     "rules": [
