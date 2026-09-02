@@ -1,0 +1,171 @@
+{
+  "providers": [
+    {
+      "tag": "守候",
+      "type": "remote",
+      "path": "./providers/守候.json",
+      "url": "http://localhost:3000/download/SNTP",
+      "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
+    },
+    {
+      "tag": "自建",
+      "type": "remote",
+      "path": "./providers/自建.json",
+      "url": "http://localhost:3000/download/%E8%87%AA%E5%BB%BA",
+      "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
+    }
+  ],
+  "log": {
+    "disabled": false,
+    "level": "fatal",
+    "timestamp": true,
+    "output": "sing-box.log"
+  },
+  "experimental": {
+    "urltest_unified_delay": true,
+    "tcp_concurrent": true,
+    "cache_file": {
+      "enabled": true,
+      "store_dns": true,
+      "store_fakeip": true
+    },
+    "clash_api": {
+      "secret": "RurukaSuki",
+      "default_mode": "Rule",
+      "external_ui": "dashboard",
+      "external_controller": "0.0.0.0:9090",
+      "external_ui_download_url": "https://v6.gh-proxy.org/github.com/Zephyruso/zashboard/releases/download/v3.22.0/dist.zip",
+      "access_control_allow_origin": "*",
+      "access_control_allow_private_network": true
+    }
+  },
+  "services": [
+    {
+      "type": "api",
+      "listen": "0.0.0.0",
+      "listen_port": 9191,
+      "secret": "RurukaSuki",
+      "access_control_allow_origin": "*",
+      "access_control_allow_private_network": true
+    }
+  ],
+  "dns": {
+    "servers": [
+      { "tag": "dns-hosts", "type": "hosts", "predefined": { "services.googleapis.cn": [ "64.233.188.94", "64.233.189.94" ] } },
+      { "tag": "dns-resolver", "type": "udp", "server": "223.5.5.5" },
+      { "tag": "dns-ali", "type": "https", "server": "dns.alidns.com", "domain_resolver": "dns-resolver" },
+      { "tag": "dns-tencent", "type": "https", "server": "doh.pub", "domain_resolver": "dns-resolver" },
+      { "tag": "dns-cloudflare", "type": "https", "server": "cloudflare-dns.com", "detour": "GLOBAL" },
+      { "tag": "dns-google", "type": "https", "server": "dns.google", "detour": "GLOBAL" },
+      { "tag": "dns-direct", "type": "group", "servers": [ "dns-ali", "dns-tencent" ] },
+      { "tag": "dns-global", "type": "group", "servers": [ "dns-cloudflare", "dns-google" ] },
+      { "tag": "dns-fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "2001:2::/48" }
+    ],
+    "rules": [
+      { "type": "logical", "mode": "and", "rules": [ { "query_type": "AAAA" }, { "default_interface_address": "2000::/3", "invert": true } ], "action": "predefined", "rcode": "NOERROR" },
+      { "preferred_by": "dns-hosts", "server": "dns-hosts" },
+      { "clash_mode": "Direct", "server": "dns-direct" },
+      { "clash_mode": "Global", "server": "dns-global" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "AllowAds", "invert": true }, { "rule_set": "geosite/adblock" } ], "action": "predefined", "rcode": "NOERROR" },
+      { "query_type": [ "SVCB", "HTTPS" ], "action": "predefined", "rcode": "NOTIMP" },
+      { "rule_set": [ "geosite/fake-ip-filter", "geosite/china" ], "server": "dns-direct" },
+      { "tag": "evaluate", "rule_set": "geosite/proxy", "invert": true, "action": "evaluate", "server": "dns-google", "client_subnet": "1.0.1.0/24" },
+      { "match_response": "evaluate", "rule_set": "geoip/china", "server": "dns-direct" },
+      { "query_type": [ "A", "AAAA" ], "server": "dns-fakeip", "rewrite_ttl": 1 }
+    ],
+    "final": "dns-global",
+    "strategy": "prefer_ipv4",
+    "optimistic": true,
+    "reverse_mapping": true
+  },
+  "http_clients": [
+    {
+      "tag": "sub-client",
+      "detour": "📦 订阅更新"
+    }
+  ],
+  "inbounds": [
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "::",
+      "listen_port": 7890
+    },
+    {
+      "type": "ebpf",
+      "tag": "ebpf-in",
+      "mode": "hybrid",
+      "bypass_rule_set": "geoip/china",
+      "shared": {
+        "interface": "wlan2"
+      }
+    }
+  ],
+  "outbounds": [
+    { "tag": "⛔️ 拒绝连接", "type": "block" },
+    { "tag": "🌐 本地直连", "type": "direct" },
+    { "tag": "♻️ 自动选择", "type": "urltest", "use_all_providers": true, "interrupt_exist_connections": false, "url": "https://captive.apple.com/generate_204", "interval": "3m", "tolerance": 100 },
+    { "tag": "🎯 手动选择", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true },
+    { "tag": "📦 订阅更新", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "💌 谷歌推送", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "📱 Telegram", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🐦 Twitter", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🎬 Emby", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "📚 E-Hentai", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🎶 TikTok", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "📺 YouTube", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🤖 AI", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🎮 Games", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🔍 Google", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🧩 Cloudflare", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🇯🇵 日本网站", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(🇯🇵|日本|Japan|JP)" },
+    { "tag": "🇹🇼 台湾网站", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ], "include": "(?i)(🇭🇰|香港|HongKong|HK|🇹🇼|台湾|Taiwan|TW)" },
+    { "tag": "🇨🇳 国内直连", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🇺🇳 国外代理", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "🍥 漏网之鱼", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
+    { "tag": "GLOBAL", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接", "📦 订阅更新", "💌 谷歌推送", "📱 Telegram", "🐦 Twitter", "🎬 Emby", "📚 E-Hentai", "🎶 TikTok", "📺 YouTube", "🤖 AI", "🎮 Games", "🔍 Google", "🧩 Cloudflare", "🇯🇵 日本网站", "🇹🇼 台湾网站", "🇨🇳 国内直连", "🇺🇳 国外代理", "🍥 漏网之鱼" ] }
+  ],
+  "route": {
+    "rules": [
+      { "type": "logical", "mode": "and", "rules": [ { "ip_version": 6 }, { "default_interface_address": "2000::/3", "invert": true } ], "action": "reject" },
+      { "action": "sniff" },
+      { "type": "logical", "mode": "or", "rules": [ { "protocol": "dns" }, { "port": 53 } ], "action": "hijack-dns" },
+      { "ip_is_private": true, "outbound": "🌐 本地直连" },
+      { "clash_mode": "Direct", "outbound": "🌐 本地直连" },
+      { "clash_mode": "Global", "outbound": "GLOBAL" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "AllowAds", "invert": true }, { "rule_set": "geosite/adblock" } ], "action": "reject" },
+      { "rule_set": "geosite/googlefcm", "outbound": "💌 谷歌推送" },
+      { "rule_set": "geosite/telegram", "outbound": "📱 Telegram" },
+      { "rule_set": "geosite/twitter", "outbound": "🐦 Twitter" },
+      { "rule_set": "geosite/tiktok", "outbound": "🎶 TikTok" },
+      { "rule_set": "geosite/ai", "outbound": "🤖 AI" },
+      { "rule_set": "geosite/youtube", "outbound": "📺 YouTube" },
+      { "rule_set": "geosite/emby", "outbound": "🎬 Emby" },
+      { "rule_set": "geosite/ehentai", "outbound": "📚 E-Hentai" },
+      { "rule_set": "geosite/games", "outbound": "🎮 Games" },
+      { "rule_set": "geosite/japan", "outbound": "🇯🇵 日本网站" },
+      { "rule_set": "geosite/taiwan", "outbound": "🇹🇼 台湾网站" },
+      { "rule_set": "geosite/google", "outbound": "🔍 Google" },
+      { "rule_set": "geosite/cloudflare", "outbound": "🧩 Cloudflare" },
+      { "rule_set": "geosite/proxy", "outbound": "🇺🇳 国外代理" },
+      { "rule_set": "geosite/china", "outbound": "🇨🇳 国内直连" },
+      { "rule_set": "geoip/telegram", "outbound": "📱 Telegram" },
+      { "rule_set": "geoip/twitter", "outbound": "🐦 Twitter" },
+      { "rule_set": "geoip/ai", "outbound": "🤖 AI" },
+      { "rule_set": "geoip/google", "outbound": "🔍 Google" },
+      { "rule_set": "geoip/cloudflare", "outbound": "🧩 Cloudflare" },
+      { "rule_set": "geoip/proxy", "outbound": "🇺🇳 国外代理" },
+      { "rule_set": "geoip/china", "outbound": "🇨🇳 国内直连" }
+    ],
+    "final": "🍥 漏网之鱼",
+    "find_process": true,
+    "auto_detect_interface": true,
+    "default_http_client": "sub-client",
+    "default_domain_resolver": "dns-direct",
+    "default_domain_match_strategy": "prefer_fqdn",
+    "rule_set": [
+      { "tag": "geosite/adblock", "type": "remote", "path": "./rules/geosite/adblock.srs", "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/adblock/sing-box.srs" },
+      { "tag": [ "geoip/ai", "geosite/ai", "geoip/china", "geosite/china", "geoip/proxy", "geosite/proxy", "geosite/emby", "geoip/google", "geosite/google", "geosite/games", "geosite/japan", "geoip/twitter", "geosite/twitter", "geosite/taiwan", "geosite/tiktok", "geoip/telegram", "geosite/telegram", "geosite/ehentai", "geosite/youtube", "geoip/cloudflare", "geosite/cloudflare", "geosite/googlefcm", "geosite/fake-ip-filter" ], "type": "remote", "path": "./rules/{tag}.srs", "url": "https://v6.gh-proxy.org/github.com/MissToT/rule-set/raw/singbox/geo/{tag}.srs" }
+    ]
+  }
+}
