@@ -129,11 +129,12 @@
   ],
   "route": {
     "rules": [
-      { "action": "sniff" },
-      { "type": "logical", "mode": "or", "rules": [ { "protocol": "dns" }, { "port": 53 } ], "action": "hijack-dns" },
+      { "port": 53, "action": "hijack-dns" },
       { "ip_is_private": true, "outbound": "🌐 本地直连" },
       { "clash_mode": "Direct", "outbound": "🌐 本地直连" },
       { "clash_mode": "Global", "outbound": "GLOBAL" },
+      { "action": "sniff" },
+      { "protocol": "dns", "action": "hijack-dns" },
       { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "AllowAds", "invert": true }, { "rule_set": "geosite/adblock" } ], "action": "reject" },
       { "rule_set": "geosite/googlefcm", "outbound": "💌 谷歌推送" },
       { "rule_set": "geosite/telegram", "outbound": "📱 Telegram" },
