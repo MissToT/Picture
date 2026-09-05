@@ -78,30 +78,11 @@
     "reverse_mapping": true
   },
   "http_clients": [
-    {
-      "tag": "sub-client",
-      "detour": "📦 订阅更新"
-    }
+    { "tag": "sub-client", "detour": "📦 订阅更新" }
   ],
   "inbounds": [
-    {
-      "type": "mixed",
-      "tag": "mixed-in",
-      "listen": "::",
-      "listen_port": 7890
-    },
-    {
-      "type": "tun",
-      "tag": "tun-in",
-      "mtu": 9000,
-      "stack": "gvisor",
-      "dns_mode": "hijack",
-      "interface_name": "Box",
-      "address": [ "172.18.0.1/30", "fdfe:dcba:9876::1/126" ],
-      "auto_route": true,
-      "strict_route": true,
-      "auto_redirect": true
-    }
+    { "tag": "mixed-in", "type": "mixed", "listen": "::", "listen_port": 7890 },
+    { "tag": "tun-in", "type": "tun", "address": [ "172.18.0.1/30", "fdfe:dcba:9876::1/126" ], "auto_route": true, "strict_route": true, "auto_redirect": true }
   ],
   "outbounds": [
     { "tag": "⛔️ 拒绝连接", "type": "block" },
