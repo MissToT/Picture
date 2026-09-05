@@ -82,8 +82,8 @@
     { "tag": "sub-client", "detour": "📦 订阅更新" }
   ],
   "inbounds": [
-    { "type": "mixed", "tag": "mixed-in", "listen": "::", "listen_port": 7890 },
-    { "type": "ebpf", "tag": "ebpf-in", "bypass_rule_set": "geoip/china", "local": { "enabled": true, "data_plane": "tc" }, "shared": { "enabled": true, "interface": "wlan2" } }
+    { "tag": "mixed-in", "type": "mixed", "listen": "::", "listen_port": 7890 },
+    { "tag": "ebpf-in", "type": "ebpf", "bypass_rule_set": "geoip/china", "local": { "enabled": true, "data_plane": "tc" }, "shared": { "enabled": true, "interface": "wlan2" } }
   ],
   "outbounds": [
     { "tag": "⛔️ 拒绝连接", "type": "block" },
