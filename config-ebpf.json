@@ -59,7 +59,7 @@
       { "tag": "dns-google", "type": "https", "server": "dns.google", "detour": "GLOBAL" },
       { "tag": "dns-direct", "type": "group", "servers": [ "dns-ali", "dns-tencent" ] },
       { "tag": "dns-global", "type": "group", "servers": [ "dns-cloudflare", "dns-google" ] },
-      { "tag": "dns-fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "2001:2::/48" }
+      { "tag": "dns-fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/18" }
     ],
     "rules": [
       { "type": "logical", "mode": "and", "rules": [ { "query_type": "AAAA" }, { "default_interface_address": "2000::/3", "invert": true } ], "action": "predefined", "rcode": "NOERROR" },
