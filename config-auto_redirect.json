@@ -69,7 +69,6 @@
     { "tag": "sub-client", "detour": "📦 订阅更新" }
   ],
   "inbounds": [
-    { "tag": "mixed-in", "type": "mixed", "listen": "::", "listen_port": 7890 },
     { "tag": "tun-in", "type": "tun", "address": [ "172.18.0.1/30", "fdfe:dcba:9876::1/126" ], "auto_route": true, "strict_route": true, "auto_redirect": true }
   ],
   "outbounds": [
@@ -100,9 +99,7 @@
     "rules": [
       { "port": 53, "action": "hijack-dns" },
       { "ip_is_private": true, "action": "bypass" },
-      { "ip_is_private": true, "outbound": "🌐 本地直连" },
       { "clash_mode": "Direct", "action": "bypass" },
-      { "clash_mode": "Direct", "outbound": "🌐 本地直连" },
       { "clash_mode": "Global", "outbound": "GLOBAL" },
       { "rule_set": "geoip/china", "action": "bypass" },
       { "action": "sniff" },
