@@ -1,19 +1,7 @@
 {
   "providers": [
-    {
-      "tag": "守候",
-      "type": "remote",
-      "path": "./providers/守候.json",
-      "url": "http://localhost:3000/download/SNTP",
-      "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
-    },
-    {
-      "tag": "自建",
-      "type": "remote",
-      "path": "./providers/自建.json",
-      "url": "http://localhost:3000/download/%E8%87%AA%E5%BB%BA",
-      "health_check": { "enabled": true, "url": "https://captive.apple.com/generate_204", "interval": "10m" }
-    }
+    { "tag": "守候", "type": "remote", "path": "./providers/守候.json", "url": "http://localhost:3000/download/SNTP" },
+    { "tag": "自建", "type": "remote", "path": "./providers/自建.json", "url": "http://localhost:3000/download/Node" }
   ],
   "log": {
     "disabled": false,
@@ -87,7 +75,7 @@
   "outbounds": [
     { "tag": "⛔️ 拒绝连接", "type": "block" },
     { "tag": "🌐 本地直连", "type": "direct" },
-    { "tag": "♻️ 自动选择", "type": "urltest", "use_all_providers": true, "interrupt_exist_connections": false, "url": "https://captive.apple.com/generate_204", "interval": "3m", "tolerance": 100 },
+    { "tag": "♻️ 自动选择", "type": "urltest", "use_all_providers": true, "interrupt_exist_connections": false },
     { "tag": "🎯 手动选择", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true },
     { "tag": "📦 订阅更新", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
     { "tag": "💌 谷歌推送", "type": "selector", "use_all_providers": true, "interrupt_exist_connections": true, "outbounds": [ "♻️ 自动选择", "🎯 手动选择", "🌐 本地直连", "⛔️ 拒绝连接" ] },
