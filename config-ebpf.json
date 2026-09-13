@@ -1,7 +1,7 @@
 {
   "providers": [
-    { "tag": "守候", "type": "remote", "path": "./providers/守候.json", "url": "http://localhost:3000/download/SNTP" },
-    { "tag": "自建", "type": "remote", "path": "./providers/自建.json", "url": "http://localhost:3000/download/Node" }
+    { "tag": "守候", "type": "remote", "path": "./providers/守候.json", "url": "http://localhost:3000/download/SNTP", "health_check": true },
+    { "tag": "自建", "type": "remote", "path": "./providers/自建.json", "url": "http://localhost:3000/download/Node", "health_check": true }
   ],
   "log": {
     "disabled": false,
