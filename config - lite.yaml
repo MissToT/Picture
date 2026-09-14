@@ -68,7 +68,7 @@ dns:
 tun:
   enable: true
   mtu: 9000
-  stack: gvisor
+  stack: mips
   device: Meta
   dns-hijack: [ "any:53", "tcp://any:53" ]
   auto-route: true
