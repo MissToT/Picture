@@ -72,7 +72,6 @@
     { "tag": "ebpf-in", "type": "ebpf", "bypass_rule_set": "geoip/china", "local": { "enabled": true, "data_plane": "tc" }, "shared": { "enabled": true, "interface": "wlan2" } }
   ],
   "outbounds": [
-    { "tag": "Bridge", "type": "bridge" },
     { "tag": "⛔️ 拒绝连接", "type": "block" },
     { "tag": "🌐 本地直连", "type": "direct" },
     { "tag": "♻️ 自动选择", "type": "urltest", "use_all_providers": true, "interrupt_exist_connections": false },
@@ -100,8 +99,8 @@
     "rules": [
       { "type": "logical", "mode": "and", "rules": [ { "ip_version": 6 }, { "default_interface_address": "2000::/3", "invert": true } ], "action": "reject", "no_drop": true },
       { "port": 53, "action": "hijack-dns" },
-      { "ip_is_private": true, "action": "bypass", "outbound": "Bridge" },
-      { "clash_mode": "Direct", "action": "bypass", "outbound": "Bridge" },
+      { "ip_is_private": true, "action": "bypass", "outbound": "🌐 本地直连" },
+      { "clash_mode": "Direct", "action": "bypass", "outbound": "🌐 本地直连" },
       { "clash_mode": "Global", "action": "route", "outbound": "GLOBAL" },
       { "rule_set": "geoip/china", "action": "bypass" },
       { "action": "sniff" },
